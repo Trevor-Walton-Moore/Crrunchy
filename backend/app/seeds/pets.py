@@ -20,7 +20,7 @@ def seed_pets():
         celebration_day='adoptionDay',
         birthday=datetime.datetime(2019, 8, 16),
         weight=11,
-        breed='SnowShoe',
+        breed='Snowshoe',
         gender="Male",
         )
     db.session.add(matilda)
