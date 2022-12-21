@@ -4,20 +4,20 @@ import datetime
 
 def seed_pets():
     matilda = Pet(
-        ownerId=1,
+        owner_id=1,
         name='Matilda',
         type='Dog',
-        celebrationDay='birthday',
+        celebration_day='birthday',
         birthday=datetime.datetime(2021, 4, 2),
         weight=8,
         breed='Australian Terrier',
         gender="Female",
         )
     nova = Pet(
-        ownerId=2,
+        owner_id=2,
         name='Nova',
         type='Cat',
-        celebrationDay='adoptionDay',
+        celebration_day='adoptionDay',
         birthday=datetime.datetime(2019, 8, 16),
         weight=11,
         breed='SnowShoe',

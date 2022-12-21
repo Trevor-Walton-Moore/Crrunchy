@@ -29,32 +29,30 @@ class Pet(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    ownerId = db.Column(db.Integer, nullable=False, unique=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False, unique=True)
     name = db.Column(db.String(20), nullable=False)
     type = db.Column(db.String(20), nullable=False)
-    celebrationDay = db.Column(db.String, nullable=False)
+    celebration_day = db.Column(db.String, nullable=False)
     birthday = db.Column(db.DateTime(20))
-    adoptionDay = db.Column(db.DateTime(20))
+    adoption_day = db.Column(db.DateTime(20))
     weight = db.Column(db.String(255), nullable=False)
     breed = db.Column(db.String(255), nullable=False)
     gender = db.Column(db.String(255), nullable=False)
-    profileIcon = db.Column(db.String(255))
-    coverIcon = db.Column(db.String(255))
-
-    ownerId = db.relationship("User", back_populates="Users")
+    profile_icon = db.Column(db.String(255))
+    cover_image = db.Column(db.String(255))
 
     def to_dict(self):
         return {
             'id': self.id,
-            'ownerId': self.ownerId,
+            'ownerId': self.owner_id,
             'name': self.name,
             'type': self.type,
-            'celebrationDay': self.celebrationDay,
+            'celebrationDay': self.celebration_day,
             'birthday': self.birthday,
-            'adoptionDay': self.adoptionDay,
+            'adoptionDay': self.adoption_day,
             'weight': self.weight,
             'breed': self.breed,
             'gender': self.gender,
-            'profileIcon': self.profileIcon,
-            'profileIcon': self.profileIcon,
+            'profileIcon': self.profile_icon,
+            'coverImage': self.cover_image
         }

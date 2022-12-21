@@ -1,7 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .pet import Pet
 
 
 class User(db.Model, UserMixin):
@@ -16,8 +15,6 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(20), nullable=False, unique=True)
     last_name = db.Column(db.String(20), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-
-    PetId = db.relationship("Pet", back_populates="users", cascade="all, delete")
 
     @property
     def password(self):
@@ -35,6 +32,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'email': self.email,
             'username': self.username,
-            'first_name': self.first_name,
-            'last_name': self.last_name
+            'firstName': self.first_name,
+            'lastName': self.last_name
         }

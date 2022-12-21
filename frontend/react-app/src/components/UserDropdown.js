@@ -36,7 +36,7 @@ const UserDropdown = () => {
                 <div onClick={() => openMenu()}>
                     <span>
                         <div>
-                            Hi, {`${user?.first_name}`}!
+                            Hi, {`${user?.firstName}`}!
                         </div>
                         <div>
                             your account
@@ -116,7 +116,7 @@ const UserDropdown = () => {
                     {
                         !pet &&
                         <NavLink
-                            to={`/pets/${pet?.id}`}
+                            to={`/pets`}
                             exact={true}
                             className="user-dropdown-button"
                         >
