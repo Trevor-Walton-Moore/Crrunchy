@@ -7,15 +7,17 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import Pet from './components/Pet/Pet';
 import { authenticate } from './store/session';
-// import UserDropdown from './components/UserDropdown';
+import EditPetForm from './components/Pet/EditPetForm';
+import PetForm from './components/Pet/PetForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -37,6 +39,12 @@ function App() {
         </Route>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
+        </Route>
+        <Route path='/pet/:petId/edit' >
+          <EditPetForm />
+        </Route>
+        <Route path='/pet/:petId' >
+          <Pet />
         </Route>
       </Switch>
     </BrowserRouter>
