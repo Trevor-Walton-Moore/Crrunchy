@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired, Length
 
 
 class AdoptionDateForm(FlaskForm):
-    Adoption_day = DateField("Adoption Day")
+    adoption_day = DateField("Adoption Day")

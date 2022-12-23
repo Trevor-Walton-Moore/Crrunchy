@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { fetchCreatePet, fetchUpdatePet } from '../../store/pet';
 
 const PetForm = ({ pet, formType }) => {
-    console.log("ONSIDE EDITTTTTTTTT")
 
-    const petId = pet.id;
+    const petId = useParams();
 
     const user = useSelector(state => state.session.user);
 
@@ -28,7 +27,7 @@ const PetForm = ({ pet, formType }) => {
     const updateBreed = (e) => setBreed(e.target.value);
     const updateWeight = (e) => setWeight(e.target.value);
     const updateGender = (e) => setGender(e.target.value);
-    const updateCelebtrationDay = (e) => setCelebrationDay(e.target.value);
+    const updateCelebrationDay = (e) => setCelebrationDay(e.target.value);
     const updateBirthday = (e) => setBirthday(e.target.value);
     // const updateAdoptionDay = (e) => setAdoptionDay(e.target.value);
     const updateProfileIcon = (e) => setProfileIcon(e.target.value);
@@ -38,7 +37,7 @@ const PetForm = ({ pet, formType }) => {
         e.preventDefault();
 
         const payload = {
-            id: petId,
+            id: petId.petId,
             name,
             breed,
             weight,
@@ -50,15 +49,14 @@ const PetForm = ({ pet, formType }) => {
             coverImage,
         };
 
-        console.log('payload oF A PET. A PET', payload)
 
         if (formType === "create") {
             dispatch(fetchCreatePet(payload));
             // setHidden(true);
-            history.push(`/pet/${petId}`);
+            history.push(`/pet/${petId.petId}`);
         } else {
             dispatch(fetchUpdatePet(payload));
-            history.push(`/pet/${petId}`);
+            history.push(`/pet/${petId.petId}`);
         }
     };
 
@@ -68,7 +66,7 @@ const PetForm = ({ pet, formType }) => {
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        formType === 'Edit Spot' && history.push(`/pet/${petId}`);
+        formType === 'edit' && history.push(`/pet/${petId.petId}`);
     };
 
     return (
@@ -86,7 +84,6 @@ const PetForm = ({ pet, formType }) => {
                 <label>
                     Profile Icon
                     <input
-                        required
                         className="input bottom"
                         type='URL'
                         value={profileIcon}
@@ -95,7 +92,6 @@ const PetForm = ({ pet, formType }) => {
                 <label>
                     Cover Photo
                     <input
-                        required
                         className="input bottom"
                         type='URL'
                         value={coverImage}
@@ -107,11 +103,12 @@ const PetForm = ({ pet, formType }) => {
                 <label>
                     Pet Name
                     <input
-                        required
+                        // required
                         className="input"
                         type='text'
                         value={name}
-                        maxLength={50}
+                        minLength={3}
+                        maxLength={20}
                         onChange={updateName} />
                 </label>
                 <label>
@@ -125,17 +122,18 @@ const PetForm = ({ pet, formType }) => {
                 <label>
                     {'Weight(lbs)'}
                     <input
-                        required
+                        // required
                         className="input"
                         type='number'
                         value={weight}
+                        min='1'
+                        max='300'
                         onChange={updateWeight} />
                 </label>
                 <label>
                     Gender
                     <input
-                        required
-                        placeholder='state'
+                        // required
                         className="input"
                         type='text'
                         value={gender}
@@ -144,16 +142,15 @@ const PetForm = ({ pet, formType }) => {
                 <label>
                     Celebration Day
                     <input
-                        required
+                        // required
                         className="input"
                         type='text'
                         value={celebrationDay}
-                        onChange={updateCelebtrationDay} />
+                        onChange={updateCelebrationDay} />
                 </label>
                 <label>
                     {'Birthday (MM/DD/YYYY)'}
                     <input
-                        placeholder='price'
                         className="input"
                         type='number'
                         min={0}

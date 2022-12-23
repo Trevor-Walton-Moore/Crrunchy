@@ -8,6 +8,7 @@ const EditPetForm = () => {
     const pet = useSelector(state => state.pet);
 
     const editPet = {
+        type: pet.type,
         name: pet.name,
         breed: pet.breed,
         weight: pet.weight,

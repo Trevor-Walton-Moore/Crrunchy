@@ -4,14 +4,17 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store';
+import PetProvider from './Context';
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <PetProvider>
         <App />
-      </Provider>
+      </PetProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

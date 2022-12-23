@@ -1,8 +1,9 @@
+import { useHistory } from 'react-router-dom';
 
 const LOAD_PET = "pet/LOAD_PET";
 const CREATE_PET = "pet/CREATE_SERVER";
 const UPDATE_PET = "pet/UPDATE_SERVER";
-// const DESTROY_PET = "pet/DESTROY_PET";
+const DESTROY_PET = "pet/DESTROY_PET";
 
 // --- ACTIONS --- //
 const loadPet = (pet) => ({
@@ -20,14 +21,14 @@ const updatePet = (pet) => ({
     pet,
 });
 
-// const destroyPet = (pet) => ({
-//     type: DESTROY_PET,
-//     pet,
-// });
+const destroyPet = (pet) => ({
+    type: DESTROY_PET,
+    pet,
+});
 
 // --- THUNKS --- //
-export const fetchOnePet = ({ petId }) => async (dispatch) => {
-    const response = await fetch(`/api/pet/${petId}`, {
+export const fetchOnePet = (ownerId) => async (dispatch) => {
+    const response = await fetch(`/api/pet/${ownerId}`, {
         method: "GET",
     });
 
@@ -38,8 +39,9 @@ export const fetchOnePet = ({ petId }) => async (dispatch) => {
     }
 };
 
-export const fetchCreatePet = ({ pet }) => async (dispatch) => {
-    const response = await fetch(`/pet`, {
+export const fetchCreatePet = (pet) => async (dispatch) => {
+    console.log("CREATE PET CREATE PET", pet)
+    const response = await fetch(`/api/pet`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -49,13 +51,17 @@ export const fetchCreatePet = ({ pet }) => async (dispatch) => {
 
     if (response.ok) {
         const newPet = await response.json();
+        console.log('CREATE PET SUCCESFULL', newPet)
         dispatch(createPet(newPet));
+        // const history = useHistory();
+        // history.push(`/pet/${newPet.id}`)
         return newPet;
     }
 };
 
-export const fetchUpdatePet = ({ updatedPet }) => async (dispatch) => {
-    const response = await fetch(`/pet/${updatedPet.id}`, {
+export const fetchUpdatePet = (updatedPet) => async (dispatch) => {
+    // console.log('UPDARED PET BEFORE THUNKIN', updatedPet)
+    const response = await fetch(`/api/pet/${updatedPet.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -71,17 +77,17 @@ export const fetchUpdatePet = ({ updatedPet }) => async (dispatch) => {
     }
 };
 
-// export const fetchDestroyPet = ({ pet }) => async (dispatch) => {
-//     const response = await fetch(`/pet/${pet.id}`, {
-//         method: "DELETE",
-//     });
+export const fetchDestroyPet = ({ pet }) => async (dispatch) => {
+    const response = await fetch(`/api/pet/${pet.id}`, {
+        method: "DELETE",
+    });
 
-//     if (response.ok) {
+    if (response.ok) {
 
-//         dispatch(destroyPet(pet));
-//         return pet;
-//     }
-// };
+        dispatch(destroyPet(pet));
+        return pet;
+    }
+};
 
 // --- INITIAL STATE --- //
 // const normalize = (arr) => {
@@ -102,34 +108,29 @@ export default function reducer(state = initialState, action) {
             const newState = { ...state, ...action.pet }
             return newState;
 
-        // case CREATE_PET:
-        //   const addServer = {
-        //     ...state,
-        //     server: { ...action.server },
-        //   };
-        //   addServer.servers[action.server.server?.id] = action.server.server;
-        //   return addServer;
+        case CREATE_PET:
+          const createState = {
+            ...state,
+            pet: { ...action.pet},
+          };
+          return createState;
 
-        // case UPDATE_PET: {
-        //   const updateServer = {
-        //     ...state,
-        //     server: { ...state.server, ...action.server },
-        //   };
-        //   updateServer.servers[action.server.server.id] = action.server.server;
-        //   return updateServer;
-        // }
+        case UPDATE_PET: {
+          const updateState = {
+            ...state,
+            pet: { ...action.pet },
+          };
+          return updateState;
+        }
 
-        // case DESTROY_PET: {
-        //   const deleteServer = {
-        //     ...state,
-        //     servers: { ...state.servers },
-        //     server: { ...state.server },
-        //   };
-        //   delete deleteServer.servers[action.server.id];
-        //   deleteServer.server = {};
-        //   return deleteServer;
-        // }
-
+        case DESTROY_PET: {
+          const deleteState = {
+            ...state,
+            pet: { ...state.pet },
+          };
+          deleteState.pet = {};
+          return deleteState;
+        }
         default:
             return state;
     }

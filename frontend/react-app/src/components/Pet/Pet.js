@@ -38,14 +38,14 @@ function Pet() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchOnePet(petId))
-  }, [dispatch, petId]);
+    dispatch(fetchOnePet(user.id))
+  }, [dispatch]);
 
   return (
     <div className="main-container">
       <div className="pet-name">{pet.name}</div>
       {
-        pet.celebrationDay === "birthday" &&
+        pet.celebrationDay === "Birthday" &&
         <>
         <span className="feature-container">
           <div className="feature">{birthMonthStr}&nbsp;{birthDay}</div>
@@ -58,7 +58,7 @@ function Pet() {
         </>
       }
       {
-        pet.celebrationDay === "adoptionDay" &&
+        pet.celebrationDay === "Adoption Day" &&
         <span className="feature-container">
           <div className="feature">{pet.adoptionDay}</div>
           <div className="feature-label">Adoption Day</div>

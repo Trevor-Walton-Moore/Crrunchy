@@ -9,7 +9,9 @@ const UserDropdown = () => {
     const history = useHistory();
 
     const user = useSelector((state) => state.session.user);
-    const pet = useSelector((state) => state.pet);
+    const pet = useSelector((state) => state.pet.pet);
+
+    !pet.id && console.log( pet,"PET")
 
     const [showMenu, setShowMenu] = useState(false);
 
@@ -104,9 +106,9 @@ const UserDropdown = () => {
                         My Rescues
                     </button>
                     {
-                        pet &&
+                        pet.id &&
                         <NavLink
-                            to={`/pet/${pet?.id}`}
+                            to={`/pet/${pet.id}`}
                             exact={true}
                             className="user-dropdown-button"
                         >
@@ -114,13 +116,13 @@ const UserDropdown = () => {
                         </NavLink>
                     }
                     {
-                        !pet &&
+                        !pet.id &&
                         <NavLink
-                            to={`/pet`}
+                            to={`/pet/new`}
                             exact={true}
                             className="user-dropdown-button"
                         >
-                            Pet Profile
+                            Create a Pet Profile
                         </NavLink>
                     }
                     <NavLink

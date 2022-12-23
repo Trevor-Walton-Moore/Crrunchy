@@ -4,13 +4,15 @@ import { useSelector } from 'react-redux';
 import { usePet } from '../../../Context'
 
 
-function AdoptionDateForm() {
+function Welcome() {
     const history = useHistory()
 
-    const { petAdoptionDay, setPetAdoptionDay, petName, petProfileIcon } = usePet()
-    console.log(petAdoptionDay, "PET Adoption DAY")
+    const { petGender, setPetGender, petName, petProfileIcon } = usePet()
+    console.log(petGender, "PET Genderrr")
 
-    const updatePetAdoptionDay = (e) => setPetAdoptionDay(e.target.value);
+    
+
+    const updateGender = (e) => setPetGender(e.target.value);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,18 +23,18 @@ function AdoptionDateForm() {
         <>
             <div className='pet-form-container'>
                 <div className='back-button'
-                    onClick={() => history.push('/pet/pet-name')}>
+                    onClick={() => history.push('/pet/pet-weight')}>
                     {'<'}
                 </div>
-                <div>{`When is ${petName}'s adoption date?`}</div>
-                <div>It's OK to enter an approximate date.</div>
+                <div>{`What best describes ${petName}?`}</div>
                 <input
                     required
-                    placeholder='Birthday (MM/DD/YYYY)'
                     className="input"
                     type='text'
-                    value={petAdoptionDay}
-                    onChange={updatePetAdoptionDay} />
+                    value={petGender}
+                    min={1}
+                    max={300}
+                    onChange={updateGender} />
                     <button onClick={handleSubmit}>
                         Continue
                     </button>
@@ -41,4 +43,4 @@ function AdoptionDateForm() {
     );
 }
 
-export default AdoptionDateForm;
+export default Welcome;

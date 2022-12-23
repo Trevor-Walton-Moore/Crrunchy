@@ -1,5 +1,6 @@
 from .login_form import LoginForm
 from .signup_form import SignUpForm
+from .pet_form.pet_form import PetForm
 
 # from .pet_form.cat_breed_form import CatBreedForm
 # from .pet_form.dog_breed_form import DogBreedForm
