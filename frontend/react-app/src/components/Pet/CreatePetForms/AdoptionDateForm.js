@@ -14,7 +14,7 @@ function AdoptionDateForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        history.push('/pet/new/celebration-type')
+        history.push('/pet/new/welcome')
     }
 
     return (
@@ -24,6 +24,7 @@ function AdoptionDateForm() {
                     onClick={() => history.push('/pet/pet-name')}>
                     {'<'}
                 </div>
+                <img src={petProfileIcon} alt='pet-avatar' />
                 <div>{`When is ${petName}'s adoption date?`}</div>
                 <div>It's OK to enter an approximate date.</div>
                 <input

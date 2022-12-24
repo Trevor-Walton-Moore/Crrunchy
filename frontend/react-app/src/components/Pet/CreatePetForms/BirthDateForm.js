@@ -14,7 +14,7 @@ function BirthDateForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        history.push('/pet/new/celebration-type')
+        history.push('/pet/new/welcome')
     }
 
     return (
@@ -24,6 +24,7 @@ function BirthDateForm() {
                     onClick={() => history.push('/pet/pet-name')}>
                     {'<'}
                 </div>
+                <img src={petProfileIcon} alt='pet-avatar' />
                 <div>{`When is ${petName}'s birthday?`}</div>
                 <div>It's OK to enter an approximate date.</div>
                 <input

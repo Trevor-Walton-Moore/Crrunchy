@@ -7,37 +7,24 @@ import { usePet } from '../../../Context'
 function Welcome() {
     const history = useHistory()
 
-    const { petGender, setPetGender, petName, petProfileIcon } = usePet()
-    console.log(petGender, "PET Genderrr")
+    const pet = useSelector((state) => state.pet.pet.pet);
 
-    
+    console.log(pet,'PET USE STATE IN WELOME PAGE')
 
-    const updateGender = (e) => setPetGender(e.target.value);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        history.push('/pet/new/celebration-type')
-    }
+    const { petName, petProfileIcon } = usePet()
 
     return (
         <>
             <div className='pet-form-container'>
-                <div className='back-button'
-                    onClick={() => history.push('/pet/pet-weight')}>
-                    {'<'}
-                </div>
-                <div>{`What best describes ${petName}?`}</div>
-                <input
-                    required
-                    className="input"
-                    type='text'
-                    value={petGender}
-                    min={1}
-                    max={300}
-                    onChange={updateGender} />
-                    <button onClick={handleSubmit}>
-                        Continue
-                    </button>
+                <div>{`Welcome to the Chrunchy pack, ${petName}!`}</div>
+                <button className=''
+                    onClick={() => history.push(`/coming-soon`)}>
+                        Tell Us More
+                </button>
+                <button className=''
+                    onClick={() => history.push(`/pet/${pet.id}`)}>
+                        I'll Do This Later
+                </button>
             </div>
         </>
     );

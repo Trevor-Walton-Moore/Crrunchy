@@ -30,8 +30,13 @@ function PetTypeForm() {
                     }}>
                     Dog
                 </button>
-
-                <button>Cat</button>
+                <button
+                    onClick={() => {
+                        updateType('Cat')
+                        handleSubmit()
+                    }}>
+                    Cat
+                </button>
             </div>
         </>
     );

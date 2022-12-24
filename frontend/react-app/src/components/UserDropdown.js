@@ -9,7 +9,7 @@ const UserDropdown = () => {
     const history = useHistory();
 
     const user = useSelector((state) => state.session.user);
-    const pet = useSelector((state) => state.pet.pet);
+    const pet = useSelector((state) => state.pet);
 
     !pet.id && console.log( pet,"PET")
 

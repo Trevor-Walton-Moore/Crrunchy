@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import FileField
-from wtforms.validators import FileAllowed
+from wtforms.fields import StringField
+# from wtforms.validators import FileAllowed
 
 class ProfileIconForm(FlaskForm):
-    profile_icon = FileField("Profile Icon", validators=[FileAllowed(['jpg','jpeg','png'])])
+    profile_icon = StringField("Profile Icon")

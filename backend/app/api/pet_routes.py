@@ -34,6 +34,7 @@ def create_pet():
         type=form.data['type'],
         name=form.data['name'],
         breed=form.data['breed'],
+        profile_icon=form.data['profileIcon'],
         weight=form.data['weight'],
         gender=form.data['gender'],
         celebration_day=form.data['celebrationDay'],
@@ -60,11 +61,11 @@ def create_pet():
 
 
 # Update Pet
-@pet_routes.route("/<int:id>/edit", methods=['PUT'])
+@pet_routes.route("/<int:id>", methods=['PUT'])
 @login_required
 def update_pet(id):
     form = PetForm()
-    # print("-00-0-00-0-0-0--0--0 FORM", form.data)
+    print("-00-0-00-0-0-0--0--0 FORM", form.data)
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -72,15 +73,16 @@ def update_pet(id):
 
         updated_pet = Pet.query.get(id)
 
+        setattr(updated_pet, 'type', form.type.data)
         updated_pet.name = form.name.data
         setattr(updated_pet, 'breed', form.breed.data)
         setattr(updated_pet, 'weight', form.weight.data)
         setattr(updated_pet, 'gender', form.gender.data)
+        setattr(updated_pet, 'profile_icon', form.profileIcon.data)
         setattr(updated_pet, 'celebration_day', form.celebrationDay.data)
         # setattr(updated_pet, 'birthday', form.birthday.data)
         # setattr(updated_pet, 'adoption_day', form.adoptionDay.data)
-        setattr(updated_pet, 'profile_icon', form.profile_icon.data)
-        setattr(updated_pet, 'cover_photo', form.cover_photo.data)
+        setattr(updated_pet, 'cover_photo', form.coverPhoto.data)
 
         db.session.add(updated_pet)
         db.session.commit()

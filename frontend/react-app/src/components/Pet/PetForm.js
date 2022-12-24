@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchCreatePet, fetchUpdatePet } from '../../store/pet';
+import { fetchDestroyPet } from '../../store/pet';
 
 const PetForm = ({ pet, formType }) => {
 
@@ -13,6 +14,7 @@ const PetForm = ({ pet, formType }) => {
 
     const history = useHistory();
 
+    const [type, setType] = useState(pet.type);
     const [name, setName] = useState(pet.name);
     const [breed, setBreed] = useState(pet.breed);
     const [weight, setWeight] = useState(pet.weight);
@@ -38,6 +40,7 @@ const PetForm = ({ pet, formType }) => {
 
         const payload = {
             id: petId.petId,
+            type,
             name,
             breed,
             weight,
@@ -60,8 +63,10 @@ const PetForm = ({ pet, formType }) => {
         }
     };
 
-    if (formType === "create") {
-        handleSubmit()
+    const handleDestroy = (e) => {
+        e.preventDefault();
+        dispatch(fetchDestroyPet(petId.petId))
+        history.push('/')
     }
 
     const handleCancelClick = (e) => {
@@ -168,7 +173,8 @@ const PetForm = ({ pet, formType }) => {
                 <button className='submitForm' type="submit">
                     <span>Save Changes</span>
                 </button>
-                <button className='submitForm' type="button">
+                <button className='' type="button"
+                    onClick={handleDestroy}>
                     <span>Delete Profile</span>
                 </button>
             </div>

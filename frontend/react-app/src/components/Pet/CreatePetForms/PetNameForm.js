@@ -7,14 +7,20 @@ import { usePet } from '../../../Context'
 function PetNameForm() {
     const history = useHistory()
 
-    const { petName, setPetName } = usePet()
+    const { petName, setPetName, petType } = usePet()
     console.log(petName, "PET NAME")
 
     const updateName = (e) => setPetName(e.target.value);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        history.push('/pet/new/breed-selection-dog')
+        if (petType === "Dog") {
+            e.preventDefault();
+            history.push('/pet/new/breed-selection-dog')
+        }
+        else if (petType === "Cat") {
+            e.preventDefault();
+            history.push('/pet/new/breed-selection-cat')
+        }
     }
 
     return (
@@ -34,11 +40,11 @@ function PetNameForm() {
                     minLength={3}
                     maxLength={20}
                     onChange={updateName} />
-                    <button onClick={
-                        handleSubmit
-                        }>
+                <form onSubmit={handleSubmit}>
+                    <button type='submit'>
                         Continue
                     </button>
+                </form>
             </div>
         </>
     );

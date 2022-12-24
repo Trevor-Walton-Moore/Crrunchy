@@ -39,10 +39,12 @@ function Pet() {
 
   useEffect(() => {
     dispatch(fetchOnePet(user.id))
+    console.log("FETCHA PET W USE EFFECT")
   }, [dispatch]);
 
   return (
     <div className="main-container">
+      <img src={pet.profileIcon} alt='pet-avatar' />
       <div className="pet-name">{pet.name}</div>
       {
         pet.celebrationDay === "Birthday" &&

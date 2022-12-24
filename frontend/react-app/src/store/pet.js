@@ -1,8 +1,8 @@
 import { useHistory } from 'react-router-dom';
 
 const LOAD_PET = "pet/LOAD_PET";
-const CREATE_PET = "pet/CREATE_SERVER";
-const UPDATE_PET = "pet/UPDATE_SERVER";
+const CREATE_PET = "pet/CREATE_PET";
+const UPDATE_PET = "pet/UPDATE_PET";
 const DESTROY_PET = "pet/DESTROY_PET";
 
 // --- ACTIONS --- //
@@ -21,9 +21,8 @@ const updatePet = (pet) => ({
     pet,
 });
 
-const destroyPet = (pet) => ({
-    type: DESTROY_PET,
-    pet,
+const destroyPet = () => ({
+    type: DESTROY_PET
 });
 
 // --- THUNKS --- //
@@ -77,15 +76,14 @@ export const fetchUpdatePet = (updatedPet) => async (dispatch) => {
     }
 };
 
-export const fetchDestroyPet = ({ pet }) => async (dispatch) => {
-    const response = await fetch(`/api/pet/${pet.id}`, {
+export const fetchDestroyPet = (petId) => async (dispatch) => {
+    const response = await fetch(`/api/pet/${petId}`, {
         method: "DELETE",
     });
 
     if (response.ok) {
-
-        dispatch(destroyPet(pet));
-        return pet;
+        dispatch(destroyPet());
+        return;
     }
 };
 
@@ -98,38 +96,40 @@ export const fetchDestroyPet = ({ pet }) => async (dispatch) => {
 //     return obj;
 // };
 
-const initialState = { pet: {} };
+const initialState = {};
 
 // --- REDUCER --- //
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_PET:
-            const newState = { ...state, ...action.pet }
+            const newState = {
+                ...state,
+                ...action.pet,
+            };
             return newState;
 
         case CREATE_PET:
-          const createState = {
-            ...state,
-            pet: { ...action.pet},
-          };
-          return createState;
+            const createState = {
+                ...state,
+                pet: action.pet,
+            };
+            return createState;
 
         case UPDATE_PET: {
-          const updateState = {
-            ...state,
-            pet: { ...action.pet },
-          };
-          return updateState;
+            const updateState = {
+                ...state,
+                pet: action.pet,
+            };
+            return updateState;
         }
 
         case DESTROY_PET: {
-          const deleteState = {
-            ...state,
-            pet: { ...state.pet },
-          };
-          deleteState.pet = {};
-          return deleteState;
+            const deleteState = {
+                ...state, ...action.pet,
+            };
+            deleteState.pet = {};
+            return deleteState;
         }
         default:
             return state;

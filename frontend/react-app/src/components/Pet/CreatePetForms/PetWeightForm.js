@@ -21,9 +21,10 @@ function PetWeightForm() {
         <>
             <div className='pet-form-container'>
                 <div className='back-button'
-                    onClick={() => history.push('/pet/breed-selection-dog')}>
+                    onClick={() => history.push('/pet/new/avatar-selection')}>
                     {'<'}
                 </div>
+                <img src={petProfileIcon} alt='pet-avatar' />
                 <div>{`How much does ${petName} weigh?`}</div>
                 <div>It's OK to enter an approximate weight.</div>
                 <input
@@ -35,11 +36,11 @@ function PetWeightForm() {
                     min={1}
                     max={300}
                     onChange={updateWeight} />
-                    <button onClick={
-                        handleSubmit
-                        }>
-                        Continue
-                    </button>
+                <button onClick={
+                    handleSubmit
+                }>
+                    Continue
+                </button>
             </div>
         </>
     );

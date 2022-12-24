@@ -14,10 +14,13 @@ import PetForm from './components/Pet/PetForm';
 import PetTypeForm from './components/Pet/CreatePetForms/PetTypeForm';
 import PetNameForm from './components/Pet/CreatePetForms/PetNameForm';
 import DogBreedForm from './components/Pet/CreatePetForms/DogBreedForm';
+import CatBreedForm from './components/Pet/CreatePetForms/CatBreedForm';
 import PetWeightForm from './components/Pet/CreatePetForms/PetWeightForm';
 import PetGenderForm from './components/Pet/CreatePetForms/GenderForm';
 import CelebrationDayForm from './components/Pet/CreatePetForms/CelebrationDayForm';
 import BirthDateForm from './components/Pet/CreatePetForms/BirthDateForm';
+import Welcome from './components/Pet/CreatePetForms/Welcome';
+import ProfileIconForm from './components/Pet/CreatePetForms/ProfileIconForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,18 +62,30 @@ function App() {
         <Route path='/pet/new/breed-selection-dog' exact={true} >
           <DogBreedForm />
         </Route>
+        <Route path='/pet/new/breed-selection-cat' exact={true} >
+          <CatBreedForm />
+        </Route>
+        <Route path='/pet/new/avatar-selection' exact={true} >
+          <ProfileIconForm />
+        </Route>
         <Route path='/pet/new/pet-weight' exact={true} >
           <PetWeightForm />
         </Route>
         <Route path='/pet/new/pet-gender' exact={true} >
           <PetGenderForm />
         </Route>
-        {/* <Route path='/pet/new/celebration-type' exact={true} >
+        <Route path='/pet/new/celebration-type' exact={true} >
           <CelebrationDayForm />
-        </Route> */}
-        {/* <Route path='/pet/new/birthday-date' exact={true} >
+        </Route>
+        <Route path='/pet/new/birthday-date' exact={true} >
           <BirthDateForm />
+        </Route>
+        {/* <Route path='/pet/new/adoption-date' exact={true} >
+          <AdoptionDateForm />
         </Route> */}
+        <Route path='/pet/new/welcome' exact={true} >
+          <Welcome />
+        </Route>
         <Route path='/pet/:petId' exact={true} >
           <Pet />
         </Route>

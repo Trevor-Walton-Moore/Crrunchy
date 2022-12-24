@@ -16,8 +16,8 @@ function PetGenderForm() {
         petType,
         petName,
         petBreed,
-        petWeight,
         petProfileIcon,
+        petWeight,
         petCelebrationDay,
         petBirthday,
         petAdoptionDay,
@@ -30,63 +30,73 @@ function PetGenderForm() {
         petType,
         petName,
         petBreed,
-        petWeight,
         petProfileIcon,
+        petWeight,
         petCelebrationDay,
         petBirthday,
         petAdoptionDay,
-        petCoverImage)
+        petCoverImage
+    )
 
     const [type, setType] = useState(petType);
     const [name, setName] = useState(petName);
     const [breed, setBreed] = useState(petBreed);
+    const [profileIcon, setProfileIcon] = useState(petProfileIcon);
     const [weight, setWeight] = useState(petWeight);
-    const [gender, setGender] = useState(petGender);
+    const [gender, setGender] = useState('');
 
-    const updateGender = (e) => {
-        setPetGender(e.target.value);
-        setGender(e.target.value);
-    }
+    // const chooseMale = () => {
+    //     setGender('Male')
+    //     setPetGender('Male')
+    // };
+    // const chooseFemale = () => {
+    //     setGender('Female')
+    //     setPetGender('Female')
+    // };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (gender) => {
         const celebrationDay = 'Birthday'
+
+        console.log('handle submit gender', gender)
 
         const payload = {
             type,
             name,
             breed,
+            profileIcon,
             weight,
             gender,
-            celebrationDay
+            celebrationDay,
             // petCelebrationDay,
             // petBirthday,
             // petAdoptionDay,
-            // petProfileIcon,
             // petCoverImage,
         };
         console.log("PAYYYYYLOAD typess", payload)
         dispatch(fetchCreatePet(payload));
+        history.push('/pet/new/celebration-type')
+    }
+
+    const updateGender = (gender) => {
+        setPetGender(gender);
+        setGender(gender);
+        handleSubmit(gender);
     }
 
     return (
         <>
             <div className='pet-form-container'>
                 <div className='back-button'
-                    onClick={() => history.push('/pet/pet-weight')}>
+                    onClick={() => history.push('/pet/new/pet-weight')}>
                     {'<'}
                 </div>
+                <img src={petProfileIcon} alt='pet-avatar' />
                 <div>{`What best describes ${petName}?`}</div>
-                <input
-                    required
-                    className="input"
-                    type='text'
-                    value={petGender}
-                    min={1}
-                    max={300}
-                    onChange={updateGender} />
-                <button onClick={handleSubmit}>
-                    Continue
+                <button onClick={() => updateGender('Female')}>
+                    Female
+                </button>
+                <button onClick={() => updateGender('Male')}>
+                    Male
                 </button>
             </div>
         </>

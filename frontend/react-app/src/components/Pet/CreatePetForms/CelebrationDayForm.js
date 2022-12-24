@@ -10,11 +10,14 @@ function CelebrationDayForm() {
     const { petCelebrationDay, setPetCelebrationDay, petName, petProfileIcon } = usePet()
     console.log(petCelebrationDay, "PET CelebrationDayyy")
 
-    const CelebrateBirthday = () => setPetCelebrationDay('Birthday');
-    const CelebrateAdoptionDay = () => setPetCelebrationDay('Adoption Day');
+    const celebrateBirthday = () => setPetCelebrationDay('Birthday');
+    const celebrateAdoptionDay = () => setPetCelebrationDay('Adoption Day');
 
-    const handleSubmit = async (e) => {
-        // history.push('/pet/new/birthday-date')
+    const handleSubmit = async () => {
+        if (petCelebrationDay === 'Birthday') {
+            history.push('/pet/new/birthday-date')
+        }
+        else history.push('/pet/new/birthday-date')
     }
 
     return (
@@ -24,16 +27,17 @@ function CelebrationDayForm() {
                     onClick={() => history.push('/pet/pet-gender')}>
                     {'<'}
                 </div>
+                <img src={petProfileIcon} alt='pet-avatar' />
                 <div>{`When do you celebrate ${petName}?`}</div>
                 <div>We want to celebrate with you!</div>
                 <button onClick={() => {
-                    CelebrateBirthday();
+                    celebrateBirthday();
                     handleSubmit();
                 }}>
                     Birthday
                 </button>
                 <button onClick={() => {
-                    CelebrateAdoptionDay();
+                    celebrateAdoptionDay();
                     handleSubmit();
                 }}>
                     Adoption Day
