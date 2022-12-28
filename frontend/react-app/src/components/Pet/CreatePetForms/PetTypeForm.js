@@ -34,7 +34,7 @@ function PetTypeForm() {
                         {'x'}
                     </span>
                 </div>
-                <div className='pet-questions'>
+                <div className='pet-prompt'>
                     First things first, what type of pet do you have?
                 </div>
                 <div className='pet-type-images-container'>

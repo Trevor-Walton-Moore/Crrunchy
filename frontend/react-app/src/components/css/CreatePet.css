@@ -45,12 +45,13 @@
 
 .sub-text {
     font-family: sans-serif;
-    font-size: 13px;
+    font-size: 15px;
+    text-align: center;
     color: rgba(123, 123, 123, 0.867);
-    margin: auto;
+    margin: auto auto 30px auto;
 }
 
-.pet-questions {
+.pet-prompt {
     display: flex;
     /* justify-self: center; */
     font-family: sans-serif;
@@ -95,8 +96,8 @@ form {
     /* background-color: rgb(28, 73, 194); */
     /* border: 1px rgba(186, 98, 98, 0.755) solid; */
     margin: auto;
-    /* max-width: 400px; */
     min-width: 435px;
+    max-width: 435px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -180,6 +181,66 @@ form {
     border: 2px transparent solid;
 }
 
+.pet-icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* flex-direction: row; */
+    max-width: 560px;
+    margin: auto;
+    /* border: 1px blue solid; */
+}
+
+.pet-icon-container {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    background-color: rgb(229, 234, 240);
+    cursor: pointer;
+    margin: 6px;
+    transition: all .23s;
+}
+
+.pet-icon-container:hover {
+    /* transition-delay: .02s; */
+    background-color: rgb(192, 206, 223);
+}
+
+.chosen-icon-container {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    background-color: rgb(229, 234, 240);
+    margin: auto;
+}
+
+.welcome-icon-container {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    justify-content: center;
+    width: 152px;
+    height: 152px;
+    border-radius: 80px;
+    background-color: rgb(229, 234, 240);
+    margin: auto auto 12px auto;
+}
+
+.icon-image {
+    /* display: block; */
+    /* margin: 1px 0px 2px 0px; */
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .continue-button {
     border: none;
     background-color: rgb(28, 73, 194);
@@ -193,4 +254,27 @@ form {
     /* max-width: 400px;
     min-width: 400px; */
     margin-top: 68px;
+}
+
+.continue-button:hover {
+    background-color: rgb(35, 83, 213);
+}
+
+.options-buttons {
+    border: 2px rgb(28, 73, 194) solid;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    width: 100%;
+    padding: 16px;
+    border-radius: 45px;
+    color: rgb(28, 73, 194);
+    font-weight: bold;
+    font-size: 15px;
+    /* max-width: 400px;
+    min-width: 400px; */
+    margin-top: 10px;
+}
+
+.options-buttons:hover {
+    background-color: rgba(203, 222, 255, 0.418);
 }

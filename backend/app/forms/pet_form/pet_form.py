@@ -16,6 +16,6 @@ class PetForm(FlaskForm):
     weight = IntegerField("Weight", validators=[DataRequired(), NumberRange(min=1, max=300)])
     gender = SelectField("Gender", choices=genders)
     celebrationDay = SelectField("Celebration Day", choices=celebration_types)
-    # birthday = DateField("Birthay")
+    birthday = DateField("Birthday", format='%m-%d-%Y')
     # adoptionDay = DateField("Adoption Day")
     coverPhoto = StringField("Cover Photo")

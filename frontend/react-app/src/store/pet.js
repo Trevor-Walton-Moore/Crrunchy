@@ -126,9 +126,12 @@ export default function reducer(state = initialState, action) {
 
         case DESTROY_PET: {
             const deleteState = {
-                ...state, ...action.pet,
+                ...state,
+                pet: action.pet,
             };
-            deleteState.pet = {};
+            delete deleteState.pet;
+            console.log('DELETE state', deleteState)
+            console.log('PET IN DELETE state', deleteState.pet)
             return deleteState;
         }
         default:

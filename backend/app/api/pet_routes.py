@@ -38,6 +38,7 @@ def create_pet():
         weight=form.data['weight'],
         gender=form.data['gender'],
         celebration_day=form.data['celebrationDay'],
+        birthday=form.data['birthday']
 
         # type=form.data['type'],
         # name=form.data['name'],

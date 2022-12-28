@@ -14,8 +14,8 @@ function PetNameForm() {
 
     const handleSubmit = async (e) => {
         // if (petType === "Dog") {
-            e.preventDefault();
-            history.push('/pet/new/breed-selection')
+        e.preventDefault();
+        history.push('/pet/new/breed-selection')
         // }
         // else if (petType === "Cat") {
         //     e.preventDefault();
@@ -36,26 +36,29 @@ function PetNameForm() {
                         {'x'}
                     </span>
                 </div>
-                {/* <div className=''> */}
-                    <div className='pet-questions'>
-                        What's their name?
-                    </div>
-                    <input
-                        required
-                        placeholder='Pet Name'
-                        className="input"
-                        type='text'
-                        value={petName}
-                        minLength={3}
-                        maxLength={20}
-                        onChange={updateName} />
-                    <form onSubmit={handleSubmit}>
-                        <button
-                            className='continue-button'
-                            type='submit'>
-                            Continue
-                        </button>
-                    </form>
+                <div
+                    className='sub-text'>
+                    We’re already obsessed 😀
+                </div>
+                <div className='pet-prompt'>
+                    What's their name?
+                </div>
+                <input
+                    required
+                    placeholder='Pet Name'
+                    className="input"
+                    type='text'
+                    value={petName}
+                    minLength={3}
+                    maxLength={20}
+                    onChange={updateName} />
+                <form onSubmit={handleSubmit}>
+                    <button
+                        className='continue-button'
+                        type='submit'>
+                        Continue
+                    </button>
+                </form>
                 {/* </div> */}
             </div>
         </>

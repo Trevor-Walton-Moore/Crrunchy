@@ -23,25 +23,46 @@ function CelebrationDayForm() {
     return (
         <>
             <div className='pet-form-container'>
-                <div className='back-button'
-                    onClick={() => history.push('/pet/pet-gender')}>
-                    {'<'}
+                <div className='top-buttons'>
+
+                    <span className='back-button'
+                        onClick={() => history.push('/pet/pet-gender')}>
+                        {'<'}
+                    </span>
+                    <span className='back-button close-button'
+                        onClick={() => history.push('/')}>
+                        {'x'}
+                    </span>
                 </div>
-                <img src={petProfileIcon} alt='pet-avatar' />
-                <div>{`When do you celebrate ${petName}?`}</div>
-                <div>We want to celebrate with you!</div>
-                <button onClick={() => {
-                    celebrateBirthday();
-                    handleSubmit();
-                }}>
-                    Birthday
-                </button>
-                <button onClick={() => {
-                    celebrateAdoptionDay();
-                    handleSubmit();
-                }}>
-                    Adoption Day
-                </button>
+                <div className='chosen-icon-container'>
+                    <img
+                        className='icon-image'
+                        src={petProfileIcon}
+                        alt='pet-avatar' />
+                </div>
+                <div className='sub-text'>
+                    Got it 👍
+                </div>
+                <div className='pet-prompt'>
+                    {`When do you celebrate ${petName}?`}
+                </div>
+                <div className='sub-text'>
+                    We want to celebrate with you!
+                </div>
+                <form>
+                    <button className='options-buttons' onClick={() => {
+                        celebrateBirthday();
+                        handleSubmit();
+                    }}>
+                        Birthday
+                    </button>
+                    <button className='options-buttons' onClick={() => {
+                        celebrateAdoptionDay();
+                        handleSubmit();
+                    }}>
+                        Adoption Day
+                    </button>
+                </form>
             </div>
         </>
     );

@@ -20,27 +20,50 @@ function PetWeightForm() {
     return (
         <>
             <div className='pet-form-container'>
-                <div className='back-button'
-                    onClick={() => history.push('/pet/new/avatar-selection')}>
-                    {'<'}
+                <div className='top-buttons'>
+                    <div className='back-button'
+                        onClick={() => history.push('/pet/new/avatar-selection')}>
+                        {'<'}
+                    </div>
+                    <span className='back-button close-button'
+                        onClick={() => history.push('/')}>
+                        {'x'}
+                    </span>
                 </div>
-                <img src={petProfileIcon} alt='pet-avatar' />
-                <div>{`How much does ${petName} weigh?`}</div>
-                <div>It's OK to enter an approximate weight.</div>
-                <input
-                    required
-                    placeholder='Weight(lbs)'
-                    className="input"
-                    type='number'
-                    value={petWeight}
-                    min={1}
-                    max={300}
-                    onChange={updateWeight} />
-                <button onClick={
-                    handleSubmit
-                }>
-                    Continue
-                </button>
+                <div className='chosen-icon-container'>
+                    <img
+                        className='icon-image'
+                        src={petProfileIcon}
+                        alt='pet-avatar' />
+                </div>
+                <div className='sub-text'>
+                    Nice choice 😎
+                </div>
+                <div
+                    className='pet-prompt'>
+                    {`How much does ${petName} weigh?`}
+                </div>
+                <div
+                    className='sub-text'>
+                    It's OK to enter an approximate weight
+                </div>
+                <form>
+
+                    <input
+                        required
+                        placeholder='Weight(lbs)'
+                        className="input"
+                        type='number'
+                        value={petWeight}
+                        min={1}
+                        max={300}
+                        onChange={updateWeight} />
+                    <button
+                        className='continue-button'
+                        onClick={handleSubmit}>
+                        Continue
+                    </button>
+                </form>
             </div>
         </>
     );

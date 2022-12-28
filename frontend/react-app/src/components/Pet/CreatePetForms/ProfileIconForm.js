@@ -3,7 +3,7 @@ import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PetProvider, { usePet } from '../../../Context'
 import { catAvatars, dogAvatars } from './ProfileIcons'
-
+import '../../css/CreatePet.css'
 
 function ProfileIconForm() {
     const history = useHistory()
@@ -39,7 +39,18 @@ function ProfileIconForm() {
                     onClick={previousPage}>
                     {'<'}
                 </div>
-                <div>{`Add ${petName}'s profile photo`}</div>
+                <div
+                    className='sub-text'>
+                    {`${petName}'s one of a kind to us.`}
+                </div>
+                <div
+                    className='pet-prompt'>
+                    {`Add ${petName}'s profile photo`}
+                </div>
+                <div
+                    className='sub-text'>
+                    Pick one that looks most like pook.
+                </div>
                 {petType === 'Dog' && (
                     normalizeIcons(dogAvatars),
                     normalizedIcons.map(icon => {
@@ -53,20 +64,25 @@ function ProfileIconForm() {
                         )
                     })
                 )}
-                {petType === 'Cat' && (
-                    normalizeIcons(catAvatars),
-                    normalizedIcons.map(icon => {
-                        return (
-                            <div
-                                key={icon.id}
-                                className='pet-icon-image'
-                                onClick={() => handleSubmit(icon.value)}
-                            >
-                                <img src={icon.value} alt='pet-avatar' />
-                            </div>
-                        )
-                    })
-                )}
+                <div className='pet-icons-container'>
+                    {petType === 'Cat' && (
+                        normalizeIcons(catAvatars),
+                        normalizedIcons.map(icon => {
+                            return (
+                                <div
+                                    key={icon.id}
+                                    className='pet-icon-container'
+                                    onClick={() => handleSubmit(icon.value)}
+                                >
+                                    <img
+                                        className='icon-image'
+                                        src={icon.value}
+                                        alt='pet-avatar' />
+                                </div>
+                            )
+                        })
+                    )}
+                </div>
                 {/* <input
                     required
                     placeholder='Breed'

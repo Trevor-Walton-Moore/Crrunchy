@@ -68,7 +68,7 @@ function PetBreedForm() {
                     {`Hi there, ${petName}👋`}
                 </div>
                 <div
-                    className='pet-questions'>
+                    className='pet-prompt'>
                     {`What is ${petName}'s breed?`}
                 </div>
                 <input
