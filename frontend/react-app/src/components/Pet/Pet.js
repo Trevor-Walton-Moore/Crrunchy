@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOnePet } from "../../store/pet";
-import "./Pet.css";
+import "../css/Pet.css";
 
 
 function Pet() {

@@ -13,8 +13,8 @@ import EditPetForm from './components/Pet/EditPetForm';
 import PetForm from './components/Pet/PetForm';
 import PetTypeForm from './components/Pet/CreatePetForms/PetTypeForm';
 import PetNameForm from './components/Pet/CreatePetForms/PetNameForm';
-import DogBreedForm from './components/Pet/CreatePetForms/DogBreedForm';
-import CatBreedForm from './components/Pet/CreatePetForms/CatBreedForm';
+import PetBreedForm from './components/Pet/CreatePetForms/PetBreedForm';
+// import CatBreedForm from './components/Pet/CreatePetForms/CatBreedForm';
 import PetWeightForm from './components/Pet/CreatePetForms/PetWeightForm';
 import PetGenderForm from './components/Pet/CreatePetForms/GenderForm';
 import CelebrationDayForm from './components/Pet/CreatePetForms/CelebrationDayForm';
@@ -59,12 +59,12 @@ function App() {
         <Route path='/pet/new/pet-name' exact={true} >
           <PetNameForm />
         </Route>
-        <Route path='/pet/new/breed-selection-dog' exact={true} >
-          <DogBreedForm />
+        <Route path='/pet/new/breed-selection' exact={true} >
+          <PetBreedForm />
         </Route>
-        <Route path='/pet/new/breed-selection-cat' exact={true} >
+        {/* <Route path='/pet/new/breed-selection-cat' exact={true} >
           <CatBreedForm />
-        </Route>
+        </Route> */}
         <Route path='/pet/new/avatar-selection' exact={true} >
           <ProfileIconForm />
         </Route>

@@ -29,7 +29,7 @@ function ProfileIconForm() {
     }
 
     const previousPage = () => {
-        petType === "Dog" ? history.push('/pet/new/breed-selection-dog') : history.push('/pet/new/breed-selection-cat')
+        history.push('/pet/new/breed-selection')
     }
 
     return (
