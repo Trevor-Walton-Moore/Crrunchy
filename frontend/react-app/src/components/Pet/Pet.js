@@ -7,8 +7,8 @@ import "../css/Pet.css";
 
 function Pet() {
   const history = useHistory()
-  const petId = useParams()
-  console.log(petId)
+  // const petId = useParams()
+  // console.log(petId)
 
   const user = useSelector((state) => state.session.user);
   const pet = useSelector((state) => state.pet);
@@ -71,7 +71,7 @@ function Pet() {
         <div className="feature-label">Weight</div>
       </span>
 
-      <NavLink to={`/pet/${petId.petId}/edit`}>Edit! That! Pet!</NavLink>
+      <NavLink to={`/pet/${pet.id}/edit`}>Edit! That! Pet!</NavLink>
 
     </div>
   );

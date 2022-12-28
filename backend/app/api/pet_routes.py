@@ -66,12 +66,12 @@ def create_pet():
 @login_required
 def update_pet(id):
     form = PetForm()
-    print("-00-0-00-0-0-0--0--0 FORM", form.data)
 
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("-00-0-00-0-0-0--0--0 FORM", form.data)
 
     if form.validate_on_submit():
-
+        print('did the updated validate???!')
         updated_pet = Pet.query.get(id)
 
         setattr(updated_pet, 'type', form.type.data)
@@ -102,5 +102,5 @@ def destroy_pet(id):
     if owner['id'] == pet.owner_id:
         db.session.delete(pet)
         db.session.commit()
-        return {"message": "Successfully Deleted"}, 200
+        return {"message": "Successfully Deleted", "pet": pet.to_dict()}, 200
     return 'BAD REQUEST', 404

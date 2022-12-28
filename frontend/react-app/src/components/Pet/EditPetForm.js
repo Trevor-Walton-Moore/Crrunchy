@@ -7,17 +7,20 @@ const EditPetForm = () => {
     // const { petId } = useParams()
     const pet = useSelector(state => state.pet);
 
+    console.log('edit pet', pet)
+
     const editPet = {
+        id: pet.id,
         type: pet.type,
         name: pet.name,
         breed: pet.breed,
         weight: pet.weight,
         gender: pet.gender,
-        celebrtionDay: pet.celebrtionDay,
+        celebrationDay: pet.celebrationDay,
         birthday: pet.birthday,
         adoptionDay: pet.adoptionDay,
-        coverImage: pet.coverImage,
         profileIcon: pet.profileIcon,
+        coverImage: pet.coverImage,
     };
 
     return (

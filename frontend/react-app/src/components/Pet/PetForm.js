@@ -6,9 +6,8 @@ import { fetchDestroyPet } from '../../store/pet';
 
 const PetForm = ({ pet, formType }) => {
 
-    const petId = useParams();
-
     const user = useSelector(state => state.session.user);
+    // const pet = useSelector(state => state.pet);
 
     const dispatch = useDispatch();
 
@@ -39,7 +38,7 @@ const PetForm = ({ pet, formType }) => {
         e.preventDefault();
 
         const payload = {
-            id: petId.petId,
+            id: pet.id,
             type,
             name,
             breed,
@@ -56,22 +55,22 @@ const PetForm = ({ pet, formType }) => {
         if (formType === "create") {
             dispatch(fetchCreatePet(payload));
             // setHidden(true);
-            history.push(`/pet/${petId.petId}`);
+            history.push(`/pet/${pet.id}`);
         } else {
             dispatch(fetchUpdatePet(payload));
-            history.push(`/pet/${petId.petId}`);
+            history.push(`/pet/${pet.id}`);
         }
     };
 
     const handleDestroy = (e) => {
         e.preventDefault();
-        dispatch(fetchDestroyPet(petId.petId))
+        dispatch(fetchDestroyPet(pet.id))
         history.push('/')
     }
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        formType === 'edit' && history.push(`/pet/${petId.petId}`);
+        formType === 'edit' && history.push(`/pet/${pet.id}`);
     };
 
     return (
@@ -147,7 +146,7 @@ const PetForm = ({ pet, formType }) => {
                 <label>
                     Celebration Day
                     <input
-                        // required
+                        required
                         className="input"
                         type='text'
                         value={celebrationDay}
@@ -157,7 +156,7 @@ const PetForm = ({ pet, formType }) => {
                     {'Birthday (MM/DD/YYYY)'}
                     <input
                         className="input"
-                        type='number'
+                        type='text'
                         min={0}
                         value={birthday}
                         onChange={updateBirthday} />

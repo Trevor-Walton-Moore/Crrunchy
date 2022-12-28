@@ -21,8 +21,9 @@ const updatePet = (pet) => ({
     pet,
 });
 
-const destroyPet = () => ({
-    type: DESTROY_PET
+const destroyPet = (petId) => ({
+    type: DESTROY_PET,
+    petId
 });
 
 // --- THUNKS --- //
@@ -51,7 +52,7 @@ export const fetchCreatePet = (pet) => async (dispatch) => {
     if (response.ok) {
         const newPet = await response.json();
         console.log('CREATE PET SUCCESFULL', newPet)
-        dispatch(createPet(newPet));
+        dispatch(createPet(newPet.pet));
         // const history = useHistory();
         // history.push(`/pet/${newPet.id}`)
         return newPet;
@@ -59,7 +60,7 @@ export const fetchCreatePet = (pet) => async (dispatch) => {
 };
 
 export const fetchUpdatePet = (updatedPet) => async (dispatch) => {
-    // console.log('UPDARED PET BEFORE THUNKIN', updatedPet)
+    console.log('UPDARED PET BEFORE THUNKIN', updatedPet)
     const response = await fetch(`/api/pet/${updatedPet.id}`, {
         method: "PUT",
         headers: {
@@ -82,7 +83,7 @@ export const fetchDestroyPet = (petId) => async (dispatch) => {
     });
 
     if (response.ok) {
-        dispatch(destroyPet());
+        dispatch(destroyPet(petId));
         return;
     }
 };
@@ -109,10 +110,10 @@ export default function reducer(state = initialState, action) {
             };
             return newState;
 
-        case CREATE_PET:
+            case CREATE_PET:
+            console.log('ACTION', action)
             const createState = {
-                ...state,
-                pet: action.pet,
+                ...state, ...action.pet,
             };
             return createState;
 
@@ -125,13 +126,14 @@ export default function reducer(state = initialState, action) {
         }
 
         case DESTROY_PET: {
-            const deleteState = {
+            console.log('ACTION', action)
+            let deleteState = {
                 ...state,
-                pet: action.pet,
+                pet: {...action.pet},
             };
-            delete deleteState.pet;
-            console.log('DELETE state', deleteState)
-            console.log('PET IN DELETE state', deleteState.pet)
+            // console.log('DELETE state BEFORE', deleteState)
+            deleteState = {}
+            // console.log('DELETE state AFTER', deleteState)
             return deleteState;
         }
         default:
