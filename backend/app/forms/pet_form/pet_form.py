@@ -17,5 +17,5 @@ class PetForm(FlaskForm):
     gender = SelectField("Gender", choices=genders)
     celebrationDay = SelectField("Celebration Day", choices=celebration_types)
     birthday = DateField("Birthday", format='%m-%d-%Y')
-    adoptionDate = DateField("Adoption Day", format='%m-%d-%Y')
+    adoptionDay = DateField("Adoption Day", format='%m-%d-%Y')
     coverPhoto = StringField("Cover Photo")

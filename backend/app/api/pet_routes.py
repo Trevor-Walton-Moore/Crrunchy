@@ -39,7 +39,7 @@ def create_pet():
         gender=form.data['gender'],
         celebration_day=form.data['celebrationDay'],
         birthday=form.data['birthday'],
-        adoption_day=form.data['adoptionDate']
+        adoption_day=form.data['adoptionDay']
 
         # type=form.data['type'],
         # name=form.data['name'],
@@ -53,7 +53,7 @@ def create_pet():
         # profile_icon=form.profile_icon.data,
         # cover_photo=form.cover_photo.data
         )
-        print('THENEWPET', new_pet)
+        print('THENEWPET', new_pet.to_dict())
         db.session.add(new_pet)
         db.session.commit()
 
@@ -81,15 +81,15 @@ def update_pet(id):
         setattr(updated_pet, 'weight', form.weight.data)
         setattr(updated_pet, 'gender', form.gender.data)
         setattr(updated_pet, 'profile_icon', form.profileIcon.data)
-        # setattr(updated_pet, 'celebration_day', form.celebrationDay.data)
-        # setattr(updated_pet, 'birthday', form.birthday.data)
-        # setattr(updated_pet, 'adoption_day', form.adoptionDay.data)
+        setattr(updated_pet, 'celebration_day', form.celebrationDay.data)
+        setattr(updated_pet, 'birthday', form.birthday.data)
+        setattr(updated_pet, 'adoption_day', form.adoptionDay.data)
         setattr(updated_pet, 'cover_photo', form.coverPhoto.data)
 
         db.session.add(updated_pet)
         db.session.commit()
 
-        return {'server': updated_pet.to_dict()}, 201
+        return {'pet': updated_pet.to_dict()}, 201
 
     return {"errors": ["UNAUTHORIZED: Can't Edit a Pet You Don't Own!"]}, 400
 

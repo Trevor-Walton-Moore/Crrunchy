@@ -119,8 +119,7 @@ export default function reducer(state = initialState, action) {
 
         case UPDATE_PET: {
             const updateState = {
-                ...state,
-                pet: action.pet,
+                ...state, ...action.pet,
             };
             return updateState;
         }

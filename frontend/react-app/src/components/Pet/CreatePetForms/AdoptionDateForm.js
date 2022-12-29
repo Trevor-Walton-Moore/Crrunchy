@@ -56,7 +56,7 @@ function AdoptionDateForm() {
             weight,
             gender,
             celebrationDay,
-            adoptionDate: convertedPetDate
+            adoptionDay: convertedPetDate
         }
         console.log('the REEAL payload', payload)
         dispatch(fetchCreatePet(payload))
