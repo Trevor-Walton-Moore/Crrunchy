@@ -1,42 +1,106 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Redirect, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { usePet } from '../../../Context'
-
+import { fetchCreatePet } from '../../../store/pet'
 
 function AdoptionDateForm() {
     const history = useHistory()
 
-    const { petAdoptionDay, setPetAdoptionDay, petName, petProfileIcon } = usePet()
-    console.log(petAdoptionDay, "PET Adoption DAY")
+    const dispatch = useDispatch()
 
-    const updatePetAdoptionDay = (e) => setPetAdoptionDay(e.target.value);
+    const { petAdoptionDate, setPetAdoptionDate,
+        petType,
+        petName,
+        petBreed,
+        petProfileIcon,
+        petWeight,
+        petGender,
+        petCelebrationDay
+    } = usePet()
+    console.log(petAdoptionDate, "PET Adoption DATE before")
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const [type, setType] = useState(petType);
+    const [name, setName] = useState(petName);
+    const [breed, setBreed] = useState(petBreed);
+    const [profileIcon, setProfileIcon] = useState(petProfileIcon);
+    const [weight, setWeight] = useState(petWeight);
+    const [gender, setGender] = useState(petGender);
+    const [celebrationDay, setCelebrationDay] = useState(petCelebrationDay);
+    const [adoptionDate, setAdoptionDate] = useState(petAdoptionDate);
+
+    const updatePetAdoptionDate = (e) => {
+        setAdoptionDate(e.target.value)
+        setPetAdoptionDate(e.target.value)
+    };
+
+    const handleSubmit = async () => {
+
+        const petDate = new Date(adoptionDate);
+        const petMonth = (petDate.getMonth() + 1)
+        const petDay = (petDate.getDate() + 1)
+        const petYear = (petDate.getFullYear())
+        const convertedPetDate = petMonth + "-" + petDay + "-" + petYear
+
+        // console.log(convertedPetDate, "converted Adoption DATE")
+
+        // setPetAdoptionDate(convertedPetDate)
+
+        // console.log(adoptionDate, "Adoption DATE AFTER")
+
+        const payload = {
+            type,
+            name,
+            breed,
+            profileIcon,
+            weight,
+            gender,
+            celebrationDay,
+            adoptionDate: convertedPetDate
+        }
+        console.log('the REEAL payload', payload)
+        dispatch(fetchCreatePet(payload))
         history.push('/pet/new/welcome')
     }
 
     return (
         <>
             <div className='pet-form-container'>
-                <div className='back-button'
-                    onClick={() => history.push('/pet/pet-name')}>
-                    {'<'}
+                <div className='top-buttons'>
+                    <span className='back-button'
+                        onClick={() => history.push('/pet/new/celebration-type')}>
+                        {'<'}
+                    </span>
+                </div><div className='chosen-icon-container'>
+                    <img
+                        className='icon-image'
+                        src={petProfileIcon}
+                        alt='pet-avatar' />
                 </div>
-                <img src={petProfileIcon} alt='pet-avatar' />
-                <div>{`When is ${petName}'s adoption date?`}</div>
-                <div>It's OK to enter an approximate date.</div>
-                <input
-                    required
-                    placeholder='Birthday (MM/DD/YYYY)'
-                    className="input"
-                    type='text'
-                    value={petAdoptionDay}
-                    onChange={updatePetAdoptionDay} />
-                    <button onClick={handleSubmit}>
+                <div className='sub-text'>
+                    Get ready for a gotcha day surprise! 🎉
+                </div>
+                <div className='pet-prompt'>
+                    {`When is ${petName}'s Adoption date?`}
+                </div>
+                <div className='sub-text'>
+                    It's OK to enter an approximate date.
+
+                </div>
+                <form>
+                    <input
+                        required
+                        placeholder='Adoption date (MM/DD/YYYY)'
+                        className="input"
+                        type='date'
+                        value={petAdoptionDate}
+                        onChange={updatePetAdoptionDate} />
+                    <button
+                        className='continue-button'
+                        onClick={handleSubmit}>
                         Continue
                     </button>
+                </form>
             </div>
         </>
     );

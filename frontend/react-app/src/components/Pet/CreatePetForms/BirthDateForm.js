@@ -36,6 +36,12 @@ function BirthDateForm() {
 
     const handleSubmit = async () => {
 
+        const petDate = new Date(birthday);
+        const petMonth = (petDate.getMonth() + 1)
+        const petDay = (petDate.getDate() + 1)
+        const petYear = (petDate.getFullYear())
+        const convertedPetDate = petMonth + "-" + petDay + "-" + petYear
+
         const payload = {
             type,
             name,
@@ -44,7 +50,7 @@ function BirthDateForm() {
             weight,
             gender,
             celebrationDay,
-            birthday
+            birthday: convertedPetDate
         }
         console.log('the REEAL payload', payload)
         dispatch(fetchCreatePet(payload))
@@ -72,7 +78,7 @@ function BirthDateForm() {
                     {`When is ${petName}'s birthday?`}
                 </div>
                 <div className='sub-text'>
-                    It's OK to enter an approximate age.
+                    It's OK to enter an approximate date.
 
                 </div>
                 <form>
@@ -80,7 +86,7 @@ function BirthDateForm() {
                         required
                         placeholder='Birthday (MM/DD/YYYY)'
                         className="input"
-                        type='text'
+                        type='date'
                         value={petBirthday}
                         onChange={updatePetBirthday} />
                     <button

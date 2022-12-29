@@ -11,13 +11,13 @@ function CelebrationDayForm() {
     console.log(petCelebrationDay, "PET CelebrationDayyy")
 
     const celebrateBirthday = () => setPetCelebrationDay('Birthday');
-    const celebrateAdoptionDay = () => setPetCelebrationDay('Adoption Day');
+    const celebrateAdoptionDate = () => setPetCelebrationDay('Adoption Day');
 
-    const handleSubmit = async () => {
-        if (petCelebrationDay === 'Birthday') {
+    const handleSubmit = async (celebrationType) => {
+        if (celebrationType === 'Birthday') {
             history.push('/pet/new/birthday-date')
         }
-        else history.push('/pet/new/birthday-date')
+        else history.push('/pet/new/adoption-date')
     }
 
     return (
@@ -52,13 +52,13 @@ function CelebrationDayForm() {
                 <form>
                     <button className='options-buttons' onClick={() => {
                         celebrateBirthday();
-                        handleSubmit();
+                        handleSubmit('Birthday');
                     }}>
                         Birthday
                     </button>
                     <button className='options-buttons' onClick={() => {
-                        celebrateAdoptionDay();
-                        handleSubmit();
+                        celebrateAdoptionDate();
+                        handleSubmit('Adoption Day');
                     }}>
                         Adoption Day
                     </button>

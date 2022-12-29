@@ -38,7 +38,8 @@ def create_pet():
         weight=form.data['weight'],
         gender=form.data['gender'],
         celebration_day=form.data['celebrationDay'],
-        birthday=form.data['birthday']
+        birthday=form.data['birthday'],
+        adoption_day=form.data['adoptionDate']
 
         # type=form.data['type'],
         # name=form.data['name'],
@@ -80,7 +81,7 @@ def update_pet(id):
         setattr(updated_pet, 'weight', form.weight.data)
         setattr(updated_pet, 'gender', form.gender.data)
         setattr(updated_pet, 'profile_icon', form.profileIcon.data)
-        setattr(updated_pet, 'celebration_day', form.celebrationDay.data)
+        # setattr(updated_pet, 'celebration_day', form.celebrationDay.data)
         # setattr(updated_pet, 'birthday', form.birthday.data)
         # setattr(updated_pet, 'adoption_day', form.adoptionDay.data)
         setattr(updated_pet, 'cover_photo', form.coverPhoto.data)

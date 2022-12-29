@@ -12,7 +12,7 @@ export default function PetProvider({ children }) {
     const [petGender, setPetGender] = useState("");
     const [petCelebrationDay, setPetCelebrationDay] = useState("");
     const [petBirthday, setPetBirthday] = useState("");
-    const [petAdoptionDay, setPetAdoptionDay] = useState("");
+    const [petAdoptionDate, setPetAdoptionDate] = useState("");
     const [petProfileIcon, setPetProfileIcon] = useState("");
     const [petCoverPhoto, setPetCoverPhoto] = useState("");
 
@@ -26,7 +26,7 @@ export default function PetProvider({ children }) {
         petGender, setPetGender,
         petCelebrationDay, setPetCelebrationDay,
         petBirthday, setPetBirthday,
-        petAdoptionDay, setPetAdoptionDay,
+        petAdoptionDate, setPetAdoptionDate,
         petProfileIcon, setPetProfileIcon,
         petCoverPhoto, setPetCoverPhoto
       }}

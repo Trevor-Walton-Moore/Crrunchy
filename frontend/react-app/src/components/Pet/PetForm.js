@@ -4,23 +4,26 @@ import { useHistory, useParams } from 'react-router-dom';
 import { fetchCreatePet, fetchUpdatePet } from '../../store/pet';
 import { fetchDestroyPet } from '../../store/pet';
 
-const PetForm = ({ pet, formType }) => {
-
-    const user = useSelector(state => state.session.user);
-    // const pet = useSelector(state => state.pet);
+const PetForm = ({ formType }) => {
+    const history = useHistory();
 
     const dispatch = useDispatch();
 
-    const history = useHistory();
+    const user = useSelector(state => state.session.user);
+    const pet = useSelector(state => state.pet);
+
+    console.log(pet.type, 'PET EDIT PET USE STATE')
+
+
 
     const [type, setType] = useState(pet.type);
     const [name, setName] = useState(pet.name);
     const [breed, setBreed] = useState(pet.breed);
     const [weight, setWeight] = useState(pet.weight);
     const [gender, setGender] = useState(pet.gender);
-    const [celebrationDay, setCelebrationDay] = useState(pet.celebrationDay);
+    // const [celebrationDay, setCelebrationDay] = useState(pet.celebrationDay);
     const [birthday, setBirthday] = useState(pet.birthday);
-    // const [adoptionDay, setAdoptionDay] = useState(pet.adoptionDay);
+    const [adoptionDay, setAdoptionDay] = useState(pet.adoptionDay);
     const [profileIcon, setProfileIcon] = useState(pet.profileIcon);
     const [coverImage, setCoverImage] = useState(pet.coverImage);
 
@@ -28,14 +31,22 @@ const PetForm = ({ pet, formType }) => {
     const updateBreed = (e) => setBreed(e.target.value);
     const updateWeight = (e) => setWeight(e.target.value);
     const updateGender = (e) => setGender(e.target.value);
-    const updateCelebrationDay = (e) => setCelebrationDay(e.target.value);
+    // const updateCelebrationDay = (e) => setCelebrationDay(e.target.value);
     const updateBirthday = (e) => setBirthday(e.target.value);
-    // const updateAdoptionDay = (e) => setAdoptionDay(e.target.value);
+    const updateAdoptionDay = (e) => setAdoptionDay(e.target.value);
     const updateProfileIcon = (e) => setProfileIcon(e.target.value);
     const updateCoverImage = (e) => setCoverImage(e.target.value);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const petDate = new Date(pet.birthday);
+        const petMonth = (petDate.getMonth() + 1)
+        const petDay = (petDate.getDate())
+        const petYear = (petDate.getFullYear())
+        const convertedPetDate = petMonth + "/" + petDay + "/" + petYear
+
+        setAdoptionDay(convertedPetDate.toString())
 
         const payload = {
             id: pet.id,
@@ -44,9 +55,9 @@ const PetForm = ({ pet, formType }) => {
             breed,
             weight,
             gender,
-            celebrationDay,
+            // celebrationDay,
             birthday,
-            // adoptionDay,
+            adoptionDay,
             profileIcon,
             coverImage,
         };
@@ -99,11 +110,9 @@ const PetForm = ({ pet, formType }) => {
                         className="input bottom"
                         type='URL'
                         value={coverImage}
+                        placeholder='Insert URL'
                         onChange={updateCoverImage} />
                 </label>
-                <button type='button'>
-                    Upload a Photo
-                </button>
                 <label>
                     Pet Name
                     <input
@@ -143,7 +152,7 @@ const PetForm = ({ pet, formType }) => {
                         value={gender}
                         onChange={updateGender} />
                 </label>
-                <label>
+                {/* <label>
                     Celebration Day
                     <input
                         required
@@ -151,24 +160,27 @@ const PetForm = ({ pet, formType }) => {
                         type='text'
                         value={celebrationDay}
                         onChange={updateCelebrationDay} />
-                </label>
-                <label>
-                    {'Birthday (MM/DD/YYYY)'}
-                    <input
-                        className="input"
-                        type='text'
-                        min={0}
-                        value={birthday}
-                        onChange={updateBirthday} />
-                </label>
-                {/* <label>
-                    Adoption Day
-                    <input
-                        className="input"
-                        type='text'
-                        value={adoptionDay}
-                        onChange={updateAdoptionDay} />
                 </label> */}
+                {birthday &&
+                    <label>
+                        {'Birthday (MM/DD/YYYY)'}
+                        <input
+                            className="input"
+                            type='date'
+                            value={birthday}
+                            onChange={updateBirthday} />
+                    </label>
+                }
+                {adoptionDay &&
+                    <label>
+                        Adoption Day
+                        <input
+                            className="input"
+                            type='text'
+                            value={adoptionDay}
+                            onChange={updateAdoptionDay} />
+                    </label>
+                }
                 <button className='submitForm' type="submit">
                     <span>Save Changes</span>
                 </button>

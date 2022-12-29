@@ -19,6 +19,7 @@ import PetWeightForm from './components/Pet/CreatePetForms/PetWeightForm';
 import PetGenderForm from './components/Pet/CreatePetForms/GenderForm';
 import CelebrationDayForm from './components/Pet/CreatePetForms/CelebrationDayForm';
 import BirthDateForm from './components/Pet/CreatePetForms/BirthDateForm';
+import AdoptionDateForm from './components/Pet/CreatePetForms/AdoptionDateForm';
 import Welcome from './components/Pet/CreatePetForms/Welcome';
 import ProfileIconForm from './components/Pet/CreatePetForms/ProfileIconForm';
 
@@ -80,9 +81,9 @@ function App() {
         <Route path='/pet/new/birthday-date' exact={true} >
           <BirthDateForm />
         </Route>
-        {/* <Route path='/pet/new/adoption-date' exact={true} >
+        <Route path='/pet/new/adoption-date' exact={true} >
           <AdoptionDateForm />
-        </Route> */}
+        </Route>
         <Route path='/pet/new/welcome' exact={true} >
           <Welcome />
         </Route>

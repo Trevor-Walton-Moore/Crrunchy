@@ -51,19 +51,24 @@ function ProfileIconForm() {
                     className='sub-text'>
                     Pick one that looks most like pook.
                 </div>
-                {petType === 'Dog' && (
-                    normalizeIcons(dogAvatars),
-                    normalizedIcons.map(icon => {
-                        return (
-                            <div
-                                key={icon.id}
-                                className='pet-icon-image'
-                                onClick={() => handleSubmit(icon.value)}>
-                                <img src={icon.value} alt='pet-avatar' />
-                            </div>
-                        )
-                    })
-                )}
+                <div className='pet-icons-container'>
+                    {petType === 'Dog' && (
+                        normalizeIcons(dogAvatars),
+                        normalizedIcons.map(icon => {
+                            return (
+                                <div
+                                    key={icon.id}
+                                    className='pet-icon-container'
+                                    onClick={() => handleSubmit(icon.value)}>
+                                    <img
+                                    className='icon-image'
+                                    src={icon.value}
+                                    alt='pet-avatar' />
+                                </div>
+                            )
+                        })
+                    )}
+                </div>
                 <div className='pet-icons-container'>
                     {petType === 'Cat' && (
                         normalizeIcons(catAvatars),

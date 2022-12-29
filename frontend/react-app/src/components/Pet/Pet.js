@@ -6,7 +6,9 @@ import "../css/Pet.css";
 
 
 function Pet() {
-  const history = useHistory()
+  const history = useHistory();
+
+  const dispatch = useDispatch();
   // const petId = useParams()
   // console.log(petId)
 
@@ -17,25 +19,35 @@ function Pet() {
   // console.log("DATE", date, 'BDAY', new Date(pet.birthday))
   // const age = date - pet?.birthday
 
-  const birthDate = new Date(pet.birthday);
-  const birthDateToStr = birthDate.toDateString();
-  const birthMonthStr = birthDateToStr.slice(3, 7);
-  const birthMonth = (birthDate.getMonth() + 1)
-  const birthDay = (birthDate.getDate() + 1)
-  const birthYear = (birthDate.getFullYear())
-  const convertedBirthDate = birthMonth + "/" + birthDay + "/" + birthYear
+  const petDateObj = {}
 
-  const nowDate = new Date()
-  const nowMonth = (nowDate.getMonth() + 1)
-  const nowDay = (nowDate.getDate() + 1)
-  const nowYear = (nowDate.getFullYear())
-  const convertedNowDate = nowMonth + "/" + nowDay + "/" + nowYear
+  const getPetDateInfo = (celebrationDay) => {
 
-  var ageYear = nowYear - birthYear;
+    const petDate = new Date(celebrationDay);
+    const petDateToStr = petDate.toDateString();
+    const petMonthStr = petDateToStr.slice(3, 7);
+    const petMonth = (petDate.getMonth() + 1);
+    const petDay = (petDate.getDate() + 1);
+    const petYear = (petDate.getFullYear());
+    const convertedPetDate = petMonth + "/" + petDay + "/" + petYear;
 
-  nowMonth < birthMonth && ageYear--;
+    petDateObj['month'] = petMonthStr;
+    petDateObj['day'] = petDay;
+    petDateObj['year'] = petYear;
+    petDateObj['date'] = convertedPetDate;
+  }
 
-  const dispatch = useDispatch();
+  pet.birthday ? getPetDateInfo(pet.birthday) : getPetDateInfo(pet.adoptionDay)
+
+  const nowDate = new Date();
+  const nowMonth = (nowDate.getMonth() + 1);
+  const nowDay = (nowDate.getDate() + 1);
+  const nowYear = (nowDate.getFullYear());
+  const convertedNowDate = nowMonth + '/' + nowDay + '/' + nowYear;
+
+  var ageYear = nowYear - petDateObj['year'];
+
+  nowMonth < petDateObj['month'] && ageYear--;
 
   useEffect(() => {
     dispatch(fetchOnePet(user.id))
@@ -49,20 +61,20 @@ function Pet() {
       {
         pet.celebrationDay === "Birthday" &&
         <>
-        <span className="feature-container">
-          <div className="feature">{birthMonthStr}&nbsp;{birthDay}</div>
-          <div className="feature-label">Birthday</div>
-        </span>
-        <span className="feature-container">
-          <div className="feature">{ageYear}&nbsp;Yr</div>
-          <div className="feature-label">Age</div>
-        </span>
+          <span className="feature-container">
+            <div className="feature">{petDateObj['month']}&nbsp;{petDateObj['day']}</div>
+            <div className="feature-label">Birthday</div>
+          </span>
+          <span className="feature-container">
+            <div className="feature">{ageYear}&nbsp;Yr</div>
+            <div className="feature-label">Age</div>
+          </span>
         </>
       }
       {
         pet.celebrationDay === "Adoption Day" &&
         <span className="feature-container">
-          <div className="feature">{pet.adoptionDay}</div>
+          <div className="feature">{petDateObj['month']}&nbsp;{petDateObj['day']}</div>
           <div className="feature-label">Adoption Day</div>
         </span>
       }
