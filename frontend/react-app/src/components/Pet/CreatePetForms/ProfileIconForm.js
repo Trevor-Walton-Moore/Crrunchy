@@ -32,6 +32,18 @@ function ProfileIconForm() {
         history.push('/pet/new/breed-selection')
     }
 
+    const refreshCheck = (e) => {
+        e.preventDefault();
+        e.returnValue = "";
+    };
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", refreshCheck);
+        return () => {
+            window.removeEventListener("beforeunload", refreshCheck);
+        };
+    }, []);
+
     return (
         <>
             <div className='pet-form-container'>
@@ -61,9 +73,9 @@ function ProfileIconForm() {
                                     className='pet-icon-container'
                                     onClick={() => handleSubmit(icon.value)}>
                                     <img
-                                    className='icon-image'
-                                    src={icon.value}
-                                    alt='pet-avatar' />
+                                        className='icon-image'
+                                        src={icon.value}
+                                        alt='pet-avatar' />
                                 </div>
                             )
                         })

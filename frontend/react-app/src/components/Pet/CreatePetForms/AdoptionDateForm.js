@@ -42,12 +42,6 @@ function AdoptionDateForm() {
         const petYear = (petDate.getFullYear())
         const convertedPetDate = petMonth + "-" + petDay + "-" + petYear
 
-        // console.log(convertedPetDate, "converted Adoption DATE")
-
-        // setPetAdoptionDate(convertedPetDate)
-
-        // console.log(adoptionDate, "Adoption DATE AFTER")
-
         const payload = {
             type,
             name,
@@ -62,6 +56,18 @@ function AdoptionDateForm() {
         dispatch(fetchCreatePet(payload))
         history.push('/pet/new/welcome')
     }
+
+    const refreshCheck = (e) => {
+        e.preventDefault();
+        e.returnValue = "";
+    };
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", refreshCheck);
+        return () => {
+            window.removeEventListener("beforeunload", refreshCheck);
+        };
+    }, []);
 
     return (
         <>

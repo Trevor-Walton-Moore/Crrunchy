@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchCreatePet, fetchUpdatePet } from '../../store/pet';
@@ -47,8 +47,6 @@ const PetForm = ({ formType }) => {
         const petYear = (petDate.getFullYear())
         const convertedPetDate = petMonth + "-" + petDay + "-" + petYear
 
-        // birthday ? setBirthday(convertedPetDate.toString()) : setAdoptionDay(convertedPetDate.toString())
-
         console.log(adoptionDay, "----adoption day useState in handle submit----")
         console.log(birthday, "----birthday useState in handle submit----")
 
@@ -86,86 +84,98 @@ const PetForm = ({ formType }) => {
         }
     };
 
-const handleDestroy = (e) => {
-    e.preventDefault();
-    dispatch(fetchDestroyPet(pet.id))
-    history.push('/')
-}
+    const handleDestroy = (e) => {
+        e.preventDefault();
+        dispatch(fetchDestroyPet(pet.id))
+        history.push('/')
+    }
 
-const handleCancelClick = (e) => {
-    e.preventDefault();
-    formType === 'edit' && history.push(`/pet/${pet.id}`);
-};
+    const handleCancelClick = (e) => {
+        e.preventDefault();
+        formType === 'edit' && history.push(`/pet/${pet.id}`);
+    };
 
-return (
-    <form onSubmit={handleSubmit} className='petForm'>
-        <div>
-            <div>Edit</div>
-            <button
-                className="cancelForm"
-                type='button'
-                onClick={(e) => {
-                    handleCancelClick(e);
-                }}>
-                <span>Cancel</span>
-            </button>
-            <label>
-                Profile Icon
-                <input
-                    className="input bottom"
-                    type='URL'
-                    value={profileIcon}
-                    onChange={updateProfileIcon} />
-            </label>
-            <label>
-                Cover Photo
-                <input
-                    className="input bottom"
-                    type='URL'
-                    value={coverImage}
-                    placeholder='Insert URL'
-                    onChange={updateCoverImage} />
-            </label>
-            <label>
-                Pet Name
-                <input
-                    // required
-                    className="input"
-                    type='text'
-                    value={name}
-                    minLength={3}
-                    maxLength={20}
-                    onChange={updateName} />
-            </label>
-            <label>
-                Breed Type
-                <input
-                    className="input"
-                    type='text'
-                    value={breed}
-                    onChange={updateBreed} />
-            </label>
-            <label>
-                {'Weight(lbs)'}
-                <input
-                    // required
-                    className="input"
-                    type='number'
-                    value={weight}
-                    min='1'
-                    max='300'
-                    onChange={updateWeight} />
-            </label>
-            <label>
-                Gender
-                <input
-                    // required
-                    className="input"
-                    type='text'
-                    value={gender}
-                    onChange={updateGender} />
-            </label>
-            {/* <label>
+    const refreshCheck = (e) => {
+        e.preventDefault();
+        e.returnValue = "";
+    };
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", refreshCheck);
+        return () => {
+            window.removeEventListener("beforeunload", refreshCheck);
+        };
+    }, []);
+
+    return (
+        <form onSubmit={handleSubmit} className='petForm'>
+            <div>
+                <div>Edit</div>
+                <button
+                    className="cancelForm"
+                    type='button'
+                    onClick={(e) => {
+                        handleCancelClick(e);
+                    }}>
+                    <span>Cancel</span>
+                </button>
+                <label>
+                    Profile Icon
+                    <input
+                        className="input bottom"
+                        type='URL'
+                        value={profileIcon}
+                        onChange={updateProfileIcon} />
+                </label>
+                <label>
+                    Cover Photo
+                    <input
+                        className="input bottom"
+                        type='URL'
+                        value={coverImage}
+                        placeholder='Insert URL'
+                        onChange={updateCoverImage} />
+                </label>
+                <label>
+                    Pet Name
+                    <input
+                        // required
+                        className="input"
+                        type='text'
+                        value={name}
+                        minLength={3}
+                        maxLength={20}
+                        onChange={updateName} />
+                </label>
+                <label>
+                    Breed Type
+                    <input
+                        className="input"
+                        type='text'
+                        value={breed}
+                        onChange={updateBreed} />
+                </label>
+                <label>
+                    {'Weight(lbs)'}
+                    <input
+                        // required
+                        className="input"
+                        type='number'
+                        value={weight}
+                        min='1'
+                        max='300'
+                        onChange={updateWeight} />
+                </label>
+                <label>
+                    Gender
+                    <input
+                        // required
+                        className="input"
+                        type='text'
+                        value={gender}
+                        onChange={updateGender} />
+                </label>
+                {/* <label>
                     Celebration Day
                     <input
                         required
@@ -174,36 +184,36 @@ return (
                         value={celebrationDay}
                         onChange={updateCelebrationDay} />
                 </label> */}
-            {pet.birthday &&
-                <label>
-                    {'Birthday (MM/DD/YYYY)'}
-                    <input
-                        className="input"
-                        type='date'
-                        value={birthday}
-                        onChange={updateBirthday} />
-                </label>
-            }
-            {pet.adoptionDay &&
-                <label>
-                    {'Adoption Day (MM/DD/YYYY)'}
-                    <input
-                        className="input"
-                        type='date'
-                        value={adoptionDay}
-                        onChange={updateAdoptionDay} />
-                </label>
-            }
-            <button className='submitForm' type="submit">
-                <span>Save Changes</span>
-            </button>
-            <button className='' type="button"
-                onClick={handleDestroy}>
-                <span>Delete Profile</span>
-            </button>
-        </div>
-    </form >
-);
+                {pet.birthday &&
+                    <label>
+                        {'Birthday (MM/DD/YYYY)'}
+                        <input
+                            className="input"
+                            type='date'
+                            value={birthday}
+                            onChange={updateBirthday} />
+                    </label>
+                }
+                {pet.adoptionDay &&
+                    <label>
+                        {'Adoption Day (MM/DD/YYYY)'}
+                        <input
+                            className="input"
+                            type='date'
+                            value={adoptionDay}
+                            onChange={updateAdoptionDay} />
+                    </label>
+                }
+                <button className='submitForm' type="submit">
+                    <span>Save Changes</span>
+                </button>
+                <button className='' type="button"
+                    onClick={handleDestroy}>
+                    <span>Delete Profile</span>
+                </button>
+            </div>
+        </form >
+    );
 };
 
 export default PetForm;

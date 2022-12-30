@@ -23,6 +23,18 @@ function PetNameForm() {
         // }
     }
 
+    const refreshCheck = (e) => {
+        e.preventDefault();
+        e.returnValue = "";
+    };
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", refreshCheck);
+        return () => {
+            window.removeEventListener("beforeunload", refreshCheck);
+        };
+    }, []);
+
     return (
         <>
             <div className='pet-form-container'>

@@ -20,6 +20,18 @@ function CelebrationDayForm() {
         else history.push('/pet/new/adoption-date')
     }
 
+    const refreshCheck = (e) => {
+        e.preventDefault();
+        e.returnValue = "";
+    };
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", refreshCheck);
+        return () => {
+            window.removeEventListener("beforeunload", refreshCheck);
+        };
+    }, []);
+
     return (
         <>
             <div className='pet-form-container'>

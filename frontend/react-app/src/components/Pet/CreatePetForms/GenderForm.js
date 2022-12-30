@@ -7,72 +7,15 @@ import { fetchCreatePet } from '../../../store/pet'
 
 function PetGenderForm() {
     const history = useHistory();
-    // const dispatch = useDispatch();
-
-
-    // const pet = useSelector((state) => state.pet);
 
     const { petGender, setPetGender,
-        // petType,
         petName,
-        // petBreed,
         petProfileIcon,
-        // petWeight,
-        // petCelebrationDay,
-        // petBirthday,
-        // petAdoptionDay,
-        // petCoverImage
     } = usePet()
     console.log(petGender, "PET Genderrr")
 
-    // console.log('pet context pls work!!!',
-    //     petGender,
-    //     petType,
-    //     petName,
-    //     petBreed,
-    //     petProfileIcon,
-    //     petWeight,
-    //     petCelebrationDay,
-    //     petBirthday,
-    //     petAdoptionDay,
-    //     petCoverImage
-    // )
-
-    // const [type, setType] = useState(petType);
-    // const [name, setName] = useState(petName);
-    // const [breed, setBreed] = useState(petBreed);
-    // const [profileIcon, setProfileIcon] = useState(petProfileIcon);
-    // const [weight, setWeight] = useState(petWeight);
-
-    // const chooseMale = () => {
-    //     setGender('Male')
-    //     setPetGender('Male')
-    // };
-    // const chooseFemale = () => {
-    //     setGender('Female')
-    //     setPetGender('Female')
-    // };
-
     const handleSubmit = async (gender) => {
-        // const celebrationDay = 'Birthday'
-
         console.log('handle submit gender', gender)
-
-        // const payload = {
-        //     type,
-        //     name,
-        //     breed,
-        //     profileIcon,
-        //     weight,
-        //     gender,
-        //     celebrationDay,
-            // petCelebrationDay,
-            // petBirthday,
-            // petAdoptionDay,
-            // petCoverImage,
-        // };
-        // console.log("PAYYYYYLOAD typess", payload)
-        // dispatch(fetchCreatePet(payload));
         history.push('/pet/new/celebration-type')
     }
 
@@ -80,6 +23,18 @@ function PetGenderForm() {
         setPetGender(gender);
         handleSubmit();
     }
+
+    const refreshCheck = (e) => {
+        e.preventDefault();
+        e.returnValue = "";
+    };
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", refreshCheck);
+        return () => {
+            window.removeEventListener("beforeunload", refreshCheck);
+        };
+    }, []);
 
     return (
         <>
