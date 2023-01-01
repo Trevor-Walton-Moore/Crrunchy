@@ -1,5 +1,7 @@
 .NavBar {
     background-color: rgb(28, 73, 194);
+    display: flex;
+    justify-content: space-between;
 }
 
 .crunchy {
@@ -10,20 +12,85 @@
     font-size: 50px;
 }
 
+.account-cart {
+    display: flex;
+    justify-content: space-between;
+    /* border: rgb(128, 0, 26) 2px solid; */
+    width: 25vw;
+}
+
 .dropdown-main {
     font-family: sans-serif;
 }
 
-.acount--dropdown-button {
+.acount-dropdown-button {
     cursor: pointer;
     color: rgb(255, 255, 255);
+    /* border:orange 1px solid; */
 }
 
 .hi-user {
     color: rgba(255, 255, 255, 0.515);
 }
 
+.account {
+font-size: 20px;
+}
+
 .dropdown-arrow {
-    /* transform: rotate(10deg); */
+    transform: rotate(90deg);
     /* border: 3px green solid; */
+}
+
+.cart-button {
+    font-family: sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+.user-dropdown-container {
+    top: 66px;
+    right: 100px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    border: 1px rgb(210, 210, 210) solid;
+    border-top:none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 1px 3px 3px rgba(83, 83, 83, 0.78);
+}
+
+.user-dropdown-button {
+    border-top: 1px solid rgb(210, 210, 210);
+    padding:20px 0px 20px 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: lighter;
+    cursor: pointer;
+    overflow: scroll;
+}
+
+.user-dropdown-button:hover {
+    text-decoration: underline;
+}
+
+.not-user {
+    border-top: 1px solid rgb(210, 210, 210);
+    padding:20px 0px 20px 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: lighter;
+    cursor: pointer;
+    overflow: scroll;
+}
+
+.sign-out {
+    color: rgb(28, 73, 194);
+}
+
+.sign-out:hover {
+    text-decoration: underline;
 }

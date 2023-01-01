@@ -24,8 +24,11 @@ const NavBar = () => {
             Crunchy
           </NavLink>
         </span>
+        <span className='account-cart'>
         <span>
           <UserDropdown />
+        </span>
+        <span className='cart-button'>cart</span>
         </span>
       {/* </div> */}
     </nav>

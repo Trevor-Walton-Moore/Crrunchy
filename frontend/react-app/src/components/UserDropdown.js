@@ -12,7 +12,7 @@ const UserDropdown = () => {
     const user = useSelector((state) => state.session.user);
     const pet = useSelector((state) => state.pet);
 
-    !pet.id && console.log( pet,"PET")
+    !pet.id && console.log(pet, "PET")
 
     const [showMenu, setShowMenu] = useState(false);
 
@@ -37,17 +37,17 @@ const UserDropdown = () => {
             {
                 user &&
                 <div
-                className='acount--dropdown-button'
-                onClick={() => openMenu()}>
+                    className='acount-dropdown-button'
+                    onClick={() => openMenu()}>
                     <span>
                         <div className='hi-user'>
                             Hi, {`${user?.firstName}`}!
                         </div>
-                        <div>
-                            your account
+                        <div className='account'>
+                            account
                         </div>
                     </span>
-                    <span className='dropdown-arrow'>{"^"}</span>
+                    <span className='dropdown-arrow'>{">"}</span>
                 </div>
             }
             {
@@ -58,56 +58,56 @@ const UserDropdown = () => {
             {showMenu && (
                 // {!isHidden && !showMenu && (
                 <div className="user-dropdown-container">
-                    <button
+                    <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Account
-                    </button>
-                    <button
+                    </div>
+                    <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Orders
-                    </button>
-                    <button
+                    </div>
+                    <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Manage Autoship
-                    </button>
-                    <button
+                    </div>
+                    <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Favorites
-                    </button>
-                    <button
+                    </div>
+                    <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Buy Again
-                    </button>
-                    <button
+                    </div>
+                    <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Prescriptions
-                    </button>
-                    <button
+                    </div>
+                    <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         My Pet Health
-                    </button>
-                    <button
+                    </div>
+                    <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Connect with a Vet
-                    </button>
-                    <button
+                    </div>
+                    <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         CarePlus Pet Insurance and Wellness Plans
-                    </button>
-                    <button
+                    </div>
+                    <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         My Rescues
-                    </button>
+                    </div>
                     {
                         pet.id &&
                         <NavLink
@@ -128,21 +128,10 @@ const UserDropdown = () => {
                             Create a Pet Profile
                         </NavLink>
                     }
-                    <NavLink
-                        to='/login'
-                        exact={true}
-                        className="user-dropdown-button"
-                    >
-                        Log in
-                    </NavLink>
-                    <NavLink
-                        to='/sign-up'
-                        exact={true}
-                        className="user-dropdown-button"
-                    >
-                        Sign in
-                    </NavLink>
-                    <LogoutButton />
+                    <span className='not-user'>
+                        {`Not ${user.firstName}? `}
+                        <LogoutButton />
+                    </span>
                 </div>
 
             )}
