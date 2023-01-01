@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 import { fetchOnePet } from '../store/pet';
 import UserDropdown from './UserDropdown';
+import './css/NavBar.css'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user);
@@ -16,17 +17,17 @@ const NavBar = () => {
   }, [dispatch, user?.id]);
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+    <nav className='NavBar'>
+      {/* <div> */}
+        <span>
+          <NavLink to='/' exact={true} className='crunchy'>
+            Crunchy
           </NavLink>
-        </li>
-        <li>
+        </span>
+        <span>
           <UserDropdown />
-        </li>
-      </ul>
+        </span>
+      {/* </div> */}
     </nav>
   );
 }

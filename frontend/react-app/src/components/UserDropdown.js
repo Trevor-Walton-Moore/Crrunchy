@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import LoginForm from './auth/LoginForm';
 import SignUpForm from './auth/SignUpForm';
 import LogoutButton from './auth/LogoutButton';
+import './css/NavBar.css'
 
 const UserDropdown = () => {
     const history = useHistory();
@@ -32,19 +33,21 @@ const UserDropdown = () => {
     };
 
     return (
-        <div>
+        <div className='dropdown-main'>
             {
                 user &&
-                <div onClick={() => openMenu()}>
+                <div
+                className='acount--dropdown-button'
+                onClick={() => openMenu()}>
                     <span>
-                        <div>
+                        <div className='hi-user'>
                             Hi, {`${user?.firstName}`}!
                         </div>
                         <div>
                             your account
                         </div>
                     </span>
-                    <span>{">"}</span>
+                    <span className='dropdown-arrow'>{"^"}</span>
                 </div>
             }
             {

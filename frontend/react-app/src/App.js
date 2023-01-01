@@ -49,7 +49,6 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
         </Route>
         <Route path='/pet/:petId/edit' >
           <EditPetForm />

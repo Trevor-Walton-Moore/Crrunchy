@@ -1,0 +1,29 @@
+.NavBar {
+    background-color: rgb(28, 73, 194);
+}
+
+.crunchy {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: monospace;
+    font-weight: bolder;
+    font-size: 50px;
+}
+
+.dropdown-main {
+    font-family: sans-serif;
+}
+
+.acount--dropdown-button {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+}
+
+.hi-user {
+    color: rgba(255, 255, 255, 0.515);
+}
+
+.dropdown-arrow {
+    /* transform: rotate(10deg); */
+    /* border: 3px green solid; */
+}

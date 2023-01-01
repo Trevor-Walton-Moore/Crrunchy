@@ -149,6 +149,22 @@
     position: absolute;
 }
 
+.edit-breed-list {
+    position: absolute;
+    border: 2px rgb(28, 73, 194) solid;
+    border-top: transparent;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 70%;
+    height: 120px;
+    margin: auto;
+    max-width: 400px;
+    min-width: 400px;
+    padding: 0px 16px 16px 16px;
+    overflow: scroll;
+    background-color: white;
+}
+
 .submit-edit {
     border: none;
     background-color: rgb(28, 73, 194);

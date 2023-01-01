@@ -307,7 +307,7 @@ const PetForm = ({ formType }) => {
                     </div>
                 </div>
                 {showBreedDropdown && (
-                    <div className='breed-list'>
+                    <div className='edit-breed-list'>
                         {type === 'Dog' && (
                             normalizeBreeds(dogBreeds),
                             normalizedBreeds.map(breed => {

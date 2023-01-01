@@ -134,7 +134,7 @@ form {
 }
 
 .breed-list {
-    position: absolute;
+    /* position: absolute; */
     border: 2px rgb(28, 73, 194) solid;
     border-top: transparent;
     border-bottom-left-radius: 8px;
