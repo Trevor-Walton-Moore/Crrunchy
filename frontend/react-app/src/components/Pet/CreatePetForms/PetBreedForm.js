@@ -46,7 +46,7 @@ function PetBreedForm() {
             obj['value'] = breedArr[i]
             normalizedBreeds.push(obj)
         }
-        return console.log(normalizedBreeds, "nOrMaLiZeD BREEEDS")
+        // return console.log(normalizedBreeds, "nOrMaLiZeD BREEEDS")
     }
 
     const refreshCheck = (e) => {

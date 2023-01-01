@@ -1,0 +1,189 @@
+.pet-profile-container {
+    font-family: sans-serif;
+}
+
+.petForm {
+    font-family: sans-serif;
+}
+
+.edit {
+    font-weight: bolder;
+    font-size: 22px;
+}
+
+.cancelForm {
+    border-radius: 20px;
+    border: rgba(232, 232, 232, 0.714) 2px solid;
+    background: transparent;
+    font-size: 14px;
+    font-weight: bolder;
+    padding: 5.5px 14px 5.5px 14px;
+    color: rgb(93, 93, 93);
+}
+
+.cancelForm:hover {
+    border: transparent 2px solid;
+    background-color: rgba(232, 232, 232, 0.714);
+}
+
+.edit-label {
+    color: rgb(73, 73, 73);
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+.edit-input-padding {
+    padding-top: 10px;
+}
+
+.pet-name {
+    font-family: sans-serif;
+    font-size: 26px;
+    font-weight: bolder;
+    color: rgb(0, 41, 87);
+}
+
+.pet-detail-container {
+    font-size: 13px;
+    font-weight: lighter;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detail {
+    font-family: sans-serif;
+    color: rgb(0, 41, 87);
+}
+
+.detail-label {
+    font-family: sans-serif;
+    color: rgb(123, 123, 123);
+}
+
+.pet-feature {
+    font-family: sans-serif;
+    font-size: 22px;
+    text-decoration: none;
+    color: rgb(0, 41, 87);
+}
+
+.line-H {
+    /* padding-top: 20px; */
+    border-bottom: 2px solid rgba(75, 75, 75, 0.645);
+    width: 34px;
+    margin: auto;
+}
+
+.line-V {
+    /* padding-top: 20px; */
+    border-bottom: 2px solid rgba(75, 75, 75, 0.645);
+    width: 34px;
+    margin: auto;
+}
+
+.pet-icon-container-edit {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    background-color: rgb(229, 234, 240);
+    cursor: pointer;
+    margin: 6px;
+    transition: all .23s;
+}
+
+.pet-icon-container-edit:hover {
+    /* transition-delay: .02s; */
+    background-color: rgb(192, 206, 223);
+}
+
+.pet-icons-container-edit {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 560px;
+    margin: auto;
+    border: 2px rgba(196, 196, 196, 0.67) solid;
+    border-radius: 8px;
+    background-color: rgb(238, 238, 238);
+}
+
+.gender-input {
+    font-size: 15px;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px rgba(89, 89, 89, 0.755) solid;
+    max-width: 400px;
+    min-width: 400px;
+    margin: auto;
+}
+
+.gender-input:focus {
+    outline: none;
+    border-bottom: 0px transparent solid;
+    border-top: 2px rgb(28, 73, 194) solid;
+    border-left: 2px rgb(28, 73, 194) solid;
+    border-right: 2px rgb(28, 73, 194) solid;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.gender-list {
+    border: 2px rgb(28, 73, 194) solid;
+    border-top: transparent;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 70%;
+    /* height: 120px; */
+    margin: auto;
+    max-width: 400px;
+    min-width: 400px;
+    padding: 0px 16px 4px 16px;
+    overflow: scroll;
+    background-color: white;
+    position: absolute;
+}
+
+.submit-edit {
+    border: none;
+    background-color: rgb(28, 73, 194);
+    cursor: pointer;
+    width: 36%;
+    padding: 6px;
+    border-radius: 45px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    /* max-width: 400px;
+    min-width: 400px; */
+    margin-top: 14px;
+}
+
+.submit-edit:hover {
+    background-color: rgb(35, 83, 213);
+}
+
+.delete-profile {
+    border: 2px rgba(193, 62, 62, 0.297) solid;
+    background-color: transparent;
+    cursor: pointer;
+    width: 36%;
+    padding: 4px;
+    border-radius: 45px;
+    color: rgb(193, 62, 62);
+    font-weight: bold;
+    font-size: 15px;
+    /* max-width: 400px;
+    min-width: 400px; */
+    margin-top: 14px;
+}
+
+.delete-profile:hover {
+    border: transparent 2px solid;
+    background-color: rgba(193, 62, 62, 0.297);
+}

@@ -55,36 +55,82 @@ function Pet() {
   }, [dispatch]);
 
   return (
-    <div className="main-container">
-      <img src={pet.profileIcon} alt='pet-avatar' />
-      <div className="pet-name">{pet.name}</div>
-      {
-        pet.celebrationDay === "Birthday" &&
-        <>
-          <span className="feature-container">
-            <div className="feature">{petDateObj['month']}&nbsp;{petDateObj['day']}</div>
-            <div className="feature-label">Birthday</div>
+    <div className="pet-page-main-container">
+      <span className='pet-profile-container'>
+        <div className="chosen-icon-container">
+          <img
+            className='icon-image'
+            src={pet.profileIcon}
+            alt='pet-avatar' />
+        </div>
+        <div className="pet-name">{pet.name}</div>
+
+        <div className="pet-details-container">
+          {
+            pet.celebrationDay === "Birthday" &&
+            <span>
+              <span className="pet-detail-container">
+                <div className="feature">{petDateObj['month']}&nbsp;{petDateObj['day']}</div>
+                <div className="feature-label">Birthday</div>
+              </span>
+              <span className="line-V"></span>
+              <span className="pet-detail-container">
+                <div className="feature">{ageYear}&nbsp;Yr</div>
+                <div className="feature-label">Age</div>
+              </span>
+            </span>
+          }
+          {
+            pet.celebrationDay === "Adoption Day" &&
+            <span className="pet-detail-container">
+              <div className="detail">{petDateObj['month']}&nbsp;{petDateObj['day']}</div>
+              <div className="detail-label">Adoption Day</div>
+            </span>
+          }
+          <span className="line-V"></span>
+          <span className="pet-detail-container">
+            <div className="detail">{pet.weight}&nbsp;lbs</div>
+            <div className="detail-label">Weight</div>
           </span>
-          <span className="feature-container">
-            <div className="feature">{ageYear}&nbsp;Yr</div>
-            <div className="feature-label">Age</div>
-          </span>
-        </>
-      }
-      {
-        pet.celebrationDay === "Adoption Day" &&
-        <span className="feature-container">
-          <div className="feature">{petDateObj['month']}&nbsp;{petDateObj['day']}</div>
-          <div className="feature-label">Adoption Day</div>
-        </span>
-      }
-      <span className="feature-container">
-        <div className="feature">{pet.weight}&nbsp;lbs</div>
-        <div className="feature-label">Weight</div>
+          <div className="line-H"></div>
+          <div>
+            <NavLink
+              className="pet-feature"
+              to={`/pet/${pet.id}/edit`}>
+              Overview
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              className="pet-feature"
+              to={`/coming-soon`}>
+              Prescriptions
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              className="pet-feature"
+              to={`/coming-soon`}>
+              Favorites
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              className="pet-feature"
+              to={`/coming-soon`}>
+              Details
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              className="pet-feature"
+              to={`/pet/${pet.id}/edit`}>
+              Edit
+            </NavLink>
+          </div>
+          <div className="line-H"></div>
+        </div>
       </span>
-
-      <NavLink to={`/pet/${pet.id}/edit`}>Edit! That! Pet!</NavLink>
-
     </div>
   );
 }
