@@ -123,6 +123,7 @@ function PetBreedForm() {
                     </div>
                 )}
                 <form
+                    className='create-pet-form'
                     onSubmit={handleSubmit}>
                     <button
                         className='unsure-of-breed'

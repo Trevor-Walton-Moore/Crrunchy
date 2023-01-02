@@ -61,7 +61,7 @@ function PetGenderForm() {
                 <div className='pet-prompt'>
                     {`What best describes ${petName}?`}
                 </div>
-                <form>
+                <form className='create-pet-form'>
                     <button
                         className='options-buttons'
                         onClick={() => updateGender('Female')}>

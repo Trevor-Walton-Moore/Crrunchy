@@ -202,7 +202,7 @@ const PetForm = ({ formType }) => {
     }, []);
 
     return (
-        <form onSubmit={handleSubmit} className='petForm'>
+        <form onSubmit={handleSubmit} className='edit-pet-form create-pet-form'>
             <div>
                 <div className='top-buttons'>
                     <span className='edit'>Edit</span>

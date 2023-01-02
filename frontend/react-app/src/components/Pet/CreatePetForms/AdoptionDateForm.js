@@ -93,7 +93,7 @@ function AdoptionDateForm() {
                     It's OK to enter an approximate date.
 
                 </div>
-                <form>
+                <form className='create-pet-form'>
                     <input
                         required
                         placeholder='Adoption date (MM/DD/YYYY)'

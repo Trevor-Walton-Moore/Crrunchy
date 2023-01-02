@@ -92,7 +92,7 @@
 }
 
 
-form {
+.create-pet-form {
     /* background-color: rgb(28, 73, 194); */
     /* border: 1px rgba(186, 98, 98, 0.755) solid; */
     margin: auto;

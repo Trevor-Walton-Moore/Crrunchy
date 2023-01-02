@@ -64,7 +64,9 @@ function PetNameForm() {
                     minLength={3}
                     maxLength={20}
                     onChange={updateName} />
-                <form onSubmit={handleSubmit}>
+                <form
+                    className='create-pet-form'
+                    onSubmit={handleSubmit}>
                     <button
                         className='continue-button'
                         type='submit'>

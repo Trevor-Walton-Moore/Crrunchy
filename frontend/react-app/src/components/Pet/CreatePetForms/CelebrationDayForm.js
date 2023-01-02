@@ -61,7 +61,7 @@ function CelebrationDayForm() {
                 <div className='sub-text'>
                     We want to celebrate with you!
                 </div>
-                <form>
+                <form className='create-pet-form'>
                     <button className='options-buttons' onClick={() => {
                         celebrateBirthday();
                         handleSubmit('Birthday');

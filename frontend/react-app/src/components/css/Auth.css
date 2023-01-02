@@ -1,0 +1,215 @@
+.login-main {
+    display: flex;
+    padding: 0px 70px 0px 70px;
+    font-family: sans-serif;
+}
+
+.login-div {
+    width: 50%;
+    /* margin: none; */
+}
+
+.login-title {
+    color: rgb(77, 77, 77);
+    font-size: 33px;
+    margin: 30px 0px 30px 0px;
+    font-weight: lighter;
+}
+
+.error {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: rgb(208, 1, 27);
+}
+
+.login-form {
+    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 40%;
+    min-width: 284px;
+    padding: 35px 40px;
+    background-color: rgb(252, 252, 252);
+    border: 1px solid rgb(238, 238, 238);
+    border-radius: 5px;
+    box-shadow: 0 1px 0 0 rgb(204, 204, 204);
+}
+
+.auth-form-children {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.returning-or-new-customer {
+    font-size: 23px;
+    color: rgb(76, 175, 80);
+    width: 280px;
+}
+
+.auth-input {
+    /* position: absolute; */
+    margin-top: 12px;
+    max-width: 278px;
+    height: 52px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px rgba(118, 118, 118, 0.457) solid;
+    border-radius: 2px;
+    transition: border .24s;
+    box-sizing: border-box;
+    /* font-weight: lighter; */
+}
+
+.auth-input:hover {
+    border: 1px rgb(239, 108, 0) solid;
+}
+
+.auth-input:focus {
+    outline: none;
+    border: 2px rgb(239, 108, 0) solid;
+}
+
+.forgot-password {
+    font-size: 13.4px;
+    padding: 16px 0px 16px 0px;
+    color: rgb(14, 112, 190);
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-button-page {
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    /* margin: none; */
+    width: 128px;
+    height: 48px;
+    padding: 14px 35px 14px 35px;
+    border-radius: 4px;
+    background-color: rgb(239, 108, 0);
+    color: white;
+    text-decoration: none;
+}
+
+.login-button-page:hover {
+    background-color: rgb(199, 90, 2);
+}
+
+.signup-div {
+    /* border: 1px orange solid; */
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 284px;
+    padding: 35px 40px 35px 70px;
+}
+
+.create-account-paragraph {
+    font-size: 14px;
+    margin: 10px 0px 18px 0px;
+    width: 325px;
+}
+
+.create-account-button {
+    border: 1px black solid;
+    border-radius: 4px;
+    background-color: white;
+    text-decoration: none;
+    color: rgb(22, 57, 119);
+    border: 1px solid rgb(22, 57, 119);
+    padding: 13px 35px;
+    text-align: center;
+    width: 123px;
+}
+
+.create-account-button:hover {
+    background-color: rgba(22, 58, 119, 0.091);
+    ;
+}
+
+.signup-input {
+    width: 370px;
+    max-width: 370px;
+}
+
+li {
+    margin: 5px 0px 5px 0px;
+}
+
+.signup-tips-list {
+    width: 370px;
+    margin-top: 12px;
+    margin-bottom: 22px;
+    color: rgb(85, 85, 85);
+    font-size: 12px;
+}
+
+.signup-tips-2-container {
+    margin-top: 230px;
+}
+
+.signup-tips-list-2 {
+    font-size: 13px;
+}
+
+.signup-button-page {
+    width: 370px;
+}
+
+.terms-of-service {
+    margin-top: 12px;
+    margin-bottom: 22px;
+    font-size: 14px;
+}
+
+.terms-links {
+    padding: 16px 0px 16px 0px;
+    color: rgb(14, 112, 190);
+    text-decoration: none;
+}
+
+.terms-links:hover {
+    text-decoration: underline;
+}
+
+.already-have-an-account {
+    font-size: 15px;
+    font-weight: lighter;
+    color: rgb(89, 89, 89);
+    display: flex;
+}
+
+.account-line {
+    border-bottom: 1px solid rgba(215, 215, 215, 0.709);
+    width: 85px;
+    margin: auto 0;
+}
+
+.account-question {
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+.login-button-from-signup {
+    /*
+    text-decoration: none;
+    color: rgb(22, 57, 119);
+    border: 1px solid rgb(22, 57, 119);
+    text-align: center;
+    padding: 14px 35px;
+    height: 48px; */
+    width: 300px;
+    display: block;
+    margin: 22px 0px 22px 0px;
+}
+
+.login-button-from-signup:hover {
+    background-color: rgba(22, 58, 119, 0.091);
+}

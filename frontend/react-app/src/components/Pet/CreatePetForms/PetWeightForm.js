@@ -59,7 +59,8 @@ function PetWeightForm() {
                     className='sub-text'>
                     It's OK to enter an approximate weight
                 </div>
-                <form>
+                <form
+                    className='create-pet-form'>
 
                     <input
                         required

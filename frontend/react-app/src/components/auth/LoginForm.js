@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import '../css/Auth.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -31,34 +32,79 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+    <div className='login-main'>
+
+      <div className='login-div'>
+        <div className='login-title'>
+          Sign in or register
+        </div>
+        <form
+          className='login-form'
+          onSubmit={onLogin}>
+          <div className='auth-form-children'>
+            <div className='returning-or-new-customer'>
+              I'm a Returning Customer
+            </div>
+            <div>
+              {errors.map((error, ind) => (
+                <div
+                  className='error'
+                  key={ind}>
+                  {error}
+                </div>
+              ))}
+            </div>
+            {/* <div> */}
+            {/* <label htmlFor='email'></label> */}
+            <input
+              className='auth-input'
+              name='email'
+              type='text'
+              placeholder='Email Address'
+              value={email}
+              onChange={updateEmail}
+            />
+            {/* </div> */}
+            {/* <div> */}
+            {/* <label htmlFor='password'></label> */}
+            <input
+              className='auth-input'
+              name='password'
+              type='password'
+              placeholder='Password'
+              value={password}
+              onChange={updatePassword}
+            />
+            <NavLink
+              className='forgot-password'
+              to='coming-soon'>
+              Forgot your password?
+            </NavLink>
+            <button
+              className='login-button-page'
+              type='submit'>
+              Sign In
+            </button>
+            {/* </div> */}
+          </div>
+        </form>
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
+      <div className='signup-div'>
+        <div className='returning-or-new-customer'>
+          I'm a New Customer
+        </div>
+        <div className='create-account-paragraph'>
+          Creating an account is fast, easy, and free.
+          You'll be able to manage your autoships,
+          track your orders, write reviews, and more!
+        </div>
+        <NavLink
+          className='create-account-button'
+          to='/sign-up'>
+          Create Account
+        </NavLink>
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-      </div>
-    </form>
+    </div>
   );
 };
 

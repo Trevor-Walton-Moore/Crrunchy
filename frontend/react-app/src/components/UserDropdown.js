@@ -34,30 +34,43 @@ const UserDropdown = () => {
 
     return (
         <div className='dropdown-main'>
-            {
-                user &&
-                <div
-                    className='acount-dropdown-button'
-                    onClick={() => openMenu()}>
-                    <span>
+            <div
+                className='account-dropdown-button'
+                onClick={() => openMenu()}>
+                <div className='account-dropdown-button-children'>
+                    {
+                        user &&
                         <div className='hi-user'>
                             Hi, {`${user?.firstName}`}!
                         </div>
-                        <div className='account'>
-                            account
-                        </div>
-                    </span>
+                    }
+                    <div className='account'>
+                        account
+                    </div>
                     <span className='dropdown-arrow'>{">"}</span>
                 </div>
-            }
-            {
-                !user &&
-                <div>you are not logged in!</div>
-            }
+            </div>
 
             {showMenu && (
                 // {!isHidden && !showMenu && (
                 <div className="user-dropdown-container">
+                    {!user && (
+                        <div className='login-signup-container'>
+                            <NavLink
+                                to='/login'
+                                className='login-button'>
+                                Sign In
+                            </NavLink>
+                            <div className='start-here'>
+                            New Customer?&nbsp;
+                            <NavLink
+                                to='/sign-up'
+                                className='signup-button'>
+                                Start here
+                            </NavLink>
+                                    </div>
+                        </div>
+                    )}
                     <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
@@ -119,7 +132,7 @@ const UserDropdown = () => {
                         </NavLink>
                     }
                     {
-                        !pet.id &&
+                        (!pet.id || !user) &&
                         <NavLink
                             to={`/pet/new`}
                             exact={true}
@@ -128,15 +141,16 @@ const UserDropdown = () => {
                             Create a Pet Profile
                         </NavLink>
                     }
-                    <span className='not-user'>
-                        {`Not ${user.firstName}? `}
-                        <LogoutButton />
-                    </span>
-                </div>
 
+                    {
+                        user &&
+                        <span className='not-user'>
+                            {`Not ${user.firstName}? `}
+                            <LogoutButton />
+                        </span>
+                    }
+                </div>
             )}
-            <div>
-            </div>
         </div>
     )
 }
