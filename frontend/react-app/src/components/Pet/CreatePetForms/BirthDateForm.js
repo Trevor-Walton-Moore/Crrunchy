@@ -50,7 +50,8 @@ function BirthDateForm() {
             weight,
             gender,
             celebrationDay,
-            birthday: convertedPetDate
+            birthday: convertedPetDate,
+            coverImage: 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png',
         }
         console.log('the REEAL payload', payload)
         dispatch(fetchCreatePet(payload))

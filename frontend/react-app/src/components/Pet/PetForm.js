@@ -26,7 +26,7 @@ const PetForm = ({ formType }) => {
     const [birthday, setBirthday] = useState(pet.birthday);
     const [adoptionDay, setAdoptionDay] = useState(pet.adoptionDay);
     const [profileIcon, setProfileIcon] = useState(pet.profileIcon);
-    const [coverImage, setCoverImage] = useState(pet.coverImage);
+    let [coverImage, setCoverImage] = useState(pet.coverImage);
 
     const [showIconDropdown, setShowIconDropdown] = useState(false);
     const [showBreedDropdown, setShowBreedDropdown] = useState(false);
@@ -136,10 +136,13 @@ const PetForm = ({ formType }) => {
         e.preventDefault();
 
         const petDate = birthday ? new Date(birthday) : new Date(adoptionDay);
-        const petMonth = (petDate.getMonth() + 1)
-        const petDay = (petDate.getDate() + 1)
-        const petYear = (petDate.getFullYear())
-        const convertedPetDate = petMonth + "-" + petDay + "-" + petYear
+        const petMonth = (petDate.getMonth() + 1);
+        const petDay = (petDate.getDate() + 1);
+        const petYear = (petDate.getFullYear());
+        const convertedPetDate = petMonth + "-" + petDay + "-" + petYear;
+        const defaultCoverImage = 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png';
+
+        if (!coverImage) coverImage = defaultCoverImage
 
         // console.log(adoptionDay, "----adoption day useState in handle submit----")
         // console.log(birthday, "----birthday useState in handle submit----")
@@ -268,12 +271,12 @@ const PetForm = ({ formType }) => {
                 </div>
                 <div className='edit-input-padding'>
                     <label className='edit-label'>
-                        Cover Photo
+                        Cover Photo (URL)
                         <input
                             className="input bottom"
                             type='URL'
                             value={coverImage}
-                            placeholder='Insert URL'
+                            placeholder='Cover Photo'
                             onChange={updateCoverImage} />
                     </label>
                 </div>
@@ -281,7 +284,7 @@ const PetForm = ({ formType }) => {
                     <label className='edit-label'>
                         Pet Name
                         <input
-                            // required
+                            required
                             className="input"
                             type='text'
                             value={name}
@@ -361,7 +364,7 @@ const PetForm = ({ formType }) => {
                     <label className='edit-label'>
                         Gender
                         <input
-                            // required
+                            required
                             onClick={displayGenderDropdown}
                             className="gender-input"
                             type='text'

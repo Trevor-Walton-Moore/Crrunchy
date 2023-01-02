@@ -56,7 +56,11 @@ function Pet() {
 
   return (
     <div className="pet-page-main-container">
-      <span className='pet-profile-container'>
+      <div className='pet-profile-container'>
+        <img
+          className='pet-cover-image'
+          src={pet.coverImage}
+          alt='cover' />
         <div className="chosen-icon-container">
           <img
             className='icon-image'
@@ -130,7 +134,7 @@ function Pet() {
           </div>
           <div className="line-H"></div>
         </div>
-      </span>
+      </div>
     </div>
   );
 }

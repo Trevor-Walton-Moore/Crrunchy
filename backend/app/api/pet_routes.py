@@ -39,7 +39,8 @@ def create_pet():
         gender=form.data['gender'],
         celebration_day=form.data['celebrationDay'],
         birthday=form.data['birthday'],
-        adoption_day=form.data['adoptionDay']
+        adoption_day=form.data['adoptionDay'],
+        cover_image=form.data['coverImage']
 
         # type=form.data['type'],
         # name=form.data['name'],
@@ -84,7 +85,7 @@ def update_pet(id):
         setattr(updated_pet, 'celebration_day', form.celebrationDay.data)
         setattr(updated_pet, 'birthday', form.birthday.data)
         setattr(updated_pet, 'adoption_day', form.adoptionDay.data)
-        setattr(updated_pet, 'cover_photo', form.coverPhoto.data)
+        setattr(updated_pet, 'cover_image', form.coverImage.data)
 
         db.session.add(updated_pet)
         db.session.commit()
