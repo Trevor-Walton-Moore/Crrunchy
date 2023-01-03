@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 import enum
 from .user import User
+from .orders_products import OrdersProducts
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -15,6 +16,12 @@ class Product(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('categories.id')), nullable=False)
     description = db.Column(db.String(2000), nullable=False)
     product_image = db.Column(db.String(), nullable=False)
+
+    product_orders = db.relationship(
+        'Order',
+        secondary=OrdersProducts,
+        back_populates='order_products'
+    )
 
     def to_dict(self):
         return {

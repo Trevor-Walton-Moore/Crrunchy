@@ -41,7 +41,7 @@ export const fetchOneOrder = (userId) => async (dispatch) => {
 
 export const fetchCreateOrder = (productId) => async (dispatch) => {
     console.log("CREATE CART PRODUCT IDDD", productId)
-    const payload = {productId: productId}
+    const payload = { productId: productId }
     const response = await fetch(`/api/cart`, {
         method: "POST",
         headers: {
@@ -53,7 +53,7 @@ export const fetchCreateOrder = (productId) => async (dispatch) => {
     if (response.ok) {
         const newOrder = await response.json();
         console.log('CREATE ORDER SUCCESFULL', newOrder)
-        dispatch(createOrder(newOrder.order));
+        dispatch(createOrder(newOrder));
         return newOrder;
     }
 };
@@ -100,10 +100,10 @@ export default function reducer(state = initialState, action) {
             };
             return newState;
 
-            case CREATE_ORDER:
-            console.log('ACTION', action)
+        case CREATE_ORDER:
+            // console.log('create order ACTION', action)
             const createState = {
-                ...state, ...action.order,
+                ...state, ...action.order.order
             };
             return createState;
 
@@ -118,7 +118,7 @@ export default function reducer(state = initialState, action) {
             console.log('ACTION', action)
             let deleteState = {
                 ...state,
-                order: {...action.order},
+                order: { ...action.order },
             };
             // console.log('DELETE state BEFORE', deleteState)
             deleteState = {}

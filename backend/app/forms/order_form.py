@@ -3,5 +3,10 @@ from wtforms.fields import StringField, IntegerField, SelectField, DateField, Fi
 from wtforms.validators import DataRequired, Length, NumberRange
 
 class OrderForm(FlaskForm):
-    # userId = StringField("User Id", validators=[DataRequired()])
-    productId = StringField("Product Id", validators=[DataRequired()])
+    # userId = IntegerField("User Id", validators=[DataRequired()])
+    productId = IntegerField("Product Id", validators=[DataRequired()])
+
+# class OrderProductsForm(FlaskForm):
+#     orderId = IntegerField("User Id", validators=[DataRequired()])
+#     productId = IntegerField("Product Id", validators=[DataRequired()])
+#     quantity = IntegerField("Quantity", validators=[DataRequired()])

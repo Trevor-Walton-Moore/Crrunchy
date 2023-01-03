@@ -23,11 +23,15 @@ def order_index(id):
 def create_order():
     form = OrderForm()
     user = current_user.to_dict()
+    # print('CUUUUUUUUUUUUUUUUUUUUUUUUUUUUR USER', user)
     form['csrf_token'].data = request.cookies['csrf_token']
     print('FORM DATA----------', form.data, '-------)()(()(')
 
     if form.validate_on_submit():
         print('CREATED ORDER VALIDATED')
+
+        product = Product.query.get(form.data['productId'])
+
         new_order = Order(
             user_id=user['id'],
             # product_id=form.data['productId']
@@ -36,7 +40,15 @@ def create_order():
         db.session.add(new_order)
         db.session.commit()
 
-        return {"order": new_order.to_dict()}, 201
+        appended_order = Order.query.filter(Order.user_id==user['id']).order_by(Order.id.desc()).first()
+
+        appended_order.order_products.append(product)
+
+        db.session.commit()
+        # return_order = Order.query.filter(Order.user_id==user.id).order_by(Order.id.desc()).first()
+        # return_order.order_products.append()
+
+        return {"order": appended_order.to_dict()}, 201
 
     return {"errors": "VALIDATION: Could not complete Your request"}
 
