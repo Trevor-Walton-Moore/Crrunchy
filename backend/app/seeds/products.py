@@ -63,17 +63,16 @@ def seed_products():
         )
 
     product5 = Product(
-        name='Bones & Chews Made in USA Roasted Marrow Bone 6" Dog Treat',
-        price=5.57,
+        name='Wyze Cam v3 Pet Camera',
+        price=29.98,
         category_id=2,
-        description="Roasted Marrow Bone is full of flavors \
-        sure to satisfy your dog's natural palate. These 100% \
-        natural USA beef bones are slow-roasted to preserve the \
-        tasty, natural meat flavor. These high density bones \
-        are filled with natural marrow to ensure a long lasting \
-        challenge for your active chewer. Never contains added \
-        artificial colors, flavors or preservatives.",
-        product_image='https://image.chewy.com/is/image/catalog/86899_MAIN._AC_SL1200_V1512484677_.jpg',
+        description="Keep an eye on your paw-tner anytime with the \
+        clever Wyze Cam v3 Pet Camera. It lets you view and record \
+        high-quality video right from the Wyze mobile app. The \
+        camera's waterproof design means you can install it indoors \
+        or out, while a special sensor enables low-light, full-color \
+        performance so you can see your buddy at nighttime.",
+        product_image='https://image.chewy.com/is/image/catalog/280275_MAIN._AC_SL1200_V1641264802_.jpg',
         )
 
     product6 = Product(

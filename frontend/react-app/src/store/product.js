@@ -9,15 +9,16 @@ const loadProducts = (products) => ({
 });
 
 // --- THUNKS --- //
-export const fetchAllPRoducts = () => async (dispatch) => {
+export const fetchAllProducts = () => async (dispatch) => {
     const response = await fetch(`/api/products`, {
         method: "GET",
     });
 
     if (response.ok) {
-        const products = await response.json();
-        dispatch(loadProducts(products));
-        return products;
+        const res = await response.json();
+        // console.log('PRODUCT RESPONSE', res.products)
+        dispatch(loadProducts(res.products));
+        return res.products;
     }
 };
 
@@ -37,10 +38,11 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_PRODUCTS:
+            // console.log(action, "ALL PRODUCTSS ACTIONNNNNNNN")
             let normalizedProducts = normalize(action.products);
 
-            const stateNormalized = { ...state, products: normalizedProducts }
-            return { ...state, products: normalizedProducts };
+            const stateNormalized = { ...state, ...normalizedProducts }
+            return stateNormalized;
         default:
             return state;
     }

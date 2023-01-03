@@ -20,7 +20,7 @@ class Product(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'price': self.price,
+            'price': float(self.price),
             'categoryId': self.category_id,
             'description': self.description,
             'productImage': self.product_image,

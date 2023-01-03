@@ -5,6 +5,7 @@
 }
 
 .crunchy {
+    margin-left: 10px;
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-family: monospace;
@@ -99,6 +100,7 @@
     font-size: 16px;
     font-weight: lighter;
     cursor: pointer;
+    background-color: white;
     /* overflow: scroll; */
 }
 

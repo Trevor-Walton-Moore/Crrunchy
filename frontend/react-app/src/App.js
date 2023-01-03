@@ -23,6 +23,7 @@ import AdoptionDateForm from './components/Pet/CreatePetForms/AdoptionDateForm';
 import Welcome from './components/Pet/CreatePetForms/Welcome';
 import ProfileIconForm from './components/Pet/CreatePetForms/ProfileIconForm';
 import Home from './components/Home'
+import Product from './components/Product';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -90,6 +91,9 @@ function App() {
         </Route>
         <Route path='/pet/:petId' exact={true} >
           <Pet />
+        </Route>
+        <Route path='/products/:productId' exact={true} >
+          <Product />
         </Route>
       </Switch>
     </BrowserRouter>
