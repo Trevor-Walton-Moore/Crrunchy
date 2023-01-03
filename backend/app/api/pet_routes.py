@@ -30,29 +30,17 @@ def create_pet():
     if form.validate_on_submit():
         print('CREATED PET VALIDATED')
         new_pet = Pet(
-        owner_id=owner['id'],
-        type=form.data['type'],
-        name=form.data['name'],
-        breed=form.data['breed'],
-        profile_icon=form.data['profileIcon'],
-        weight=form.data['weight'],
-        gender=form.data['gender'],
-        celebration_day=form.data['celebrationDay'],
-        birthday=form.data['birthday'],
-        adoption_day=form.data['adoptionDay'],
-        cover_image=form.data['coverImage']
-
-        # type=form.data['type'],
-        # name=form.data['name'],
-        # breed=form.data['breed'],
-        # weight=form.data['weight'],
-        # gender=form.data['gender'],
-
-        # celebration_day=form.celebrationDay.data,
-        # birthday=form.birthday.data,
-        # adoption_day=form.adoptionDay.data,
-        # profile_icon=form.profile_icon.data,
-        # cover_photo=form.cover_photo.data
+            owner_id=owner['id'],
+            type=form.data['type'],
+            name=form.data['name'],
+            breed=form.data['breed'],
+            profile_icon=form.data['profileIcon'],
+            weight=form.data['weight'],
+            gender=form.data['gender'],
+            celebration_day=form.data['celebrationDay'],
+            birthday=form.data['birthday'],
+            adoption_day=form.data['adoptionDay'],
+            cover_image=form.data['coverImage']
         )
         print('THENEWPET', new_pet.to_dict())
         db.session.add(new_pet)

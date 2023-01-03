@@ -8,7 +8,7 @@ import sys
 
 product_routes = Blueprint("products", __name__)
 
-# Get one Pet
+# Get one Product
 @product_routes.route("")
 def all_products():
     products = Product.query.all()

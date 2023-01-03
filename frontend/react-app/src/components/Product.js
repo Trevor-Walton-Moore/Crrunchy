@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllProducts } from '../store/product';
+import { fetchCreateOrder } from '../store/order';
 
 const Product = () => {
     const history = useHistory();
@@ -9,21 +10,20 @@ const Product = () => {
 
     const { productId } = useParams();
 
-    const sessionUser = useSelector(state => state.session.user);
-    // const productsObj = useSelector(state => state.product);
-    console.log('user: ', sessionUser)
-
-    // const product = productsObj[productId]
+    const user = useSelector(state => state.session.user);
     const product = useSelector(state => state.product[productId]);
-    console.log('PRODUCT JUST ONE', product)
+    // const productsObj = useSelector(state => state.product);
 
     useEffect(() => {
-        console.log("BOUTTA DISPATCH IN THAT PRODUCT DETAIL PAGE")
         dispatch(fetchAllProducts());
     }, [dispatch]);
 
     if (!product) {
         return null;
+    }
+
+    const handleAddToCart = () => {
+        dispatch(fetchCreateOrder(productId))
     }
 
     return (
@@ -43,10 +43,13 @@ const Product = () => {
                 </div>
                 <div>
                 </div>
-                <div>
-
-                </div>
             </div>
+                <NavLink
+                to='/cart'
+                onClick={handleAddToCart}
+                className='add-to-cart'>
+                    Add to Cart
+                </NavLink>
         </div>
     );
 };

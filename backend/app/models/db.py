@@ -14,16 +14,18 @@ def add_prefix_for_prod(attr):
     else:
         return attr
 
-# pets_owners = db.Table(
-#     "pets_owners",
-#     db.Model.metadata,
-#     db.Column(
-#         "pet_id", db.Integer, db.ForeignKey(add_prefix_for_prod("pet.id")), primary_key=True
-#     ),
-#     db.Column(
-#         "owner_id", db.Integer, db.ForeignKey(add_prefix_for_prod("owner.id")), primary_key=True
-#     )
-# )
+order_products = db.Table(
+    "order_products",
+    db.Model.metadata,
+    db.Column(
+        "order_id", db.Integer, db.ForeignKey(add_prefix_for_prod("orders.id")), primary_key=True
+    ),
+    db.Column(
+        "product_id", db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), primary_key=True
+    ),
+    db.Column(
+        "quantity", db.Integer)
+)
 
-# if environment == "production":
-#     pets_owners.schema = SCHEMA
+if environment == "production":
+    order_products.schema = SCHEMA

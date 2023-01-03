@@ -3,16 +3,16 @@ import datetime
 
 
 def seed_pets():
-    matilda = Pet(
-        owner_id=1,
-        name='Matilda',
-        type='Dog',
-        celebration_day='Birthday',
-        birthday=datetime.datetime(2021, 4, 2),
-        weight=8,
-        breed='Australian Terrier',
-        gender="Female",
-        )
+    # matilda = Pet(
+    #     owner_id=1,
+    #     name='Matilda',
+    #     type='Dog',
+    #     celebration_day='Birthday',
+    #     birthday=datetime.datetime(2021, 4, 2),
+    #     weight=8,
+    #     breed='Australian Terrier',
+    #     gender="Female",
+    #     )
     nova = Pet(
         owner_id=2,
         name='Nova',
@@ -22,8 +22,10 @@ def seed_pets():
         weight=11,
         breed='Snowshoe',
         gender="Male",
+        profile_icon='https://res.cloudinary.com/dfrj03hsi/image/upload/v1671846109/Crunchy%20images/cat_avatars/avatar_cat_04_ibojqn.png',
+        cover_image='https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png'
         )
-    db.session.add(matilda)
+    # db.session.add(matilda)
     db.session.add(nova)
     db.session.commit()
 
