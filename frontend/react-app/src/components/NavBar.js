@@ -5,6 +5,7 @@ import LogoutButton from './auth/LogoutButton';
 import { fetchOnePet } from '../store/pet';
 import UserDropdown from './UserDropdown';
 import './css/NavBar.css'
+import { fetchAllProducts } from '../store/product';
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user);

@@ -9,7 +9,7 @@ const Home = () => {
 
     const productsObj = useSelector((state) => state.product);
 
-    console.log('productproductproductsss', productsObj)
+    // console.log('productproductproductsss', productsObj)
 
     useEffect(() => {
         dispatch(fetchAllProducts());
