@@ -22,6 +22,7 @@ import BirthDateForm from './components/Pet/CreatePetForms/BirthDateForm';
 import AdoptionDateForm from './components/Pet/CreatePetForms/AdoptionDateForm';
 import Welcome from './components/Pet/CreatePetForms/Welcome';
 import ProfileIconForm from './components/Pet/CreatePetForms/ProfileIconForm';
+import Home from './components/Home'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,6 +50,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/' exact={true} >
+          <Home />
         </Route>
         <Route path='/pet/:petId/edit' >
           <EditPetForm />
