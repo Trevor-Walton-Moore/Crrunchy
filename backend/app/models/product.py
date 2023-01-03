@@ -13,7 +13,7 @@ class Product(db.Model):
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Numeric(precision=10, scale=2), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('categories.id')), nullable=False)
-    description = db.Column(db.String(250), nullable=False)
+    description = db.Column(db.String(2000), nullable=False)
     product_image = db.Column(db.String(), nullable=False)
 
     def to_dict(self):

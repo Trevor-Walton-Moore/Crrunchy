@@ -1,13 +1,12 @@
 """empty message
 
-Revision ID: 1584b8ab8eda
+Revision ID: 461b5bf52646
 Revises:
-Create Date: 2023-01-03 09:07:42.619974
+Create Date: 2023-01-03 09:21:58.789858
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 
 import os
 environment = os.getenv("FLASK_ENV")
@@ -15,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '1584b8ab8eda'
+revision = '461b5bf52646'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -70,7 +69,7 @@ def upgrade():
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('price', sa.Numeric(precision=10, scale=2), nullable=False),
     sa.Column('category_id', sa.Integer(), nullable=False),
-    sa.Column('description', sa.String(length=250), nullable=False),
+    sa.Column('description', sa.String(length=2000), nullable=False),
     sa.Column('product_image', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -92,9 +91,6 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE orders SET SCHEMA {SCHEMA};")
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE pets SET SCHEMA {SCHEMA};")
 
     if environment == "production":
         op.execute(f"ALTER TABLE pets SET SCHEMA {SCHEMA};")
