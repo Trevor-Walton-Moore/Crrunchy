@@ -99,6 +99,11 @@ def update_order():
             )
             db.session.add(new_orders_product)
             db.session.commit()
+
+        elif form.data['quantity'] == 0:
+            db.session.delete(updated_order_product)
+            db.session.commit()
+
         else:
             # print('*************************** the order in da backend bEfOre updating', updated_order_product.to_dict())
             setattr(updated_order_product, 'order_id', form.data['orderId'])
@@ -127,9 +132,7 @@ def update_order():
 def destroy_order(id):
     user = current_user.to_dict()
 
-    order = Order.query.order_by(Order.id.desc()).first()
-    if user['id'] == order.user_id:
-        db.session.delete(order)
-        db.session.commit()
-        return {"message": "Successfully Deleted", "order": order.to_dict()}, 200
-    return 'BAD REQUEST', 404
+    order = Order.query.filter(Order.id == id).order_by(Order.id.desc()).first()
+    db.session.delete(order)
+    db.session.commit()
+    return {"message": "Successfully Deleted", "order": order.to_dict()}, 200

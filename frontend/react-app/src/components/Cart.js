@@ -57,7 +57,7 @@ const Cart = () => {
             })
         }
 
-        else if (orderObj.order.orderProducts && Object.values(orderObj.order.orderProducts).length > 0){
+        else if (orderObj.order.orderProducts && Object.values(orderObj.order.orderProducts).length > 0) {
             Object.values(orderObj?.order?.orderProducts).forEach(product => {
 
                 if (+product.productId === +productId) {
@@ -81,7 +81,7 @@ const Cart = () => {
     }, [dispatch, user?.id, JSON.stringify(orderObj)]);
 
 
-    const handleAddMoreToCart = (updateProduct) => {
+    const handleIncreaseQuantityInCart = (updateProduct) => {
 
         let updatedOrder = {
             orderId: orderObj?.order.id,
@@ -92,31 +92,56 @@ const Cart = () => {
         dispatch(fetchUpdateOrder(updatedOrder))
     }
 
+    const handleDecreaseQuantityInCart = (updateProduct) => {
+
+        let updatedOrder = {
+            orderId: orderObj?.order.id,
+            productId: updateProduct.id,
+            quantity: quantify(updateProduct.id) - 1
+        }
+        console.log('decreasing quantity in cart O_o, updatedOrder: ', updatedOrder)
+        dispatch(fetchUpdateOrder(updatedOrder))
+    }
+
+    const handleDeleteOrder = (orderId) => {
+        console.log('order id to delete order :}', orderId)
+        dispatch(fetchDeleteOrder(orderId))
+        
+    }
+
     return (
         <div className="">
-            {filteredProducts.map((product) => {
-                return (
-                    <div>
+            {filteredProducts &&
+                filteredProducts.map((product) => {
+                    return (
+                        <div>
+                            <div
+                            onClick={() => handleDeleteOrder(orderObj?.order?.id)}
+                            >proceed to checkout</div>
 
-                        <NavLink
-                            key={product.id}
-                            to={`/products/${product.id}`}
-                            className=''>
-                            <div className='cart-product'>
-                                <img className='' src={product?.productImage} alt='product'></img>
-                            </div>
-                            <div>
-                                {product.name}
-                            </div>
-                        </NavLink>
-                        <span>-</span>
-                        <span>
-                            {quantify(product.id)}
-                        </span>
-                        <span onClick={() => handleAddMoreToCart(product)}>+</span>
-                    </div>
-                );
-            })}
+                            <NavLink
+                                key={product.id}
+                                to={`/products/${product.id}`}
+                                className=''>
+                                <div className='cart-product'>
+                                    <img className='' src={product?.productImage} alt='product'></img>
+                                </div>
+                                <div>
+                                    {product.name}
+                                </div>
+                            </NavLink>
+                            <span
+                                onClick={() => handleDecreaseQuantityInCart(product)}>
+                                -</span>
+                            <span>
+                                {quantify(product.id)}
+                            </span>
+                            <span
+                                onClick={() => handleIncreaseQuantityInCart(product)}>
+                                +</span>
+                        </div>
+                    );
+                })}
         </div>
     );
 };

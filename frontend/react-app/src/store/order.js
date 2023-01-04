@@ -143,9 +143,9 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 order: { ...action.order },
             };
-            // console.log('DELETE state BEFORE', deleteState)
-            deleteState = {}
-            // console.log('DELETE state AFTER', deleteState)
+            console.log('DELETE state BEFORE', deleteState)
+            delete deleteState.order
+            console.log('DELETE state AFTER', deleteState)
             return deleteState;
         }
         default:

@@ -9,4 +9,4 @@ class OrderForm(FlaskForm):
 class OrdersProductsForm(FlaskForm):
     orderId = IntegerField("Order Id", validators=[DataRequired()])
     productId = IntegerField("Product Id", validators=[DataRequired()])
-    quantity = IntegerField("Quantity", validators=[DataRequired()])
+    quantity = IntegerField("Quantity")
