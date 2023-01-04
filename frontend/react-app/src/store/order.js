@@ -6,14 +6,14 @@ const UPDATE_ORDER = "order/UPDATE_ORDER";
 const DELETE_ORDER = "order/DELETE_ORDER";
 
 // --- ACTIONS --- //
-const loadOrder = (order) => ({
+const loadOrder = (payload) => ({
     type: LOAD_ORDER,
-    order,
+    payload,
 });
 
-const createOrder = (order) => ({
+const createOrder = (payload) => ({
     type: CREATE_ORDER,
-    order,
+    payload,
 });
 
 const updateOrder = (order) => ({
@@ -34,6 +34,7 @@ export const fetchOneOrder = (userId) => async (dispatch) => {
 
     if (response.ok) {
         const order = await response.json();
+        console.log('load order res OK and res order: ', order)
         dispatch(loadOrder(order));
         return order;
     }
@@ -51,21 +52,21 @@ export const fetchCreateOrder = (productId) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const newOrder = await response.json();
-        console.log('CREATE ORDER SUCCESFULL', newOrder)
-        dispatch(createOrder(newOrder));
-        return newOrder;
+        const payload = await response.json();
+        console.log('CREATE ORDER SUCCESFULL', payload)
+        dispatch(createOrder(payload));
+        return payload;
     }
 };
 
-export const fetchUpdateOrder = (updatedPet) => async (dispatch) => {
-    console.log('UPDARED PET BEFORE THUNKIN', updatedPet)
-    const response = await fetch(`/api/cart/${updatedPet.id}`, {
+export const fetchUpdateOrder = (updatedOrder) => async (dispatch) => {
+    console.log('UPDARED PET BEFORE THUNKIN', updatedOrder)
+    const response = await fetch(`/api/cart/${updatedOrder.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedPet),
+        body: JSON.stringify(updatedOrder),
     });
 
     if (response.ok) {
@@ -94,16 +95,16 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_ORDER:
+            console.log('LOAAD ORDER ACTION', action)
             const newState = {
-                ...state,
-                ...action.order,
+                ...state, order: { ...action.payload.order, order_products: action.payload.order_products }
             };
             return newState;
 
         case CREATE_ORDER:
-            // console.log('create order ACTION', action)
+            console.log('create order ACTION', action)
             const createState = {
-                ...state, ...action.order.order
+                ...state, order: { ...action.payload.order, order_products: action.payload.order_products }
             };
             return createState;
 

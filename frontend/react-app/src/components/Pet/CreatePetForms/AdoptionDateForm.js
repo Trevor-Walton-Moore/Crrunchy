@@ -10,13 +10,13 @@ function AdoptionDateForm() {
     const dispatch = useDispatch()
 
     const { petAdoptionDate, setPetAdoptionDate,
-        petType,
-        petName,
-        petBreed,
-        petProfileIcon,
-        petWeight,
-        petGender,
-        petCelebrationDay
+        petType, setPetType,
+        petName, setPetName,
+        petBreed, setPetBreed,
+        petProfileIcon, setPetProfileIcon,
+        petWeight, setPetWeight,
+        petGender, setPetGender,
+        petCelebrationDay, setPetCelebrationDay,
     } = usePet()
     console.log(petAdoptionDate, "PET Adoption DATE before")
 
@@ -56,6 +56,16 @@ function AdoptionDateForm() {
         console.log('the REEAL payload', payload)
         dispatch(fetchCreatePet(payload))
         history.push('/pet/new/welcome')
+
+        setPetType('')
+        setPetName('')
+        setPetBreed('')
+        setPetProfileIcon('')
+        setPetWeight('')
+        setPetGender('')
+        setPetCelebrationDay('')
+        setPetAdoptionDate('')
+
     }
 
     const refreshCheck = (e) => {

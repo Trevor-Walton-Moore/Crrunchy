@@ -17,11 +17,11 @@ class Product(db.Model):
     description = db.Column(db.String(2000), nullable=False)
     product_image = db.Column(db.String(), nullable=False)
 
-    product_orders = db.relationship(
-        'Order',
-        secondary=OrdersProducts,
-        back_populates='order_products'
-    )
+    # product_orders = db.relationship(
+    #     'Order',
+    #     secondary=OrdersProducts,
+    #     back_populates='order_products'
+    # )
 
     def to_dict(self):
         return {

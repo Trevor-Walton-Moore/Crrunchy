@@ -10,13 +10,13 @@ function BirthDateForm() {
     const dispatch = useDispatch()
 
     const { petBirthday, setPetBirthday,
-        petType,
-        petName,
-        petBreed,
-        petProfileIcon,
-        petWeight,
-        petGender,
-        petCelebrationDay
+        petType, setPetType,
+        petName, setPetName,
+        petBreed, setPetBreed,
+        petProfileIcon, setPetProfileIcon,
+        petWeight, setPetWeight,
+        petGender, setPetGender,
+        petCelebrationDay, setPetCelebrationDay,
     } = usePet()
     console.log(petBirthday, "PET BIRTHDAY")
 
@@ -56,6 +56,15 @@ function BirthDateForm() {
         console.log('the REEAL payload', payload)
         dispatch(fetchCreatePet(payload))
         history.push('/pet/new/welcome')
+
+        setPetType('')
+        setPetName('')
+        setPetBreed('')
+        setPetProfileIcon('')
+        setPetWeight('')
+        setPetGender('')
+        setPetCelebrationDay('')
+        setPetBirthday('')
     }
 
     const refreshCheck = (e) => {

@@ -24,6 +24,7 @@ import Welcome from './components/Pet/CreatePetForms/Welcome';
 import ProfileIconForm from './components/Pet/CreatePetForms/ProfileIconForm';
 import Home from './components/Home'
 import Product from './components/Product';
+import Cart from './components/Cart';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -94,6 +95,9 @@ function App() {
         </Route>
         <Route path='/products/:productId' exact={true} >
           <Product />
+        </Route>
+        <Route path='/cart' exact={true} >
+          <Cart />
         </Route>
       </Switch>
     </BrowserRouter>
