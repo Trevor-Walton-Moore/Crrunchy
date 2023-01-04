@@ -13,7 +13,7 @@ class OrdersProducts(db.Model):
 
     def to_dict(self):
         return {
-            'order_id': self.order_id,
-            'product_id': self.product_id,
+            'orderId': self.order_id,
+            'productId': self.product_id,
             'quantity': self.quantity,
         }

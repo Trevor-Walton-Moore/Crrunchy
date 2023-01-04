@@ -16,9 +16,9 @@ const createOrder = (payload) => ({
     payload,
 });
 
-const updateOrder = (order) => ({
+const updateOrder = (payload) => ({
     type: UPDATE_ORDER,
-    order,
+    payload,
 });
 
 const deleteOrder = (orderId) => ({
@@ -34,14 +34,14 @@ export const fetchOneOrder = (userId) => async (dispatch) => {
 
     if (response.ok) {
         const order = await response.json();
-        console.log('load order res OK and res order: ', order)
+        // console.log('load order res OK and res order: ', order)
         dispatch(loadOrder(order));
         return order;
     }
 };
 
 export const fetchCreateOrder = (productId) => async (dispatch) => {
-    console.log("CREATE CART PRODUCT IDDD", productId)
+    // console.log("CREATE CART PRODUCT IDDD", productId)
     const payload = { productId: productId }
     const response = await fetch(`/api/cart`, {
         method: "POST",
@@ -53,14 +53,14 @@ export const fetchCreateOrder = (productId) => async (dispatch) => {
 
     if (response.ok) {
         const payload = await response.json();
-        console.log('CREATE ORDER SUCCESFULL', payload)
+        // console.log('CREATE ORDER SUCCESFULL', payload)
         dispatch(createOrder(payload));
         return payload;
     }
 };
 
 export const fetchUpdateOrder = (updatedOrder) => async (dispatch) => {
-    console.log('UPDARED PET BEFORE THUNKIN', updatedOrder)
+    console.log('UPDARED ORDER BEFORE THUNKIN', updatedOrder)
     const response = await fetch(`/api/cart`, {
         method: "PUT",
         headers: {
@@ -71,7 +71,7 @@ export const fetchUpdateOrder = (updatedOrder) => async (dispatch) => {
 
     if (response.ok) {
         const payload = await response.json();
-
+        console.log('RES OK FROM UPADTTE & PAYOLAODR', payload)
         dispatch(updateOrder(payload));
         return payload;
     }
@@ -121,14 +121,19 @@ export default function reducer(state = initialState, action) {
             const normalizedOrderProductsCreate = normalize(action.payload.orderProducts)
 
             const createState = {
-                ...state, order: { ...action.payload.order, order_products: normalizedOrderProductsCreate }
+                ...state, order: { ...action.payload.order, orderProducts: normalizedOrderProductsCreate }
             };
             return createState;
 
         case UPDATE_ORDER: {
+
+            const normalizedOrderProductsUpdate = normalize(action.payload.orderProducts)
+
+            console.log('normalized updated orderrr', normalizedOrderProductsUpdate)
             const updateState = {
-                ...state, ...action.order,
+                ...state, order: { ...action.payload.order, order_products: normalizedOrderProductsUpdate }
             };
+            console.log('updated state objecttt', updateState)
             return updateState;
         }
 

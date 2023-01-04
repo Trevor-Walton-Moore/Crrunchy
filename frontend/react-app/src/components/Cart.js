@@ -14,14 +14,20 @@ const Cart = () => {
     // const product = useSelector(state => state.product[productId]);
     const allProductsObj = useSelector(state => state.product);
     const orderObj = useSelector(state => state.order);
-    const order = orderObj?.order;
-    const orderProducts = order?.orderProducts;
-    console.log('UMMMMMMMMmmmmmmmmmmmmmm allproduct objec', orderProducts)
+    // const order = orderObj?.order;
+    // const orderProducts = order?.orderProducts;
 
-    const filteredProducts = Object.values(allProductsObj).filter(product => {
+    const [orderProducts, setOrderProducts] = useState({});
+
+    // console.log('UMMMMMMMMmmmmmmmmmmmmmm objec', orderProducts)
+    console.log('UMMMMMMMMmmmmmmmmmmmmmm order objec', orderObj)
+
+    const filteredProducts = Object.values(allProductsObj)?.filter(product => {
         // console.log('ehh', product.id)
-        return orderProducts[product.id]
+        return orderProducts[product?.id]
     })
+
+    console.log('UMMMMMMMMmmmmmmmmmmmmmm', filteredProducts)
 
     // const filteredProducts = []
 
@@ -36,16 +42,21 @@ const Cart = () => {
     //     }
     // }
 
-    console.log('UMMMMMMMMmmmmmmmmmmmmmm', filteredProducts)
 
     useEffect(() => {
-        dispatch(fetchOneOrder(user?.id));
-        dispatch(fetchAllProducts());
-    }, [dispatch]);
 
-    if (!order) {
-        return null;
-    }
+        dispatch(fetchAllProducts());
+        dispatch(fetchOneOrder(user?.id));
+
+        if(orderObj && Object.values(orderObj).length > 0) {
+            setOrderProducts(orderObj?.order?.orderProducts)
+        }
+
+    }, [dispatch, user?.id, orderProducts]);
+
+    // if (!order) {
+    //     return null;
+    // }
 
     // const handleAddToCart = () => {
     //     dispatch(fetchCreateOrder(productId))

@@ -13,20 +13,26 @@ const NavBar = () => {
 
   const user = useSelector(state => state.session.user);
   const pet = useSelector((state) => state.pet);
-  const orderObj = useSelector(state => state.order);
-  const orderSize = Object.values(orderObj?.order?.orderProducts).length;
+  // const orderObj = useSelector(state => state.order);
+  // console.log('navbar orderObj', orderObj)
+  // const orderSize = useSelector(state => {
+  //   if (state.order.order.orderProducts === {}) return null
+  //   else return Object.values(state.order?.order?.orderProducts).length
+  // });
 
+  // console.log('size?', orderSize)
 
-  // console.log('navbar orderProducts', orderObj)
   // console.log('navbar orderProducts', orderSize)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
+    // dispatch(fetchOneOrder(user?.id));
     dispatch(fetchOnePet(user?.id));
-    dispatch(fetchOneOrder(user?.id));
     // dispatch(fetchAllProducts());
   }, [dispatch, user?.id]);
+
+
 
   return (
     <nav className='NavBar'>
@@ -40,10 +46,13 @@ const NavBar = () => {
         <span>
           <UserDropdown />
         </span>
-        <NavLink to='/cart'
-          className='cart-button'>
-          {orderSize}&nbsp;cart
-        </NavLink>
+        {/* {orderSize && */}
+          <NavLink to='/cart'
+            className='cart-button'>
+            {/* {orderSize} */}
+            &nbsp;cart
+          </NavLink>
+        {/* } */}
       </span>
       {/* </div> */}
     </nav>

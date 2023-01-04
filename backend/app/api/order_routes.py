@@ -15,7 +15,7 @@ order_routes = Blueprint("cart", __name__)
 @login_required
 def order_index(id):
     order = Order.query.order_by(Order.id.desc()).first()
-    # print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER', order.to_dict())
+    print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER', order.to_dict())
     order_products = OrdersProducts.query.filter(OrdersProducts.order_id == order.id).all()
     order_products_to_dict = [order_product.to_dict() for order_product in order_products]
     # print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER_PRODUCTSSSS', order_products_to_dict)
@@ -29,7 +29,7 @@ def create_order():
     user = current_user.to_dict()
     # print('CUUUUUUUUUUUUUUUUUUUUUUUUUUUUR USER', user)
     order_form['csrf_token'].data = request.cookies['csrf_token']
-    # print('FORM DATA----------', order_form.data, '-------)()(()(')
+    print('FORM DATA----------', order_form.data, '-------)()(()(')
 
     if order_form.validate_on_submit():
         # print('CREATED ORDER VALIDATED')
@@ -52,14 +52,14 @@ def create_order():
             quantity = 1,
         )
 
-        # new_order.order_products.append(new_orders_product)
-
         db.session.add(new_orders_product)
         db.session.commit()
-        # return_order = Order.query.filter(Order.user_id==user.id).order_by(Order.id.desc()).first()
-        # return_order.order_products.append()
 
-        return {"order": new_order.to_dict(), "order_products": new_orders_product.to_dict()}, 201
+        order_products = OrdersProducts.query.filter(OrdersProducts.order_id == new_order.id).all()
+
+        order_products_to_dict = [order_product.to_dict() for order_product in order_products]
+
+        return {"order": new_order.to_dict(), "orderProducts": order_products_to_dict}, 201
 
     return {"errors": "VALIDATION: Could not complete Your request"}
 
@@ -68,8 +68,9 @@ def create_order():
 @order_routes.route("", methods=['PUT'])
 @login_required
 def update_order():
-    form = OrdersProductsForm()
 
+    user = current_user.to_dict()
+    form = OrdersProductsForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print("-00-0-00-0-0-0--0--0 FORM", form.data)
 
@@ -77,16 +78,35 @@ def update_order():
 
         print('did the cart updated validate???!')
 
-        updated_order = Order.query.order_by(Order.id.desc()).first()
+        updated_order_product = OrdersProducts.query.filter(OrdersProducts.order_id == form.data['orderId'] and OrdersProducts.product_id == form.data['productId']).one()
 
-        setattr(updated_order, 'product_id', form.productId.data)
+        if not updated_order_product:
+            new_orders_product = OrdersProducts(
+                order_id = form.data['orderId'],
+                product_id = form.data['productId'],
+                quantity = 1,
+            )
+            db.session.add(new_orders_product)
+            db.session.commit()
+        else:
+            # print('*************************** the order in da backend bEfOre updating', updated_order_product.to_dict())
+            setattr(updated_order_product, 'order_id', form.data['orderId'])
+            setattr(updated_order_product, 'product_id', form.data['productId'])
+            setattr(updated_order_product, 'quantity', form.data['quantity'])
+            # print('*************************** the order in da backend AfTeR updating', updated_order_product.to_dict())
 
-        db.session.add(updated_order)
-        db.session.commit()
+            db.session.add(updated_order_product)
+            db.session.commit()
 
-        return {'order': updated_order.to_dict()}, 201
+        order_products = OrdersProducts.query.filter(OrdersProducts.order_id == form.data['orderId']).all()
 
-    return {"errors": ["UNAUTHORIZED: Can't Edit a Pet You Don't Own!"]}, 400
+        order_products_to_dict = [order_product.to_dict() for order_product in order_products]
+
+        order = Order.query.filter(Order.user_id==user['id']).order_by(Order.id.desc()).first()
+
+        return {'order': order.to_dict(), 'orderProducts': order_products_to_dict}, 201
+
+    return {"errors": ["UNAUTHORIZED: Can't Edit this cart!"]}, 400
 
 # Delete Order
 @order_routes.route("/<int:id>", methods=["DELETE"])

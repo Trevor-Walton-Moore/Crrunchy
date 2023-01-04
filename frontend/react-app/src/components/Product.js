@@ -12,22 +12,43 @@ const Product = () => {
 
     const user = useSelector(state => state.session.user);
     const product = useSelector(state => state.product[productId]);
-    const isOrder = useSelector(state => state.order);
-    const orderId = isOrder?.order.id
+    const isOrder = useSelector(state => state.order?.order);
+    const orderId = isOrder?.order?.id
+    const quantity = isOrder?.order?.orderProducts[productId]?.quantity
 
     // const productsObj = useSelector(state => state.product);
 
     useEffect(() => {
         dispatch(fetchOneOrder(user?.id));
         dispatch(fetchAllProducts());
-    }, [dispatch]);
+    }, [dispatch, user?.id]);
 
     if (!product) {
         return null;
     }
 
     const handleAddToCart = () => {
-        isOrder ? dispatch(fetchUpdateOrder({ orderId, productId, editOrderType: 'add' })) : dispatch(fetchCreateOrder(productId));
+
+        if (!isOrder === {}) {
+
+            if (quantity) {
+                let updatedOrder = {
+                    orderId,
+                    productId,
+                    quantity: quantity + 1
+                }
+                dispatch(fetchUpdateOrder(updatedOrder))
+            }
+            else {
+                let updatedOrder = {
+                    orderId,
+                    productId,
+                    quantity: 1
+                }
+                dispatch(fetchUpdateOrder(updatedOrder))
+            }
+        }
+        else dispatch(fetchCreateOrder(productId));
     }
 
     return (
