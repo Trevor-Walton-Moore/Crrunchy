@@ -36,6 +36,8 @@ def create_order():
 
         product = Product.query.get(order_form.data['productId'])
 
+
+
         created_order = Order(
             user_id=user['id'],
             # product_id=form.data['productId']
@@ -78,9 +80,18 @@ def update_order():
 
         print('did the cart updated validate???!')
 
-        updated_order_product = OrdersProducts.query.filter(OrdersProducts.order_id == form.data['orderId'] and OrdersProducts.product_id == form.data['productId']).one()
+        print('######################## product Id from form', form.data['productId'])
 
+        filters = [OrdersProducts.order_id == form.data['orderId'], OrdersProducts.product_id == form.data['productId']]
+
+
+        # updated_order_product = OrdersProducts.query.filter(OrdersProducts.order_id == form.data['orderId'] and OrdersProducts.product_id == form.data['productId']).one()
+        updated_order_product = OrdersProducts.query.filter(*filters).first()
+
+        # print('~~~~~~~~~~~~~~~~~updated_order_prodiuct', updated_order_product.to_dict())
         if not updated_order_product:
+
+            print('___--------_____------_____--wow is the record not exist?')
             new_orders_product = OrdersProducts(
                 order_id = form.data['orderId'],
                 product_id = form.data['productId'],
@@ -101,6 +112,8 @@ def update_order():
         order_products = OrdersProducts.query.filter(OrdersProducts.order_id == form.data['orderId']).all()
 
         order_products_to_dict = [order_product.to_dict() for order_product in order_products]
+
+        print('__________________WHADDAP ORDEER PRODUCTS', order_products_to_dict)
 
         order = Order.query.filter(Order.user_id==user['id']).order_by(Order.id.desc()).first()
 

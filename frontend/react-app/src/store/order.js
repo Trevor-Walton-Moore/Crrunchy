@@ -91,8 +91,8 @@ export const fetchDeleteOrder = (orderId) => async (dispatch) => {
 // --- STATE --- //
 const normalize = (arr) => {
     let newObj = {};
+    let count = 1
     arr.forEach((ele) => {
-        let count = 1
         newObj[count] = ele
         count++;
     });

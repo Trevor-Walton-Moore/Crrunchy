@@ -19,61 +19,104 @@ const Cart = () => {
 
     const [orderProducts, setOrderProducts] = useState({});
 
-    // console.log('UMMMMMMMMmmmmmmmmmmmmmm objec', orderProducts)
+    console.log('UMMMMMMMMmmmmmmmmmmmmmm order product', orderProducts)
     console.log('UMMMMMMMMmmmmmmmmmmmmmm order objec', orderObj)
 
-    const filteredProducts = Object.values(allProductsObj)?.filter(product => {
-        // console.log('ehh', product.id)
-        return orderProducts[product?.id]
-    })
+    const filteredProducts = []
 
-    console.log('UMMMMMMMMmmmmmmmmmmmmmm', filteredProducts)
+    if (orderObj && Object.values(orderObj).length > 0) {
 
-    // const filteredProducts = []
+        for (let i = 1; i < Object.values(allProductsObj).length + 1; i++) {
+            let product = allProductsObj[i];
 
-    // for (let i = 0; i < Object.values(orderProducts).length; i++) {
-    //     let orderProduct = orderProducts[i]
+            if (orderProducts && Object.values(orderProducts).length > 0) {
+                for (let j = 1; j < Object.values(orderProducts)?.length + 1; j++) {
+                    let orderProduct = orderProducts[j];
+                    if (orderProduct.productId === product.id) filteredProducts.push(product)
+                }
+            }
+        }
+    }
 
-    //     for (let productId in allProductsObj) {
-    //         console.log('weeeee', productId)
-    //         if (productId === orderProduct.product_id) {
-    //             filteredProducts.push(allProductsObj[productId])
-    //         }
-    //     }
-    // }
+    console.log('filtered products :D', filteredProducts)
 
+    const quantify = (productId) => {
+        console.log('quantifying, productId: ', productId)
+        console.log('quantifying, orderObj: ', orderObj)
+        if (!orderObj || !Object.values(orderObj).length > 0) return null
+
+        let quantity = '';
+
+        if (orderObj.orderProducts && Object.values(orderObj.orderProducts).length > 0) {
+
+            Object.values(orderObj?.orderProducts).forEach(product => {
+                if (+product.productId === +productId) {
+                    console.log('product.quantity', product.quantity)
+                    quantity = product.quantity
+                }
+            })
+        }
+
+        else if (orderObj.order.orderProducts && Object.values(orderObj.order.orderProducts).length > 0){
+            Object.values(orderObj?.order?.orderProducts).forEach(product => {
+
+                if (+product.productId === +productId) {
+                    console.log('product.quantity', product.quantity)
+                    quantity = product.quantity
+                }
+            })
+        }
+        return quantity
+    }
 
     useEffect(() => {
 
         dispatch(fetchAllProducts());
         dispatch(fetchOneOrder(user?.id));
 
-        if(orderObj && Object.values(orderObj).length > 0) {
+        if (orderObj && Object.values(orderObj).length > 0) {
             setOrderProducts(orderObj?.order?.orderProducts)
         }
 
-    }, [dispatch, user?.id, orderProducts]);
+    }, [dispatch, user?.id, JSON.stringify(orderObj)]);
 
-    // if (!order) {
-    //     return null;
-    // }
 
-    // const handleAddToCart = () => {
-    //     dispatch(fetchCreateOrder(productId))
-    // }
+    const handleAddMoreToCart = (updateProduct) => {
 
+        let updatedOrder = {
+            orderId: orderObj?.order.id,
+            productId: updateProduct.id,
+            quantity: quantify(updateProduct.id) + 1
+        }
+        console.log('adding more to cart O_o, updatedOrder: ', updatedOrder)
+        dispatch(fetchUpdateOrder(updatedOrder))
+    }
 
     return (
         <div className="">
             {filteredProducts.map((product) => {
-                        return (
-                            <NavLink key={product.id} to={`/products/${product.id}`} className=''>
-                                <div className='cart-product'>
-                                    <img className='' src={product?.productImage} alt='product'></img>
-                                </div>
-                            </NavLink>
-                        );
-                    })}
+                return (
+                    <div>
+
+                        <NavLink
+                            key={product.id}
+                            to={`/products/${product.id}`}
+                            className=''>
+                            <div className='cart-product'>
+                                <img className='' src={product?.productImage} alt='product'></img>
+                            </div>
+                            <div>
+                                {product.name}
+                            </div>
+                        </NavLink>
+                        <span>-</span>
+                        <span>
+                            {quantify(product.id)}
+                        </span>
+                        <span onClick={() => handleAddMoreToCart(product)}>+</span>
+                    </div>
+                );
+            })}
         </div>
     );
 };
