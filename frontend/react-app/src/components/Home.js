@@ -2,18 +2,21 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchAllProducts } from '../store/product';
+import { fetchOneOrder } from '../store/order';
 import './css/home.css'
 
 const Home = () => {
     const dispatch = useDispatch();
 
+    const user = useSelector(state => state.session.user);
     const productsObj = useSelector((state) => state.product);
 
     // console.log('productproductproductsss', productsObj)
 
     useEffect(() => {
+        dispatch(fetchOneOrder(user?.id));
         dispatch(fetchAllProducts());
-    }, [dispatch]);
+    }, [dispatch, user?.id]);
 
     if (!productsObj) {
         return null;

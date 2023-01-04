@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllProducts } from '../store/product';
-import { fetchCreateOrder } from '../store/order';
+import { fetchCreateOrder, fetchOneOrder, fetchUpdateOrder } from '../store/order';
 
 const Product = () => {
     const history = useHistory();
@@ -12,9 +12,13 @@ const Product = () => {
 
     const user = useSelector(state => state.session.user);
     const product = useSelector(state => state.product[productId]);
+    const isOrder = useSelector(state => state.order);
+    const orderId = isOrder?.order.id
+
     // const productsObj = useSelector(state => state.product);
 
     useEffect(() => {
+        dispatch(fetchOneOrder(user?.id));
         dispatch(fetchAllProducts());
     }, [dispatch]);
 
@@ -23,7 +27,7 @@ const Product = () => {
     }
 
     const handleAddToCart = () => {
-        dispatch(fetchCreateOrder(productId))
+        isOrder ? dispatch(fetchUpdateOrder({ orderId, productId, editOrderType: 'add' })) : dispatch(fetchCreateOrder(productId));
     }
 
     return (
@@ -44,12 +48,12 @@ const Product = () => {
                 <div>
                 </div>
             </div>
-                <NavLink
+            <NavLink
                 to='/cart'
                 onClick={handleAddToCart}
                 className='add-to-cart'>
-                    Add to Cart
-                </NavLink>
+                Add to Cart
+            </NavLink>
         </div>
     );
 };

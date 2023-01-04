@@ -5,7 +5,7 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 
 from app.models import db, Order, Product, User, OrdersProducts
-from app.forms import OrderForm
+from app.forms import OrderForm, OrdersProductsForm
 import sys
 
 order_routes = Blueprint("cart", __name__)
@@ -18,8 +18,8 @@ def order_index(id):
     # print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER', order.to_dict())
     order_products = OrdersProducts.query.filter(OrdersProducts.order_id == order.id).all()
     order_products_to_dict = [order_product.to_dict() for order_product in order_products]
-    print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER_PRODUCTSSSS', order_products_to_dict)
-    return {"order": order.to_dict(), "order_products": order_products_to_dict}, 200
+    # print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER_PRODUCTSSSS', order_products_to_dict)
+    return {"order": order.to_dict(), "orderProducts": order_products_to_dict}, 200
 
 # Create Order
 @order_routes.route("", methods=["POST"])
@@ -65,10 +65,10 @@ def create_order():
 
 
 # Update Order
-@order_routes.route("/<int:id>", methods=['PUT'])
+@order_routes.route("", methods=['PUT'])
 @login_required
-def update_order(id):
-    form = OrderForm()
+def update_order():
+    form = OrdersProductsForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
     print("-00-0-00-0-0-0--0--0 FORM", form.data)

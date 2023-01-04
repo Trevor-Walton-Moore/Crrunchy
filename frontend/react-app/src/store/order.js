@@ -61,7 +61,7 @@ export const fetchCreateOrder = (productId) => async (dispatch) => {
 
 export const fetchUpdateOrder = (updatedOrder) => async (dispatch) => {
     console.log('UPDARED PET BEFORE THUNKIN', updatedOrder)
-    const response = await fetch(`/api/cart/${updatedOrder.id}`, {
+    const response = await fetch(`/api/cart`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -70,10 +70,10 @@ export const fetchUpdateOrder = (updatedOrder) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const updatedOrder = await response.json();
+        const payload = await response.json();
 
-        dispatch(updateOrder(updatedOrder));
-        return updatedOrder;
+        dispatch(updateOrder(payload));
+        return payload;
     }
 };
 
@@ -88,6 +88,17 @@ export const fetchDeleteOrder = (orderId) => async (dispatch) => {
     }
 };
 
+// --- STATE --- //
+const normalize = (arr) => {
+    let newObj = {};
+    arr.forEach((ele) => {
+        let count = 1
+        newObj[count] = ele
+        count++;
+    });
+    return newObj;
+};
+
 const initialState = {};
 
 // --- REDUCER --- //
@@ -96,15 +107,21 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_ORDER:
             console.log('LOAAD ORDER ACTION', action)
+
+            const normalizedOrderProductsLoad = normalize(action.payload.orderProducts)
+
             const newState = {
-                ...state, order: { ...action.payload.order, order_products: action.payload.order_products }
+                ...state, order: { ...action.payload.order, orderProducts: normalizedOrderProductsLoad }
             };
             return newState;
 
         case CREATE_ORDER:
             console.log('create order ACTION', action)
+
+            const normalizedOrderProductsCreate = normalize(action.payload.orderProducts)
+
             const createState = {
-                ...state, order: { ...action.payload.order, order_products: action.payload.order_products }
+                ...state, order: { ...action.payload.order, order_products: normalizedOrderProductsCreate }
             };
             return createState;
 
