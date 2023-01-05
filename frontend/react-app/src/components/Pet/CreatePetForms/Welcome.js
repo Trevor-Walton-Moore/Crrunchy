@@ -11,7 +11,30 @@ function Welcome() {
 
     // console.log(pet, 'PET USE STATE IN WELOME PAGE')
 
-    const { petName, petProfileIcon } = usePet()
+    const { petName, petProfileIcon,
+        setPetAdoptionDate,
+        setPetBirthday,
+        setPetType,
+        setPetName,
+        setPetBreed,
+        setPetProfileIcon,
+        setPetWeight,
+        setPetGender,
+        setPetCelebrationDay, } = usePet()
+
+    const clearContextRedirect = () => {
+        history.push(`/pet/${pet.id}`)
+
+        setPetType('')
+        setPetName('')
+        setPetBreed('')
+        setPetProfileIcon('')
+        setPetWeight('')
+        setPetGender('')
+        setPetCelebrationDay('')
+        setPetAdoptionDate('')
+        setPetBirthday('')
+    }
 
     return (
         <>
@@ -26,18 +49,18 @@ function Welcome() {
                     {`Welcome to the Chrunchy pack, ${petName}!`}
                 </div>
                 <form>
-                <div className='sub-text'>
-                   {`We saved the basics and created a profile for all things ${petName}.`}
-                </div>
-                <div className='sub-text'>
-                   {`Share some extra detials about ${petName}'s health, habits and tastes for even more perks.`}
-                </div>
+                    <div className='sub-text'>
+                        {`We saved the basics and created a profile for all things ${petName}.`}
+                    </div>
+                    <div className='sub-text'>
+                        {`Share some extra detials about ${petName}'s health, habits and tastes for even more perks.`}
+                    </div>
                     <button className='continue-button'
                         onClick={() => history.push(`/coming-soon`)}>
                         Tell Us More
                     </button>
                     <button className='options-buttons'
-                        onClick={() => history.push(`/pet/${pet.id}`)}>
+                        onClick={clearContextRedirect}>
                         I'll Do This Later
                     </button>
                 </form>

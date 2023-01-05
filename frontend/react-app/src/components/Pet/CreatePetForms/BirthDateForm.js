@@ -96,6 +96,10 @@ function BirthDateForm() {
                         onClick={() => history.push('/pet/new/celebration-type')}>
                         {'<'}
                     </span>
+                    <span className='back-button close-button'
+                        onClick={() => history.push('/')}>
+                        {'x'}
+                    </span>
                 </div><div className='chosen-icon-container'>
                     <img
                         className='icon-image'
@@ -114,7 +118,7 @@ function BirthDateForm() {
                 </div>
                 <form className='create-pet-form'>
                     <input
-                        
+
                         placeholder='Birthday (MM/DD/YYYY)'
                         className="input"
                         type='date'
