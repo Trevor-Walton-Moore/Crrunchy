@@ -25,6 +25,8 @@ import ProfileIconForm from './components/Pet/CreatePetForms/ProfileIconForm';
 import Home from './components/Home'
 import Product from './components/Product';
 import Cart from './components/Cart';
+import ComingSoon from './components/ComingSoon';
+import NotFound from './components/404';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,6 +47,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/coming-soon' exact={true} >
+          <ComingSoon />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -66,9 +71,6 @@ function App() {
         <Route path='/pet/new/breed-selection' exact={true} >
           <PetBreedForm />
         </Route>
-        {/* <Route path='/pet/new/breed-selection-cat' exact={true} >
-          <CatBreedForm />
-        </Route> */}
         <Route path='/pet/new/avatar-selection' exact={true} >
           <ProfileIconForm />
         </Route>
@@ -98,6 +100,9 @@ function App() {
         </Route>
         <Route path='/cart' exact={true} >
           <Cart />
+        </Route>
+        <Route>
+          <NotFound />
         </Route>
       </Switch>
     </BrowserRouter>

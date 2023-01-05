@@ -57,14 +57,14 @@ function AdoptionDateForm() {
         dispatch(fetchCreatePet(payload))
         history.push('/pet/new/welcome')
 
-        setPetType('')
-        setPetName('')
-        setPetBreed('')
-        setPetProfileIcon('')
-        setPetWeight('')
-        setPetGender('')
-        setPetCelebrationDay('')
-        setPetAdoptionDate('')
+        // setPetType('')
+        // setPetName('')
+        // setPetBreed('')
+        // setPetProfileIcon('')
+        // setPetWeight('')
+        // setPetGender('')
+        // setPetCelebrationDay('')
+        // setPetAdoptionDate('')
 
     }
 

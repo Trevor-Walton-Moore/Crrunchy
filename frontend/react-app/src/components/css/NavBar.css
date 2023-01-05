@@ -74,6 +74,7 @@
     border-bottom-right-radius: 5px;
     box-shadow: 1px 3px 3px rgba(83, 83, 83, 0.78);
     overflow: scroll;
+    z-index: 1000;
 }
 
 .user-dropdown-button {

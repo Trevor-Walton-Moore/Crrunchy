@@ -3,6 +3,7 @@ import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllProducts } from '../store/product';
 import { fetchCreateOrder, fetchOneOrder, fetchUpdateOrder } from '../store/order';
+import './css/Product.css'
 
 const Product = () => {
     const history = useHistory();
@@ -18,7 +19,7 @@ const Product = () => {
 
     const [quantity, setQuantity] = useState('');
 
-    console.log('quantoty?!?!?', quantity)
+    // console.log('quantoty?!?!?', quantity)
 
     useEffect(() => {
 
@@ -48,18 +49,18 @@ const Product = () => {
     const handleAddToCart = () => {
 
         if (orderId) {
-            console.log('the order was not empty O_o')
+            // console.log('the order was not empty O_o')
             if (quantity) {
                 let updatedOrder = {
                     orderId,
                     productId,
                     quantity: quantity + 1
                 }
-                console.log('there is a quantity O_o')
+                // console.log('there is a quantity O_o')
                 dispatch(fetchUpdateOrder(updatedOrder))
             }
             else {
-                console.log('there is not a quantity O_o')
+                // console.log('there is not a quantity O_o')
                 let updatedOrder = {
                     orderId,
                     productId,
@@ -69,35 +70,38 @@ const Product = () => {
             }
         }
         else {
-            console.log('the order was empty O_o')
+            // console.log('the order was empty O_o')
             dispatch(fetchCreateOrder(productId))
         };
     }
 
     return (
         // (sessionUser) &&
-        <div className="">
+        <div className="product-page-container">
             <div>
-                <div className="">
+                <div className="product-page-image-container">
                     <img
                         src={product.productImage}
-                        className=''
+                        className='product-page-image'
                         alt='preview' />
                 </div>
-                <div className=''>
-                    <div className=''>
-                        {product.name}
-                    </div>
-                </div>
-                <div>
-                </div>
             </div>
-            <NavLink
-            to='/cart'
-                onClick={handleAddToCart}
-                className='add-to-cart'>
-                Add to Cart
-            </NavLink>
+            <div className=''>
+                <div className='product-page-name'>
+                    {product.name}
+                </div>
+                <div className='product-price'>
+                    ${product.price}
+                </div>
+            <div className='add-to-cart-button'>
+                <NavLink
+                    to='/cart'
+                    onClick={handleAddToCart}
+                    className='add-to-cart-link'>
+                    Add to Cart
+                </NavLink>
+            </div>
+            </div>
         </div>
     );
 };

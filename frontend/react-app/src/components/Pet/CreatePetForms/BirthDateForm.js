@@ -57,14 +57,14 @@ function BirthDateForm() {
         dispatch(fetchCreatePet(payload))
         history.push('/pet/new/welcome')
 
-        setPetType('')
-        setPetName('')
-        setPetBreed('')
-        setPetProfileIcon('')
-        setPetWeight('')
-        setPetGender('')
-        setPetCelebrationDay('')
-        setPetBirthday('')
+        // setPetType('')
+        // setPetName('')
+        // setPetBreed('')
+        // setPetProfileIcon('')
+        // setPetWeight('')
+        // setPetGender('')
+        // setPetCelebrationDay('')
+        // setPetBirthday('')
     }
 
     const refreshCheck = (e) => {

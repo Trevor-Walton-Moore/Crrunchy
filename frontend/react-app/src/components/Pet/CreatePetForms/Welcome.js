@@ -9,7 +9,7 @@ function Welcome() {
 
     const pet = useSelector((state) => state.pet);
 
-    console.log(pet, 'PET USE STATE IN WELOME PAGE')
+    // console.log(pet, 'PET USE STATE IN WELOME PAGE')
 
     const { petName, petProfileIcon } = usePet()
 

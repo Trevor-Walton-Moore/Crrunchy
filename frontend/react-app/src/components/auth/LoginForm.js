@@ -19,12 +19,25 @@ const LoginForm = () => {
     }
   };
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data);
+    }
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
+  };
+
+  const updateDemoEmailPassword = () => {
+    setEmail('demo@aa.io');
+    setPassword('password');
   };
 
   if (user) {
@@ -80,11 +93,19 @@ const LoginForm = () => {
               to='coming-soon'>
               Forgot your password?
             </NavLink>
-            <button
-              className='login-button-page'
-              type='submit'>
-              Sign In
-            </button>
+            <div className='login-and-demo-login-button'>
+              <button
+                className='login-button-page'
+                type='submit'>
+                Sign In
+              </button>
+              <button
+                className='login-as-demo-button'
+                onClick={updateDemoEmailPassword}
+                type='submit'>
+                Sign In as Demo User
+              </button>
+            </div>
             {/* </div> */}
           </div>
         </form>

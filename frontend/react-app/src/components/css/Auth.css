@@ -213,3 +213,22 @@ li {
 .login-button-from-signup:hover {
     background-color: rgba(22, 58, 119, 0.091);
 }
+
+.login-and-demo-login-button {
+    display: flex;
+}
+
+.login-as-demo-button {
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 15px;
+    width: 141px;
+    height: 48px;
+    /* padding: 14px 35px 14px 35px; */
+    border-radius: 4px;
+    background-color: rgb(239, 108, 0);
+    color: white;
+    text-decoration: none;
+}
