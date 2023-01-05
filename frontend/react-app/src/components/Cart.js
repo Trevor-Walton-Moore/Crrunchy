@@ -3,6 +3,7 @@ import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchOneOrder, fetchUpdateOrder, fetchDeleteOrder } from '../store/order';
 import { fetchAllProducts } from '../store/product';
+import './css/Cart.css'
 
 const Cart = () => {
     const history = useHistory();
@@ -106,43 +107,68 @@ const Cart = () => {
     const handleDeleteOrder = (orderId) => {
         console.log('order id to delete order :}', orderId)
         dispatch(fetchDeleteOrder(orderId))
-        
+
     }
 
     return (
-        <div className="">
+        <div className='cart-background'>
+            {/* <div className=""> */}
             {filteredProducts &&
-                filteredProducts.map((product) => {
-                    return (
-                        <div>
-                            <div
-                            onClick={() => handleDeleteOrder(orderObj?.order?.id)}
-                            >proceed to checkout</div>
-
-                            <NavLink
-                                key={product.id}
-                                to={`/products/${product.id}`}
-                                className=''>
-                                <div className='cart-product'>
-                                    <img className='' src={product?.productImage} alt='product'></img>
-                                </div>
-                                <div>
-                                    {product.name}
-                                </div>
-                            </NavLink>
-                            <span
-                                onClick={() => handleDecreaseQuantityInCart(product)}>
-                                -</span>
-                            <span>
-                                {quantify(product.id)}
-                            </span>
-                            <span
-                                onClick={() => handleIncreaseQuantityInCart(product)}>
-                                +</span>
+                <div className='cart-container'>
+                    <div className='cart-product-container'>
+                        <div className='cart-product-header'>
+                            Shopping Cart
                         </div>
-                    );
-                })}
-        </div>
+                        {
+                            filteredProducts.map((product) => {
+                                return (
+                                    <div className='cart-product'
+                                        key={product.id}>
+                                        <div className='cart-product-image-container'>
+                                            <NavLink
+                                                to={`/products/${product.id}`}>
+                                                <img
+                                                    className='cart-product-image'
+                                                    src={product?.productImage}
+                                                    alt='product' />
+                                            </NavLink>
+                                        </div>
+                                        <div className='cart-product-right-side'>
+                                            <NavLink
+                                                className='product-name-link'
+                                                to={`/products/${product.id}`}>
+                                                {product.name}
+                                            </NavLink>
+                                            <div className='product-price'>
+                                                ${product.price}
+                                            </div>
+                                            <div className='quantity-container'>
+                                                <div className='quantityMinusSymbol'
+                                                    onClick={() => handleDecreaseQuantityInCart(product)}>
+                                                    -
+                                                </div>
+                                                <div className='quantity'>
+                                                    {quantify(product.id)}
+                                                </div>
+                                                <div className='quantityPlusSymbol'
+                                                    onClick={() => handleIncreaseQuantityInCart(product)}>
+                                                    +
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                    <div
+                        onClick={() => handleDeleteOrder(orderObj?.order?.id)}>
+                        proceed to checkout
+                    </div>
+                </div>
+            }
+            {/* </div> */}
+        </div >
     );
 };
 

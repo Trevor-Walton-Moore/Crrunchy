@@ -17,11 +17,8 @@ const Product = () => {
     const orderId = isOrder?.id
 
     const [quantity, setQuantity] = useState('');
-    // const quantity = isOrder?.order?.orderProducts[productId]?.quantity
 
     console.log('quantoty?!?!?', quantity)
-
-    // const productsObj = useSelector(state => state.product);
 
     useEffect(() => {
 
@@ -96,7 +93,7 @@ const Product = () => {
                 </div>
             </div>
             <NavLink
-                to='/cart'
+            to='/cart'
                 onClick={handleAddToCart}
                 className='add-to-cart'>
                 Add to Cart

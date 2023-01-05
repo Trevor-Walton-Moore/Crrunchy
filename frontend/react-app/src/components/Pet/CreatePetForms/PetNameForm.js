@@ -55,6 +55,9 @@ function PetNameForm() {
                 <div className='pet-prompt'>
                     What's their name?
                 </div>
+                <form
+                    className='create-pet-form'
+                    onSubmit={handleSubmit}>
                 <input
                     required
                     placeholder='Pet Name'
@@ -64,9 +67,6 @@ function PetNameForm() {
                     minLength={3}
                     maxLength={20}
                     onChange={updateName} />
-                <form
-                    className='create-pet-form'
-                    onSubmit={handleSubmit}>
                     <button
                         className='continue-button'
                         type='submit'>

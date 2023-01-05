@@ -83,6 +83,9 @@ function PetBreedForm() {
                     className='pet-prompt'>
                     {`What is ${petName}'s breed?`}
                 </div>
+                <form
+                    className='create-pet-form'
+                    onSubmit={handleSubmit}>
                 <input
                     onClick={displayDropdown}
                     required
@@ -122,9 +125,6 @@ function PetBreedForm() {
                         )}
                     </div>
                 )}
-                <form
-                    className='create-pet-form'
-                    onSubmit={handleSubmit}>
                     <button
                         className='unsure-of-breed'
                         type='button'
