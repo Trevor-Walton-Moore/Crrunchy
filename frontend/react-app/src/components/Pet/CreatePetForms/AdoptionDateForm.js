@@ -20,6 +20,7 @@ function AdoptionDateForm() {
     } = usePet()
     console.log(petAdoptionDate, "PET Adoption DATE before")
 
+    const [errors, setErrors] = useState([]);
     const [type, setType] = useState(petType);
     const [name, setName] = useState(petName);
     const [breed, setBreed] = useState(petBreed);
@@ -34,7 +35,8 @@ function AdoptionDateForm() {
         setPetAdoptionDate(e.target.value)
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
         const petDate = new Date(adoptionDate);
         const petMonth = (petDate.getMonth() + 1)
@@ -54,8 +56,14 @@ function AdoptionDateForm() {
             coverImage: 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png',
         }
         console.log('the REEAL payload', payload)
-        dispatch(fetchCreatePet(payload))
-        history.push('/pet/new/welcome')
+        const data = await dispatch(fetchCreatePet(payload))
+            .then((data) => {
+                if (data) {
+                    console.log('error DATA', data)
+                    // const errArr = [data.errors]
+                    setErrors(['Error: Please enter a date']);
+                } else history.push('/pet/new/welcome')
+            })
 
         // setPetType('')
         // setPetName('')
@@ -106,12 +114,21 @@ function AdoptionDateForm() {
                 </div>
                 <form className='create-pet-form'>
                     <input
-                        required
+
                         placeholder='Adoption date (MM/DD/YYYY)'
                         className="input"
                         type='date'
                         value={petAdoptionDate}
                         onChange={updatePetAdoptionDate} />
+                    <div>
+                        {errors && errors.map((error, ind) => (
+                            <div
+                                className='date-error'
+                                key={ind}>
+                                {error}
+                            </div>
+                        ))}
+                    </div>
                     <button
                         className='continue-button'
                         onClick={handleSubmit}>

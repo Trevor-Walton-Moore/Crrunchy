@@ -280,3 +280,11 @@
 .options-buttons:hover {
     background-color: rgba(203, 222, 255, 0.418);
 }
+
+.date-error {
+    position: absolute;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: rgb(208, 1, 27);
+    font-family: sans-serif;
+}
