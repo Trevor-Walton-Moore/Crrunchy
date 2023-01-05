@@ -51,8 +51,16 @@ function Pet() {
 
   useEffect(() => {
     dispatch(fetchOnePet(user.id))
-    console.log("FETCHA PET W USE EFFECT")
+    // console.log("FETCHA PET W USE EFFECT")
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   console.log("CHECK PET  MAYBE REDIRECT W USE EFFECT", pet)
+  //   if (!pet.length) {
+  //     history.push('/pet/new');
+  //   }
+  // }, [pet]);
+
 
   return (
     <div className="pet-page-main-container">

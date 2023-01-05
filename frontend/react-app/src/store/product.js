@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 
-const LOAD_PRODUCTS = "pet/LOAD_PRODUCTS";
+const LOAD_PRODUCTS = "products/LOAD_PRODUCTS";
 
 // --- ACTIONS --- //
 const loadProducts = (products) => ({
