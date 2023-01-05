@@ -10,6 +10,10 @@ function PetNameForm() {
     const { petName, setPetName, petType } = usePet()
     console.log(petName, "PET NAME")
 
+    if(!petType) {
+        history.push('/pet/new')
+    }
+
     const updateName = (e) => setPetName(e.target.value);
 
     const handleSubmit = async (e) => {

@@ -20,6 +20,10 @@ function BirthDateForm() {
     } = usePet()
     console.log(petBirthday, "PET BIRTHDAY")
 
+    if(!petType) {
+        history.push('/pet/new')
+    }
+
     const [errors, setErrors] = useState([]);
     const [type, setType] = useState(petType);
     const [name, setName] = useState(petName);

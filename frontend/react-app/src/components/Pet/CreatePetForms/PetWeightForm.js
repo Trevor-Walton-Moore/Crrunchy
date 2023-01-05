@@ -7,8 +7,12 @@ import { usePet } from '../../../Context'
 function PetWeightForm() {
     const history = useHistory()
 
-    const { petWeight, setPetWeight, petName, petProfileIcon } = usePet()
+    const { petWeight, setPetWeight, petName, petProfileIcon, petType } = usePet()
     console.log(petWeight, "PET Weight")
+
+    if(!petType) {
+        history.push('/pet/new')
+    }
 
     const updateWeight = (e) => setPetWeight(e.target.value);
 

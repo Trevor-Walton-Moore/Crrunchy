@@ -20,6 +20,10 @@ function AdoptionDateForm() {
     } = usePet()
     console.log(petAdoptionDate, "PET Adoption DATE before")
 
+    if(!petType) {
+        history.push('/')
+    }
+
     const [errors, setErrors] = useState([]);
     const [type, setType] = useState(petType);
     const [name, setName] = useState(petName);

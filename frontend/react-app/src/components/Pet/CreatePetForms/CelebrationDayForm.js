@@ -7,8 +7,16 @@ import { usePet } from '../../../Context'
 function CelebrationDayForm() {
     const history = useHistory()
 
-    const { petCelebrationDay, setPetCelebrationDay, petName, petProfileIcon } = usePet()
+    const { petCelebrationDay, setPetCelebrationDay,
+        petName,
+        petProfileIcon,
+        petType
+    } = usePet()
     console.log(petCelebrationDay, "PET CelebrationDayyy")
+
+    if(!petType) {
+        history.push('/pet/new')
+    }
 
     const celebrateBirthday = () => setPetCelebrationDay('Birthday');
     const celebrateAdoptionDate = () => setPetCelebrationDay('Adoption Day');

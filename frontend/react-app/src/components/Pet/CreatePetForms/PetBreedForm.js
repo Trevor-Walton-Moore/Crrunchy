@@ -12,6 +12,10 @@ function PetBreedForm() {
     const { petBreed, setPetBreed, petName, petType } = usePet()
     console.log(petBreed, "PET BREED")
 
+    if(!petType) {
+        history.push('/pet/new')
+    }
+
     const updateBreed = (e) => setPetBreed(e.target.value);
 
     const handleSubmit = async () => {

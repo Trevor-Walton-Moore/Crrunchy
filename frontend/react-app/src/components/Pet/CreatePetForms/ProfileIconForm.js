@@ -11,6 +11,10 @@ function ProfileIconForm() {
     const { petProfileIcon, setPetProfileIcon, petBreed, petName, petType } = usePet()
     console.log(petProfileIcon, "PET PROFILE ICON")
 
+    if (!petType) {
+        history.push('/pet/new')
+    }
+
     const handleSubmit = async (icon) => {
         setPetProfileIcon(icon)
         history.push('/pet/new/pet-weight')

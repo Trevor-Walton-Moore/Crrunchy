@@ -11,8 +11,13 @@ function PetGenderForm() {
     const { petGender, setPetGender,
         petName,
         petProfileIcon,
+        petType
     } = usePet()
     console.log(petGender, "PET Genderrr")
+
+    if(!petType) {
+        history.push('/pet/new')
+    }
 
     const handleSubmit = async (gender) => {
         console.log('handle submit gender', gender)
