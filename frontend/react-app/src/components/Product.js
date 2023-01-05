@@ -19,7 +19,7 @@ const Product = () => {
 
     const [quantity, setQuantity] = useState('');
 
-    // console.log('quantoty?!?!?', quantity)
+    console.log('quantoty?!?!?', quantity)
 
     useEffect(() => {
 
@@ -28,17 +28,20 @@ const Product = () => {
 
         if (orderObj && Object.values(orderObj).length > 0) {
             const productInOrderProducts = []
-            Object.values(orderObj?.order?.orderProducts).forEach(product => {
-                // console.log('orderProduct.productId ', +product.productId === +productId, "productId???")
-                if (+product.productId === +productId) {
-                    productInOrderProducts.push(product)
-                    // console.log('just opush product to rray: ', productInOrderProducts)
-                }
-                else return null
-            })
-            // console.log('productInOrderProducts', productInOrderProducts)
-            if (productInOrderProducts) setQuantity(productInOrderProducts[0]?.quantity)
-            // setQuantity(orderObj?.order?.orderProducts[productId]?.quantity)
+            if (orderObj?.object && Object.values(orderObj?.object).length > 0) {
+
+                Object.values(orderObj?.order?.orderProducts).forEach(product => {
+                    // console.log('orderProduct.productId ', +product.productId === +productId, "productId???")
+                    if (+product.productId === +productId) {
+                        productInOrderProducts.push(product)
+                        // console.log('just opush product to rray: ', productInOrderProducts)
+                    }
+                    else return null
+                })
+                // console.log('productInOrderProducts', productInOrderProducts)
+                if (productInOrderProducts) setQuantity(productInOrderProducts[0]?.quantity)
+                // setQuantity(orderObj?.order?.orderProducts[productId]?.quantity)
+            }
         }
     }, [dispatch, user?.id, JSON.stringify(orderObj)]);
 
@@ -49,18 +52,18 @@ const Product = () => {
     const handleAddToCart = () => {
 
         if (orderId) {
-            // console.log('the order was not empty O_o')
+            console.log('the order was not empty O_o')
             if (quantity) {
                 let updatedOrder = {
                     orderId,
                     productId,
                     quantity: quantity + 1
                 }
-                // console.log('there is a quantity O_o')
+                console.log('there is a quantity O_o')
                 dispatch(fetchUpdateOrder(updatedOrder))
             }
             else {
-                // console.log('there is not a quantity O_o')
+                console.log('there is not a quantity O_o')
                 let updatedOrder = {
                     orderId,
                     productId,
@@ -70,7 +73,7 @@ const Product = () => {
             }
         }
         else {
-            // console.log('the order was empty O_o')
+            console.log('the order was empty O_o')
             dispatch(fetchCreateOrder(productId))
         };
     }
@@ -93,14 +96,15 @@ const Product = () => {
                 <div className='product-price'>
                     ${product.price}
                 </div>
-            <div className='add-to-cart-button'>
                 <NavLink
-                    to='/cart'
                     onClick={handleAddToCart}
+                    to='/cart'
                     className='add-to-cart-link'>
-                    Add to Cart
+                    <div
+                        className='add-to-cart-button'>
+                        Add to Cart
+                    </div>
                 </NavLink>
-            </div>
             </div>
         </div>
     );
