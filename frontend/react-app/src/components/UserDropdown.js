@@ -38,6 +38,7 @@ const UserDropdown = () => {
                 className='account-dropdown-button'
                 onClick={() => openMenu()}>
                 <div className='account-dropdown-button-children'>
+                    <div>
                     {
                         user &&
                         <div className='hi-user'>
@@ -47,7 +48,10 @@ const UserDropdown = () => {
                     <div className='account'>
                         account
                     </div>
-                    <span className='dropdown-arrow'>{">"}</span>
+                    </div>
+                    <div className='dropdown-arrow'>
+                        <i class="fa-solid fa-chevron-down" />
+                    </div>
                 </div>
             </div>
 
@@ -62,13 +66,13 @@ const UserDropdown = () => {
                                 Sign In
                             </NavLink>
                             <div className='start-here'>
-                            New Customer?&nbsp;
-                            <NavLink
-                                to='/sign-up'
-                                className='signup-button'>
-                                Start here
-                            </NavLink>
-                                    </div>
+                                New Customer?&nbsp;
+                                <NavLink
+                                    to='/sign-up'
+                                    className='signup-button'>
+                                    Start here
+                                </NavLink>
+                            </div>
                         </div>
                     )}
                     <div

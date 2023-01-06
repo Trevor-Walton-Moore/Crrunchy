@@ -51,9 +51,15 @@ function ProfileIconForm() {
     return (
         <>
             <div className='pet-form-container'>
-                <div className='back-button'
-                    onClick={previousPage}>
-                    {'<'}
+                <div className='top-buttons'>
+                    <div className='back-button'
+                        onClick={previousPage}>
+                        <i class="fa-solid fa-chevron-left" />
+                    </div>
+                    <div className='back-button close-button'
+                        onClick={() => history.push('/')}>
+                        <i class="fa-solid fa-xmark" />
+                    </div>
                 </div>
                 <div
                     className='sub-text'>

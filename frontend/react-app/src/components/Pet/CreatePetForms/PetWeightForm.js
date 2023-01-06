@@ -10,15 +10,20 @@ function PetWeightForm() {
     const { petWeight, setPetWeight, petName, petProfileIcon, petType } = usePet()
     console.log(petWeight, "PET Weight")
 
-    if(!petType) {
+    if (!petType) {
         history.push('/pet/new')
     }
+
+    const [errors, setErrors] = useState([]);
 
     const updateWeight = (e) => setPetWeight(e.target.value);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        history.push('/pet/new/pet-gender')
+        if (!petWeight) {
+            setErrors(['Weight required.'])
+        }
+        else history.push('/pet/new/pet-gender')
     }
 
     const refreshCheck = (e) => {
@@ -39,11 +44,11 @@ function PetWeightForm() {
                 <div className='top-buttons'>
                     <div className='back-button'
                         onClick={() => history.push('/pet/new/avatar-selection')}>
-                        {'<'}
+                        <i class="fa-solid fa-chevron-left" />
                     </div>
                     <span className='back-button close-button'
                         onClick={() => history.push('/')}>
-                        {'x'}
+                        <i class="fa-solid fa-xmark" />
                     </span>
                 </div>
                 <div className='chosen-icon-container'>
@@ -75,6 +80,15 @@ function PetWeightForm() {
                         min={1}
                         max={300}
                         onChange={updateWeight} />
+                    <div>
+                        {errors && errors.map((error, ind) => (
+                            <div
+                                className='date-error'
+                                key={ind}>
+                                {error}
+                            </div>
+                        ))}
+                    </div>
                     <button
                         className='continue-button'
                         onClick={handleSubmit}>

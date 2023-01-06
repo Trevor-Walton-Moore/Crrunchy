@@ -65,7 +65,7 @@ const SignUpForm = () => {
 
           onSubmit={onSignUp}>
           <div className='returning-or-new-customer'>
-            I'm a Returning Customer
+            I'm a New Customer
           </div>
           <div>
             {errors.map((error, ind) => (

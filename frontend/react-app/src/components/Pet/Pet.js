@@ -69,11 +69,21 @@ function Pet() {
           className='pet-cover-image'
           src={pet.coverImage}
           alt='cover' />
-        <div className="chosen-icon-container">
-          <img
-            className='icon-image'
-            src={pet.profileIcon}
-            alt='pet-avatar' />
+        <div className="icon-image-edit-button">
+          <div className="profile-icon-container">
+            <img
+              className='icon-image'
+              src={pet.profileIcon}
+              alt='pet-avatar' />
+          </div>
+          <div>
+            <NavLink
+              className="edit-button"
+              to={`/pet/${pet.id}/edit`}>
+              <i class="fa-solid fa-pen" />
+              &nbsp;&nbsp;Edit
+            </NavLink>
+          </div>
         </div>
         <div className="pet-name">{pet.name}</div>
 
@@ -108,7 +118,8 @@ function Pet() {
           <div>
             <NavLink
               className="pet-feature"
-              to={`/pet/${pet.id}/edit`}>
+              to={`/coming-soon`}>
+              <i class="fa-solid fa-paw" />
               Overview
             </NavLink>
           </div>
@@ -116,6 +127,7 @@ function Pet() {
             <NavLink
               className="pet-feature"
               to={`/coming-soon`}>
+              <i class="fa-solid fa-prescription-bottle-medical" />
               Prescriptions
             </NavLink>
           </div>
@@ -123,6 +135,7 @@ function Pet() {
             <NavLink
               className="pet-feature"
               to={`/coming-soon`}>
+              <i class="fa-solid fa-heart" />
               Favorites
             </NavLink>
           </div>
@@ -130,14 +143,8 @@ function Pet() {
             <NavLink
               className="pet-feature"
               to={`/coming-soon`}>
+              <i class="fa-solid fa-clipboard-list" />
               Details
-            </NavLink>
-          </div>
-          <div>
-            <NavLink
-              className="pet-feature"
-              to={`/pet/${pet.id}/edit`}>
-              Edit
             </NavLink>
           </div>
           <div className="line-H"></div>

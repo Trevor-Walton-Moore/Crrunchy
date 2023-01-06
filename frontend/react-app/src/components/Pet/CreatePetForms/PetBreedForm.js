@@ -12,7 +12,7 @@ function PetBreedForm() {
     const { petBreed, setPetBreed, petName, petType } = usePet()
     console.log(petBreed, "PET BREED")
 
-    if(!petType) {
+    if (!petType) {
         history.push('/pet/new')
     }
 
@@ -70,14 +70,14 @@ function PetBreedForm() {
             <div className='pet-form-container'>
                 <div className='top-buttons'>
 
-                    <span className='back-button'
+                    <div className='back-button'
                         onClick={() => history.push('/pet/new/pet-name')}>
-                        {'<'}
-                    </span>
-                    <span className='back-button close-button'
+                        <i class="fa-solid fa-chevron-left" />
+                    </div>
+                    <div className='back-button close-button'
                         onClick={() => history.push('/')}>
-                        {'x'}
-                    </span>
+                        <i class="fa-solid fa-xmark" />
+                    </div>
                 </div>
                 <div
                     className='sub-text'>
@@ -90,45 +90,45 @@ function PetBreedForm() {
                 <form
                     className='create-pet-form'
                     onSubmit={handleSubmit}>
-                <input
-                    onClick={displayDropdown}
-                    required
-                    placeholder='Breed'
-                    className="breed-input"
-                    type='text'
-                    value={petBreed}
-                    onChange={updateBreed}
-                />
-                {showDropdown && (
-                    <div className='breed-list'>
-                        {petType === 'Dog' && (
-                            normalizeBreeds(dogBreeds),
-                            normalizedBreeds.map(breed => {
-                                return (
-                                    <div
-                                        key={breed.id}
-                                        onClick={() => setPetBreed(breed.value)}
-                                        className='breed-list-item'>
-                                        {breed.value}
-                                    </div>
-                                )
-                            })
-                        )}
-                        {petType === 'Cat' && (
-                            normalizeBreeds(catBreeds),
-                            normalizedBreeds.map(breed => {
-                                return (
-                                    <div
-                                        key={breed.id}
-                                        onClick={() => setPetBreed(breed.value)}
-                                        className='breed-list-item'>
-                                        {breed.value}
-                                    </div>
-                                )
-                            })
-                        )}
-                    </div>
-                )}
+                    <input
+                        onClick={displayDropdown}
+                        required
+                        placeholder='Breed'
+                        className="breed-input"
+                        type='text'
+                        value={petBreed}
+                        onChange={updateBreed}
+                    />
+                    {showDropdown && (
+                        <div className='breed-list'>
+                            {petType === 'Dog' && (
+                                normalizeBreeds(dogBreeds),
+                                normalizedBreeds.map(breed => {
+                                    return (
+                                        <div
+                                            key={breed.id}
+                                            onClick={() => setPetBreed(breed.value)}
+                                            className='breed-list-item'>
+                                            {breed.value}
+                                        </div>
+                                    )
+                                })
+                            )}
+                            {petType === 'Cat' && (
+                                normalizeBreeds(catBreeds),
+                                normalizedBreeds.map(breed => {
+                                    return (
+                                        <div
+                                            key={breed.id}
+                                            onClick={() => setPetBreed(breed.value)}
+                                            className='breed-list-item'>
+                                            {breed.value}
+                                        </div>
+                                    )
+                                })
+                            )}
+                        </div>
+                    )}
                     <button
                         className='unsure-of-breed'
                         type='button'

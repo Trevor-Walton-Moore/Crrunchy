@@ -37,23 +37,24 @@ const NavBar = () => {
   return (
     <nav className='NavBar'>
       {/* <div> */}
-      <span>
+      <div>
         <NavLink to='/' exact={true} className='crunchy'>
           Crunchy
         </NavLink>
-      </span>
-      <span className='account-cart'>
-        <span>
+      </div>
+      <div className='account-cart'>
+        <div>
           <UserDropdown />
-        </span>
-        {/* {orderSize && */}
-          <NavLink to='/cart'
-            className='cart-button'>
-            {/* {orderSize} */}
-            &nbsp;cart
-          </NavLink>
-        {/* } */}
-      </span>
+        </div>
+        <NavLink to='/cart'
+          className='cart-button'>
+          <i class="fa-solid fa-cart-shopping" />
+          &nbsp;&nbsp;&nbsp;cart
+          <div className='dropdown-arrow'>
+            <i class="fa-solid fa-chevron-down" />
+          </div>
+        </NavLink>
+      </div>
       {/* </div> */}
     </nav>
   );

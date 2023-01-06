@@ -39,11 +39,11 @@ function PetTypeForm() {
                 <div className='top-buttons'>
                     <span className='back-button'
                         onClick={() => history.push('/')}>
-                        {'<'}
+                        <i class="fa-solid fa-chevron-left"/>
                     </span>
                     <span className='back-button close-button'
                         onClick={() => history.push('/')}>
-                        {'x'}
+                        <i class="fa-solid fa-xmark"/>
                     </span>
                 </div>
                 <div className='pet-prompt'>

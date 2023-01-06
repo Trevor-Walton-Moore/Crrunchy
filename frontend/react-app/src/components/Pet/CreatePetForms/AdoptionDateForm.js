@@ -21,7 +21,7 @@ function AdoptionDateForm() {
     console.log(petAdoptionDate, "PET Adoption DATE before")
 
     if(!petType) {
-        history.push('/')
+        history.push('/pet/new')
     }
 
     const [errors, setErrors] = useState([]);
@@ -62,11 +62,12 @@ function AdoptionDateForm() {
         console.log('the REEAL payload', payload)
         const data = await dispatch(fetchCreatePet(payload))
             .then((data) => {
-                if (data) {
-                    console.log('error DATA', data)
-                    // const errArr = [data.errors]
-                    setErrors(['Error: Please enter a date']);
-                } else history.push('/pet/new/welcome')
+                if (data.errors) {
+                    // console.log('error DATA', data)
+                    const errArr = [data.errors]
+                    setErrors(errArr);
+                }
+                else history.push('/pet/new/welcome')
             })
 
         // setPetType('')
@@ -98,11 +99,11 @@ function AdoptionDateForm() {
                 <div className='top-buttons'>
                     <span className='back-button'
                         onClick={() => history.push('/pet/new/celebration-type')}>
-                        {'<'}
+                        <i class="fa-solid fa-chevron-left"/>
                     </span>
                     <span className='back-button close-button'
                         onClick={() => history.push('/')}>
-                        {'x'}
+                        <i class="fa-solid fa-xmark"/>
                     </span>
                 </div><div className='chosen-icon-container'>
                     <img
