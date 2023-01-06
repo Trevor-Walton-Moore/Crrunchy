@@ -17,7 +17,7 @@ const PetForm = ({ formType }) => {
     const user = useSelector(state => state.session.user);
     const pet = useSelector(state => state.pet);
 
-    if(!pet.id) {
+    if (!pet.id) {
         history.push(`/pet/${petId}`)
     }
 
@@ -281,6 +281,7 @@ const PetForm = ({ formType }) => {
                     <label className='edit-label'>
                         Cover Photo (URL)
                         <input
+                            required
                             className="input bottom"
                             type='URL'
                             value={coverImage}
@@ -359,7 +360,7 @@ const PetForm = ({ formType }) => {
                     <label className='edit-label'>
                         {'Weight(lbs)'}
                         <input
-                            // required
+                            required
                             className="input"
                             type='number'
                             value={weight}

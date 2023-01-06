@@ -25,6 +25,7 @@
     font-weight: bolder;
     padding: 5.5px 14px 5.5px 14px;
     color: rgb(93, 93, 93);
+    cursor: pointer;
 }
 
 .cancelForm:hover {

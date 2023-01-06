@@ -12,6 +12,8 @@ function Pet() {
   // const petId = useParams()
   // console.log(petId)
 
+  const defaultCoverImage = 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png'
+
   const user = useSelector((state) => state.session.user);
   const pet = useSelector((state) => state.pet);
 
@@ -62,6 +64,10 @@ function Pet() {
     // console.log("FETCHA PET W USE EFFECT")
   }, [dispatch]);
 
+  const useDefaultImage = (e) => {
+    e.target.src = defaultCoverImage
+  }
+
   // useEffect(() => {
   //   console.log("CHECK PET  MAYBE REDIRECT W USE EFFECT", pet)
   //   if (!pet.length) {
@@ -76,6 +82,7 @@ function Pet() {
         <img
           className='pet-cover-image'
           src={pet.coverImage}
+          onError={useDefaultImage}
           alt='cover' />
         <div className="icon-image-edit-button">
           <div className="profile-icon-container">
