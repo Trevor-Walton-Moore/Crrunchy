@@ -34,6 +34,8 @@ const PetForm = ({ formType }) => {
     const [profileIcon, setProfileIcon] = useState(pet.profileIcon);
     let [coverImage, setCoverImage] = useState(pet.coverImage);
 
+    const [isHidden, setIsHidden] = useState(true)
+
     // const [displayBirthday, setDisplayBirthday] = useState(pet.birthday);
     // const [displayAdoptionDay, setDisplayAdoptionDay] = useState(pet.adoptionDay);
 
@@ -233,8 +235,8 @@ const PetForm = ({ formType }) => {
             const data = await dispatch(fetchUpdatePet(payload))
                 .then((data) => {
                     if (data.errors) {
-                        console.log('suuuuuuuuuuuuuuuuuh',
-                            data)
+                        // console.log('suuuuuuuuuuuuuuuuuh',
+                        //     data)
                         const errArr = [data.errors]
                         setErrors(errArr);
                     }
@@ -268,6 +270,11 @@ const PetForm = ({ formType }) => {
     const handleCancelClick = (e) => {
         e.preventDefault();
         formType === 'edit' && history.push(`/pet/${pet.id}`);
+    };
+
+    const showDeleteConfirmation = (e) => {
+        e.preventDefault();
+        setIsHidden(false)
     };
 
     const refreshCheck = (e) => {
@@ -541,12 +548,22 @@ const PetForm = ({ formType }) => {
                         Save Changes
                     </button>
                 </span>
+                {isHidden &&
                 <span>
                     <button className='delete-profile' type="button"
-                        onClick={handleDestroy}>
+                        onClick={showDeleteConfirmation}>
                         Delete Profile
                     </button>
                 </span>
+                }
+                {!isHidden &&
+                    <span>
+                        <button className='delete-profile' type="button"
+                            onClick={handleDestroy}>
+                            Are you sure?
+                        </button>
+                    </span>
+                }
             </div>
         </form >
     );
