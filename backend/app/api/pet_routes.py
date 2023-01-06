@@ -90,7 +90,7 @@ def update_pet(id):
 
         return {'pet': updated_pet.to_dict()}, 201
 
-    return {"errors": ["UNAUTHORIZED: Can't Edit a Pet You Don't Own!"]}, 400
+    return {'errors': validation_errors_to_error_messages(form.errors)}
 
 # Delete Pet
 @pet_routes.route("/<int:id>", methods=["DELETE"])

@@ -22,7 +22,7 @@ const PetForm = ({ formType }) => {
     }
 
     console.log(pet, 'PET EDIT PET USE STATE')
-
+    const [errors, setErrors] = useState([]);
     const [type, setType] = useState(pet.type);
     const [name, setName] = useState(pet.name);
     const [breed, setBreed] = useState(pet.breed);
@@ -33,6 +33,9 @@ const PetForm = ({ formType }) => {
     const [adoptionDay, setAdoptionDay] = useState(pet.adoptionDay);
     const [profileIcon, setProfileIcon] = useState(pet.profileIcon);
     let [coverImage, setCoverImage] = useState(pet.coverImage);
+
+    // const [displayBirthday, setDisplayBirthday] = useState(pet.birthday);
+    // const [displayAdoptionDay, setDisplayAdoptionDay] = useState(pet.adoptionDay);
 
     const [showIconDropdown, setShowIconDropdown] = useState(false);
     const [showBreedDropdown, setShowBreedDropdown] = useState(false);
@@ -145,6 +148,20 @@ const PetForm = ({ formType }) => {
         const petDay = (petDate.getDate() + 1);
         const petYear = (petDate.getFullYear());
         const convertedPetDate = petMonth + "/" + petDay + "/" + petYear;
+        // console.log('display date?????????', convertedPetDate)
+        return convertedPetDate
+    }
+    // const updateDisplayBirthday = (e) => setDisplayBirthday(convertPetDate(e.target.value));
+    // console.log('display date STATE!!!!!!!', displayBirthday)
+    // const updateDisplayAdoptionDay = (e) => setDisplayAdoptionDay(convertPetDate(e.target.value));
+
+    const convertPetDateForComparison = (date) => {
+        console.log('icky date', date)
+        const petDate = new Date(date);
+        const petMonth = (petDate.getMonth() + 1);
+        const petDay = (petDate.getDate());
+        const petYear = (petDate.getFullYear());
+        const convertedPetDate = petYear + "-" + petMonth + "-" + petDay;
         return convertedPetDate
     }
 
@@ -171,18 +188,25 @@ const PetForm = ({ formType }) => {
     //     }
     // }
 
+    // const shortenTime = (time) => {
+    //     return +String(time).slice(0, 4)
+    // }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const petDate = birthday ? new Date(birthday) : new Date(adoptionDay);
         const compareDate = birthday ? new Date(pet?.birthday) : new Date(pet?.adoptionDay);
+        compareDate.setDate(compareDate.getDate() + 1);
         const petMonth = (petDate.getMonth() + 1);
         let petDay
-        console.log('pet date:', petDate.getDate(), '===', compareDate.getDate(), '??')
-        if (petDate.getDate() === compareDate.getDate() + 1) {
+        console.log('@@@@@@@@@@@@@@@@@ pet date:', convertPetDateForComparison(petDate), '===', convertPetDateForComparison(compareDate), '??',
+            convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate))
+        if (convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate)) {
             petDay = petDate.getDate();
-        } else petDay = petDate.getDate() + 1;
+        } else
+            petDay = petDate.getDate() + 1;
 
         const petYear = (petDate.getFullYear());
         const convertedPetDate = petMonth + "-" + petDay + "-" + petYear;
@@ -206,8 +230,16 @@ const PetForm = ({ formType }) => {
                 profileIcon,
                 coverImage,
             };
-            dispatch(fetchUpdatePet(payload));
-            history.push(`/pet/${pet.id}`);
+            const data = await dispatch(fetchUpdatePet(payload))
+                .then((data) => {
+                    if (data.errors) {
+                        console.log('suuuuuuuuuuuuuuuuuh',
+                            data)
+                        const errArr = [data.errors]
+                        setErrors(errArr);
+                    }
+                    else history.push(`/pet/${pet.id}`);
+                })
         }
         else {
             const payload = {
@@ -449,33 +481,59 @@ const PetForm = ({ formType }) => {
                         onChange={updateCelebrationDay} />
                 </label> */}
                 {pet.birthday &&
-                    <div className='edit-input-padding'>
-                        <label className='edit-label'>
-                            {'Birthday (MM/DD/YYYY)'}
-                            <input
-                                className="input"
-                                value={birthday}
-                                type="text"
-                                onFocus={(e) => (e.target.type = "date")}
-                                // onClick={handleFirstClick}
-                                // onBlur={(e) => (e.target.type = "text")}
-                                onChange={updateBirthday} />
-                        </label>
+                    <div>
+
+                        <div className='edit-input-padding'>
+                            <label className='edit-label'>
+                                {'Birthday (MM/DD/YYYY)'}
+                                <input
+                                    required
+                                    className="input"
+                                    value={birthday}
+                                    type="text"
+                                    onFocus={(e) => (e.target.type = "date")}
+                                    onBlur={(e) => (e.target.type = "text")}
+                                    // onClick={handleFirstClick}
+                                    onChange={updateBirthday} />
+                            </label>
+                        </div>
+                        <div>
+                            {errors && errors.map((error, ind) => (
+                                <div
+                                    className='date-error-edit'
+                                    key={ind}>
+                                    {error}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 }
                 {pet.adoptionDay &&
-                    <div className='edit-input-padding'>
+                    <div>
 
-                        <label className='edit-label'>
-                            {'Adoption Day (MM/DD/YYYY)'}
-                            <input
-                                className="input"
-                                value={adoptionDay}
-                                type="text"
-                                onFocus={(e) => (e.target.type = "date")}
-                                // onClick={handleFirstClick}
-                                onChange={updateAdoptionDay} />
-                        </label>
+                        <div className='edit-input-padding'>
+
+                            <label className='edit-label'>
+                                {'Adoption Day (MM/DD/YYYY)'}
+                                <input
+                                    className="input"
+                                    value={adoptionDay}
+                                    type="text"
+                                    onFocus={(e) => (e.target.type = "date")}
+                                    onBlur={(e) => (e.target.type = "text")}
+                                    // onClick={handleFirstClick}
+                                    onChange={updateAdoptionDay} />
+                            </label>
+                        </div>
+                        <div>
+                            {errors && errors.map((error, ind) => (
+                                <div
+                                    className='date-error'
+                                    key={ind}>
+                                    {error}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 }
                 <span>

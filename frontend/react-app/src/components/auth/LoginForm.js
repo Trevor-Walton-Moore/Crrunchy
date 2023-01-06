@@ -15,7 +15,7 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors(['Invalid data']);
     }
   };
 
@@ -61,7 +61,7 @@ const LoginForm = () => {
             <div>
               {errors.map((error, ind) => (
                 <div
-                  className='error'
+                  className='date-error-edit'
                   key={ind}>
                   {error}
                 </div>
