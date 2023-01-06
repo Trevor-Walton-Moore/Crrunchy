@@ -1,11 +1,17 @@
 import PetForm from './PetForm';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const EditPetForm = () => {
+    const history = useHistory()
 
     // const { petId } = useParams()
     const pet = useSelector(state => state.pet);
+    const user = useSelector(state => state.session.user)
+
+    if (!user) {
+        history.push('/login')
+    }
 
     console.log('edit pet', pet)
 

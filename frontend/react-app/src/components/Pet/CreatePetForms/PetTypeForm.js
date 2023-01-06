@@ -8,6 +8,18 @@ import { catAvatars, dogAvatars } from './ProfileIcons'
 function PetTypeForm() {
     const history = useHistory()
 
+    const pet = useSelector((state) => state.pet);
+    const user = useSelector(state => state.session.user)
+
+    if (!user) {
+        history.push('/login')
+    }
+
+    if (pet.id) {
+        history.push(`/pet/${pet.id}`)
+    }
+
+
     const dogIcon = dogAvatars[0];
 
     const catIcon = catAvatars[0];
@@ -39,11 +51,11 @@ function PetTypeForm() {
                 <div className='top-buttons'>
                     <span className='back-button'
                         onClick={() => history.push('/')}>
-                        <i class="fa-solid fa-chevron-left"/>
+                        <i class="fa-solid fa-chevron-left" />
                     </span>
                     <span className='back-button close-button'
                         onClick={() => history.push('/')}>
-                        <i class="fa-solid fa-xmark"/>
+                        <i class="fa-solid fa-xmark" />
                     </span>
                 </div>
                 <div className='pet-prompt'>

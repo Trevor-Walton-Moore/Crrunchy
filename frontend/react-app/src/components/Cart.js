@@ -24,6 +24,10 @@ const Cart = () => {
     console.log('UMMMMMMMMmmmmmmmmmmmmmm order product', orderProducts)
     console.log('UMMMMMMMMmmmmmmmmmmmmmm order objec', orderObj)
 
+    if (!user) {
+        history.push('/login')
+    }
+
     const filteredProducts = []
 
     let subtotal = 0;

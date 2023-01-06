@@ -10,10 +10,16 @@ import '../css/Pet.css'
 const PetForm = ({ formType }) => {
     const history = useHistory();
 
+    const petId = useParams()
+
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.session.user);
     const pet = useSelector(state => state.pet);
+
+    if(!pet.id) {
+        history.push(`/pet/${petId}`)
+    }
 
     console.log(pet, 'PET EDIT PET USE STATE')
 
@@ -203,6 +209,8 @@ const PetForm = ({ formType }) => {
             window.removeEventListener("beforeunload", refreshCheck);
         };
     }, []);
+
+    console.log('birthday :D', birthday)
 
     return (
         <form onSubmit={handleSubmit} className='edit-pet-form create-pet-form'>

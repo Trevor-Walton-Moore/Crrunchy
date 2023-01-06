@@ -8,6 +8,15 @@ function Welcome() {
     const history = useHistory()
 
     const pet = useSelector((state) => state.pet);
+    const user = useSelector(state => state.session.user)
+
+    if (!user) {
+        history.push('/login')
+    }
+
+    if (pet.id) {
+        history.push('/')
+    }
 
     // console.log(pet, 'PET USE STATE IN WELOME PAGE')
 

@@ -20,7 +20,8 @@ def adoption_date_check_future(form, field):
 def birthday_date_check_future(form, field):
     if form.data['celebrationDay'] == 'Adoption Day': return
     date = field.data
-    if not date: return
+    if not date:
+        return print('NO DTATE UP IN HERE???????????')
     print(")))))))))))))))))))))))) incoming date: ", date, 'nowdate type: ', type(datetime.now().strftime('%m-%d-%Y')))
     if date > datetime.now().date():
         raise ValidationError('Date cannot be in the future.')

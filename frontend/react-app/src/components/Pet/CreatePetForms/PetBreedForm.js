@@ -9,6 +9,12 @@ import '../../css/CreatePet.css'
 function PetBreedForm() {
     const history = useHistory()
 
+    const user = useSelector(state => state.session.user)
+
+    if (!user) {
+        history.push('/login')
+    }
+
     const { petBreed, setPetBreed, petName, petType } = usePet()
     console.log(petBreed, "PET BREED")
 

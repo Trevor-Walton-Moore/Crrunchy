@@ -14,7 +14,10 @@ const UserDropdown = () => {
 
     !pet.id && console.log(pet, "PET")
 
+    pet.id && console.log(pet, "PETtttt")
+
     const [showMenu, setShowMenu] = useState(false);
+    const [petId, setPetId] = useState('');
 
     useEffect(() => {
         if (!showMenu) { return }
@@ -31,6 +34,13 @@ const UserDropdown = () => {
         if (showMenu) return
         else setShowMenu(true)
     };
+
+    useEffect(() => {
+        if (Object.values(pet).length > 0) {
+            setPetId(pet?.id)
+        }
+
+    }, [pet]);
 
     return (
         <div className='dropdown-main'>
@@ -126,9 +136,9 @@ const UserDropdown = () => {
                         My Rescues
                     </div>
                     {
-                        pet.id &&
+                        (petId && user?.id) &&
                         <NavLink
-                            to={`/pet/${pet.id}`}
+                            to={`/pet/${petId}`}
                             exact={true}
                             className="user-dropdown-button"
                         >
@@ -136,7 +146,7 @@ const UserDropdown = () => {
                         </NavLink>
                     }
                     {
-                        (!pet.id || !user) &&
+                        (!pet?.id || !user?.id) &&
                         <NavLink
                             to={`/pet/new`}
                             exact={true}

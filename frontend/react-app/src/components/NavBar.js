@@ -13,6 +13,8 @@ const NavBar = () => {
 
   const user = useSelector(state => state.session.user);
   const pet = useSelector((state) => state.pet);
+
+  pet.id && console.log(pet, "NAV PETtttt")
   // const orderObj = useSelector(state => state.order);
   // console.log('navbar orderObj', orderObj)
   // const orderSize = useSelector(state => {

@@ -7,6 +7,12 @@ import { usePet } from '../../../Context'
 function PetWeightForm() {
     const history = useHistory()
 
+    const user = useSelector(state => state.session.user)
+
+    if (!user) {
+        history.push('/login')
+    }
+
     const { petWeight, setPetWeight, petName, petProfileIcon, petType } = usePet()
     console.log(petWeight, "PET Weight")
 

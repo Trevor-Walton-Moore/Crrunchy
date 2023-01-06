@@ -15,6 +15,14 @@ function Pet() {
   const user = useSelector((state) => state.session.user);
   const pet = useSelector((state) => state.pet);
 
+  if (!user) {
+    history.push('/login')
+  }
+
+  if (!pet.id) {
+    history.push('/')
+  }
+
   // const date = new Date()
   // console.log("DATE", date, 'BDAY', new Date(pet.birthday))
   // const age = date - pet?.birthday
@@ -50,7 +58,7 @@ function Pet() {
   nowMonth < petDateObj['month'] && ageYear--;
 
   useEffect(() => {
-    dispatch(fetchOnePet(user.id))
+    dispatch(fetchOnePet(user?.id))
     // console.log("FETCHA PET W USE EFFECT")
   }, [dispatch]);
 

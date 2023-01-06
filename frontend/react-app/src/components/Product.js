@@ -57,6 +57,10 @@ const Product = () => {
 
     const handleAddToCart = () => {
 
+        if (!user) {
+          return history.push('/login')
+        }
+
         if (orderId) {
             console.log('the order was not empty O_o')
             if (quantity) {
