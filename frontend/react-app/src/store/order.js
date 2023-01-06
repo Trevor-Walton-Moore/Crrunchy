@@ -88,6 +88,11 @@ export const fetchDeleteOrder = (orderId) => async (dispatch) => {
     }
 };
 
+export const fetchRemoveOrder = (orderId) => async (dispatch) => {
+        dispatch(deleteOrder(orderId));
+        return;
+};
+
 // --- STATE --- //
 const normalize = (arr) => {
     let newObj = {};

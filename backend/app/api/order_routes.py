@@ -11,12 +11,12 @@ import sys
 order_routes = Blueprint("cart", __name__)
 
 # Get one Order
-@order_routes.route("/<int:id>")
+@order_routes.route("/<int:user_id>")
 @login_required
-def order_index(id):
-    order = Order.query.order_by(Order.id.desc()).first()
+def order_index(user_id):
+    order = Order.query.filter(Order.user_id == user_id).one()
     print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER', order.to_dict())
-    order_products = OrdersProducts.query.filter(OrdersProducts.order_id == order.id).all()
+    order_products = OrdersProducts.query.filter(OrdersProducts.order_id == order.to_dict()['id']).all()
     order_products_to_dict = [order_product.to_dict() for order_product in order_products]
     # print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER_PRODUCTSSSS', order_products_to_dict)
     return {"order": order.to_dict(), "orderProducts": order_products_to_dict}, 200
@@ -150,7 +150,7 @@ def destroy_order(id):
             # ('********************************************* ONE product', order_product.to_dict())
             db.session.delete(order_product)
 
-    db.session.delete(order)
+    # db.session.delete(order)
 
     db.session.commit()
     return {"message": "Successfully Deleted", "order": order.to_dict()}, 200
