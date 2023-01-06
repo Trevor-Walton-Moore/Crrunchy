@@ -11,6 +11,8 @@ const UserDropdown = () => {
 
     const user = useSelector((state) => state.session.user);
     const pet = useSelector((state) => state.pet);
+    const orderId = useSelector((state) => state.order?.order?.id);
+    console.log('dropdown order id B) ', orderId)
 
     !pet.id && console.log(pet, "PET")
 
@@ -160,7 +162,7 @@ const UserDropdown = () => {
                         user &&
                         <span className='not-user'>
                             {`Not ${user.firstName}? `}
-                            <LogoutButton />
+                            <LogoutButton orderId={orderId}/>
                         </span>
                     }
                 </div>

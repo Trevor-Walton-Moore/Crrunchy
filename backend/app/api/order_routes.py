@@ -133,6 +133,24 @@ def destroy_order(id):
     user = current_user.to_dict()
 
     order = Order.query.filter(Order.id == id).order_by(Order.id.desc()).first()
+
+    # print('=============+++++=====+++++=====+++++=========== order', order)
+
+    order_products = OrdersProducts.query.filter(OrdersProducts.order_id == id).all()
+
+    # ooo = OrdersProducts.query.filter(OrdersProducts.order_id == id).first()
+
+    # print('=============+++++=====+++++=====+++++=========== ooooo', ooo)
+
+    # print('=============+++++=====+++++=====+++++=========== order_products by user_id', order_products)
+
+    if order_products:
+        # print('*********************************************yep theres order products', order_products)
+        for order_product in order_products:
+            # ('********************************************* ONE product', order_product.to_dict())
+            db.session.delete(order_product)
+
     db.session.delete(order)
+
     db.session.commit()
     return {"message": "Successfully Deleted", "order": order.to_dict()}, 200

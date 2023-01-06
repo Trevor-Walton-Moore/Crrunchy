@@ -18,6 +18,10 @@ const Cart = () => {
     // const order = orderObj?.order;
     // const orderProducts = order?.orderProducts;
 
+    if (orderObj?.order && orderObj?.order?.userId !== user?.id) {
+        history.push('/')
+    }
+
     const [orderProducts, setOrderProducts] = useState({});
     // const [subtotal, setSubtotal] = useState('');
 
