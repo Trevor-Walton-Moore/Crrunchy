@@ -13,6 +13,8 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     created_at = db.Column(db.DateTime(), nullable=False, server_default=func.now())
 
+    orders_products = db.relationship("OrdersProducts", back_populates='order', cascade="all, delete")
+
     # order_products = db.relationship(
     #     'Product',
         # secondary=OrdersProducts,

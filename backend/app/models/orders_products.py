@@ -11,6 +11,8 @@ class OrdersProducts(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), primary_key=True)
     quantity = db.Column(db.Integer)
 
+    order = db.relationship('Order', back_populates='orders_products')
+
     def to_dict(self):
         return {
             'orderId': self.order_id,
