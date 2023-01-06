@@ -14,7 +14,7 @@ function Welcome() {
         history.push('/login')
     }
 
-    if (pet.id) {
+    if (!pet.id) {
         history.push('/')
     }
 
@@ -30,6 +30,10 @@ function Welcome() {
         setPetWeight,
         setPetGender,
         setPetCelebrationDay, } = usePet()
+
+    if (!petName) {
+        history.push('/')
+    }
 
     const clearContextRedirect = () => {
         history.push(`/pet/${pet.id}`)

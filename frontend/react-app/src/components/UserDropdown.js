@@ -138,7 +138,7 @@ const UserDropdown = () => {
                         My Rescues
                     </div>
                     {
-                        (petId && user?.id) &&
+                        (pet?.id && user?.id) &&
                         <NavLink
                             to={`/pet/${petId}`}
                             exact={true}
