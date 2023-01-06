@@ -21,7 +21,7 @@ const updatePet = (pet) => ({
     pet,
 });
 
-const destroyPet = (petId) => ({
+export const destroyPet = (petId) => ({
     type: DESTROY_PET,
     petId
 });

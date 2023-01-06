@@ -138,12 +138,52 @@ const PetForm = ({ formType }) => {
         }
     }
 
+    const convertPetDate = (date) => {
+        console.log('icky date', date)
+        const petDate = new Date(date);
+        const petMonth = (petDate.getMonth() + 1);
+        const petDay = (petDate.getDate() + 1);
+        const petYear = (petDate.getFullYear());
+        const convertedPetDate = petMonth + "/" + petDay + "/" + petYear;
+        return convertedPetDate
+    }
+
+    useEffect(() => {
+
+        birthday ? setBirthday(convertPetDate(birthday)) :
+            setAdoptionDay(convertPetDate(adoptionDay))
+
+    }, [pet]);
+
+    // let clicked = false
+
+    // const handleFirstClick = (date) => {
+    //     if (celebrationDay === 'Birthday' && !clicked) {
+    //         setBirthday(null)
+    //         clicked = true
+    //     }
+
+    //     else
+
+    //     if (celebrationDay === 'Adoption Day' && !clicked) {
+    //         setAdoptionDay(null)
+    //         clicked = true
+    //     }
+    // }
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const petDate = birthday ? new Date(birthday) : new Date(adoptionDay);
+        const compareDate = birthday ? new Date(pet?.birthday) : new Date(pet?.adoptionDay);
         const petMonth = (petDate.getMonth() + 1);
-        const petDay = (petDate.getDate() + 1);
+        let petDay
+        console.log('pet date:', petDate.getDate(), '===', compareDate.getDate(), '??')
+        if (petDate.getDate() === compareDate.getDate() + 1) {
+            petDay = petDate.getDate();
+        } else petDay = petDate.getDate() + 1;
+
         const petYear = (petDate.getFullYear());
         const convertedPetDate = petMonth + "-" + petDay + "-" + petYear;
         const defaultCoverImage = 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png';
@@ -211,6 +251,7 @@ const PetForm = ({ formType }) => {
     }, []);
 
     console.log('birthday :D', birthday)
+    console.log('adopt day :D', adoptionDay)
 
     return (
         <form onSubmit={handleSubmit} className='edit-pet-form create-pet-form'>
@@ -413,8 +454,11 @@ const PetForm = ({ formType }) => {
                             {'Birthday (MM/DD/YYYY)'}
                             <input
                                 className="input"
-                                type='date'
                                 value={birthday}
+                                type="text"
+                                onFocus={(e) => (e.target.type = "date")}
+                                // onClick={handleFirstClick}
+                                // onBlur={(e) => (e.target.type = "text")}
                                 onChange={updateBirthday} />
                         </label>
                     </div>
@@ -426,8 +470,10 @@ const PetForm = ({ formType }) => {
                             {'Adoption Day (MM/DD/YYYY)'}
                             <input
                                 className="input"
-                                type='date'
                                 value={adoptionDay}
+                                type="text"
+                                onFocus={(e) => (e.target.type = "date")}
+                                // onClick={handleFirstClick}
                                 onChange={updateAdoptionDay} />
                         </label>
                     </div>

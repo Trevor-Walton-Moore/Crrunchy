@@ -17,13 +17,16 @@ function Pet() {
   const user = useSelector((state) => state.session.user);
   const pet = useSelector((state) => state.pet);
 
+  console.log('user', user, 'pet', pet)
+
   if (!user) {
     history.push('/login')
   }
 
-  if (!pet.id) {
+  if (!pet) {
     history.push('/')
   }
+
 
   // const date = new Date()
   // console.log("DATE", date, 'BDAY', new Date(pet.birthday))

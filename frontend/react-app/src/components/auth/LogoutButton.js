@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
 import { useHistory } from 'react-router-dom';
 import { fetchDeleteOrder } from '../../store/order';
+import { destroyPet } from '../../store/pet';
 
 const LogoutButton = ({ orderId }) => {
   console.log('order id right in loggout compognant', orderId)
@@ -14,6 +15,7 @@ const LogoutButton = ({ orderId }) => {
       console.log('logout order id B) ', orderId)
       dispatch(fetchDeleteOrder(orderId))
       console.log('DID THE DELETE ORDER THUNK AFTER LOGGONG OUTE')
+      dispatch(destroyPet())
     }
     history.push('/')
   };

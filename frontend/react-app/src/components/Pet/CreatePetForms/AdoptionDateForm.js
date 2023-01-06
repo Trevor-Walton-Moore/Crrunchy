@@ -123,7 +123,6 @@ function AdoptionDateForm() {
                 </div>
                 <form className='create-pet-form'>
                     <input
-
                         placeholder='Adoption date (MM/DD/YYYY)'
                         className="input"
                         type='date'
