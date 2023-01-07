@@ -28,11 +28,17 @@ const NavBar = () => {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    // dispatch(fetchOneOrder(user?.id));
-    dispatch(fetchOnePet(user?.id));
-    // dispatch(fetchAllProducts());
-  }, [dispatch, user?.id]);
+  // useEffect(() => {
+  //   // dispatch(fetchOneOrder(user?.id));
+  //   dispatch(fetchOnePet(user?.id));
+  //   // dispatch(fetchAllProducts());
+  // }, [dispatch, user?.id]);
+
+  // useEffect(() => {
+
+  //   dispatch(fetchOnePet(user?.id));
+
+  // }, [dispatch, user?.id]);
 
 
 

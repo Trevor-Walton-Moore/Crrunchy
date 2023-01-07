@@ -136,7 +136,7 @@ export default function reducer(state = initialState, action) {
 
             console.log('normalized updated orderrr', normalizedOrderProductsUpdate)
             const updateState = {
-                ...state, order: { ...action.payload.order, order_products: normalizedOrderProductsUpdate }
+                ...state, order: { ...action.payload.order, orderProducts: normalizedOrderProductsUpdate }
             };
             console.log('updated state objecttt', updateState)
             return updateState;

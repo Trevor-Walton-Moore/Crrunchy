@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchAllProducts } from '../store/product';
+import { fetchOnePet } from '../store/pet';
 import { fetchOneOrder } from '../store/order';
 import './css/home.css'
 
@@ -15,6 +16,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(fetchOneOrder(user?.id));
+        dispatch(fetchOnePet(user?.id));
         dispatch(fetchAllProducts());
     }, [dispatch, user?.id]);
 

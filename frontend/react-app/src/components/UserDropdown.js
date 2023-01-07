@@ -14,9 +14,9 @@ const UserDropdown = () => {
     const orderId = useSelector((state) => state.order?.order?.id);
     console.log('dropdown order id B) ', orderId)
 
-    !pet.id && console.log(pet, "PET")
+    !pet.id && console.log(pet, "NO PET NO PETTTT")
 
-    pet.id && console.log(pet, "PETtttt")
+    pet.id && console.log(pet, "PETtttt there is one")
 
     const [showMenu, setShowMenu] = useState(false);
     const [petId, setPetId] = useState('');
@@ -38,7 +38,7 @@ const UserDropdown = () => {
     };
 
     useEffect(() => {
-        if (Object.values(pet).length > 0) {
+        if (Object.values(pet)?.length > 0) {
             setPetId(pet?.id)
         }
 

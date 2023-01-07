@@ -3,6 +3,7 @@ import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchOneOrder, fetchUpdateOrder, fetchDeleteOrder } from '../store/order';
 import { fetchAllProducts } from '../store/product';
+import { fetchOnePet } from '../store/pet';
 import './css/Cart.css'
 
 const Cart = () => {
@@ -22,10 +23,10 @@ const Cart = () => {
         history.push('/')
     }
 
-    const [orderProducts, setOrderProducts] = useState({});
+    // const [orderProducts, setOrderProducts] = useState({});
     // const [subtotal, setSubtotal] = useState('');
 
-    console.log('UMMMMMMMMmmmmmmmmmmmmmm order product', orderProducts)
+    // console.log('UMMMMMMMMmmmmmmmmmmmmmm order product', orderProducts)
     console.log('UMMMMMMMMmmmmmmmmmmmmmm order objec', orderObj)
 
     if (!user) {
@@ -38,13 +39,16 @@ const Cart = () => {
     let totalItems = 0;
 
     if (orderObj && Object.values(orderObj).length > 0) {
+        // console.log('HELLO')
 
         for (let i = 1; i < Object.values(allProductsObj).length + 1; i++) {
             let product = allProductsObj[i];
 
-            if (orderProducts && Object.values(orderProducts).length > 0) {
-                for (let j = 1; j < Object.values(orderProducts)?.length + 1; j++) {
-                    let orderProduct = orderProducts[j];
+
+            if (orderObj?.order?.orderProducts && Object.values(orderObj?.order?.orderProducts).length > 0) {
+                console.log('HELLO')
+                for (let j = 1; j < Object.values(orderObj?.order?.orderProducts)?.length + 1; j++) {
+                    let orderProduct = orderObj?.order?.orderProducts[j];
                     if (orderProduct.productId === product.id) {
                         filteredProducts.push(product)
                         console.log('orderproduct', orderProduct, 'product.price', product.price, 'orderProduct.quantity', orderProduct.quantity)
@@ -57,8 +61,9 @@ const Cart = () => {
         // setSubtotal(total)
     }
 
-    // console.log('filtered products :D', filteredProducts)
+    console.log('filtered products :D', filteredProducts)
 
+    // console.log('HELLO')
     // console.log('TOTALLLL', +total)
 
     const quantify = (productId) => {
@@ -90,16 +95,26 @@ const Cart = () => {
         return quantity
     }
 
+    // useEffect(() => {
+
+    // dispatch(fetchAllProducts());
+    // dispatch(fetchOneOrder(user?.id));
+
+    // if (orderObj && Object.values(orderObj).length > 0) {
+    //     setOrderProducts(orderObj?.order?.orderProducts)
+    // }
+
+    // }, [dispatch, JSON.stringify(orderObj)]);
+
+
+
     useEffect(() => {
-
-        dispatch(fetchAllProducts());
+        console.log('NOOOOOOOOOOOOOOO')
         dispatch(fetchOneOrder(user?.id));
+        dispatch(fetchOnePet(user?.id))
+        dispatch(fetchAllProducts());
 
-        if (orderObj && Object.values(orderObj).length > 0) {
-            setOrderProducts(orderObj?.order?.orderProducts)
-        }
-
-    }, [dispatch, user?.id, JSON.stringify(orderObj)]);
+    }, [dispatch]);
 
 
     const handleIncreaseQuantityInCart = (updateProduct) => {
@@ -176,6 +191,19 @@ const Cart = () => {
                                                         onClick={() => handleIncreaseQuantityInCart(product)}>
                                                         +
                                                     </div>
+                                                    {/* <form>
+                                                        <label>
+                                                            Qty
+                                                        </label>
+                                                        <input
+                                                            type='number'
+                                                            min={1}
+                                                            max={50}
+                                                            // value={}
+                                                            placeholder={quantify(product.id)}
+                                                            onChange={(e) => totalItems += e.target.value}
+                                                        />
+                                                    </form> */}
                                                 </div>
                                             </div>
                                         </div>

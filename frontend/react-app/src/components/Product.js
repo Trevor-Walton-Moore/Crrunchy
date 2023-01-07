@@ -15,19 +15,26 @@ const Product = () => {
     const product = useSelector(state => state.product[productId]);
     const orderObj = useSelector(state => state.order);
     const isOrder = useSelector(state => state.order?.order);
-    const orderId = isOrder?.id
+    // const orderId = isOrder?.id
 
     const [quantity, setQuantity] = useState('');
 
     console.log('quantoty?!?!?', quantity)
     console.log('order OBJ', orderObj)
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        dispatch(fetchOneOrder(user?.id));
-        dispatch(fetchAllProducts());
+    //     dispatch(fetchOneOrder(user?.id));
+    //     dispatch(fetchAllProducts());
 
-    }, [dispatch, user?.id]);
+    // }, [dispatch, user?.id]);
+
+    // useEffect(() => {
+
+        // dispatch(fetchOneOrder(user?.id));
+        // dispatch(fetchAllProducts());
+
+    // }, [dispatch]);
 
     useEffect(() => {
         // console.log('hellooooooo?????', orderObj)
@@ -35,18 +42,20 @@ const Product = () => {
             const productInOrderProducts = []
             if (orderObj?.order && Object.values(orderObj?.order).length > 0) {
                 // console.log('wuuuuuut')
+                if (orderObj?.order?.orderProducts && Object.values(orderObj?.order?.orderProducts).length > 0) {
 
-                Object.values(orderObj?.order?.orderProducts).forEach(product => {
-                    console.log('orderProduct.productId ', +product.productId === +productId, "productId???")
-                    if (+product.productId === +productId) {
-                        productInOrderProducts.push(product)
-                        console.log('just opush product to rray: ', productInOrderProducts)
-                    }
-                    else return null
-                })
-                console.log('productInOrderProducts', productInOrderProducts)
-                if (productInOrderProducts) setQuantity(productInOrderProducts[0]?.quantity)
-                // setQuantity(orderObj?.order?.orderProducts[productId]?.quantity)
+                    Object.values(orderObj?.order?.orderProducts).forEach(product => {
+                        console.log('orderProduct.productId ', +product.productId === +productId, "productId???")
+                        if (+product.productId === +productId) {
+                            productInOrderProducts.push(product)
+                            console.log('just opush product to rray: ', productInOrderProducts)
+                        }
+                        else return null
+                    })
+                    console.log('productInOrderProducts', productInOrderProducts)
+                    if (productInOrderProducts) setQuantity(productInOrderProducts[0]?.quantity)
+                    // setQuantity(orderObj?.order?.orderProducts[productId]?.quantity)
+                }
             }
         }
     }, [JSON.stringify(orderObj)]);
@@ -58,14 +67,14 @@ const Product = () => {
     const handleAddToCart = () => {
 
         if (!user) {
-          return history.push('/login')
+            return history.push('/login')
         }
 
-        if (orderId) {
+        if (isOrder?.id) {
             console.log('the order was not empty O_o')
             if (quantity) {
                 let updatedOrder = {
-                    orderId,
+                    orderId: isOrder?.id,
                     productId,
                     quantity: quantity + 1
                 }
@@ -75,7 +84,7 @@ const Product = () => {
             else {
                 console.log('there is not a quantity O_o')
                 let updatedOrder = {
-                    orderId,
+                    orderId: isOrder?.id,
                     productId,
                     quantity: 1
                 }
@@ -85,6 +94,7 @@ const Product = () => {
         else {
             console.log('the order was empty O_o')
             dispatch(fetchCreateOrder(productId))
+            dispatch(fetchOneOrder(user?.id))
         };
     }
 
