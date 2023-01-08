@@ -14,7 +14,7 @@ order_routes = Blueprint("cart", __name__)
 @order_routes.route("/<int:user_id>")
 @login_required
 def order_index(user_id):
-    order = Order.query.filter(Order.user_id == user_id).one()
+    order = Order.query.filter(Order.user_id == user_id).order_by(Order.id.desc()).first()
     print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER', order.to_dict())
     order_products = OrdersProducts.query.filter(OrdersProducts.order_id == order.to_dict()['id']).all()
     order_products_to_dict = [order_product.to_dict() for order_product in order_products]

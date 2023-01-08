@@ -5,7 +5,7 @@
 {/* shopping cart */}
 <i class="fa-solid fa-cart-shopping"/>
 
-{/* arrow-right */}
+{/* shipping truck */}
 <i class="fa-solid fa-truck-arrow-right"/>
 
 {/* edit pencil */}

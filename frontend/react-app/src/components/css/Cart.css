@@ -31,7 +31,7 @@
     background-color: rgb(255, 255, 255);
     border-radius: 8px;
     width: 28vw;
-    height: 35vh;
+    height: 172px;
     margin-top: 20px;
     border: 1px rgb(238, 238, 238) solid;
     padding-top: 22px;
@@ -93,7 +93,7 @@
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 30px;
     height: 30px;
     border-radius: 8px;
@@ -122,10 +122,15 @@
 }
 
 .checkout-shipping {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: lighter;
     margin: 20px auto 20px auto;
     width: 196px;
+}
+
+.fa-truck-arrow-right {
+    font-size: 16px;
+    margin-left: 5px;
 }
 
 .place-order-button {

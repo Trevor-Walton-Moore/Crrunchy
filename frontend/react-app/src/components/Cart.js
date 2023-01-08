@@ -110,9 +110,9 @@ const Cart = () => {
 
     useEffect(() => {
         console.log('NOOOOOOOOOOOOOOO')
-        dispatch(fetchOneOrder(user?.id));
         dispatch(fetchOnePet(user?.id))
         dispatch(fetchAllProducts());
+        dispatch(fetchOneOrder(user?.id));
 
     }, [dispatch]);
 
@@ -182,14 +182,14 @@ const Cart = () => {
                                                 <div className='quantity-container'>
                                                     <div className='quantityMinusSymbol'
                                                         onClick={() => handleDecreaseQuantityInCart(product)}>
-                                                        -
+                                                        <i class="fa-solid fa-minus" />
                                                     </div>
                                                     <div className='quantity'>
                                                         {quantify(product.id)}
                                                     </div>
                                                     <div className='quantityPlusSymbol'
                                                         onClick={() => handleIncreaseQuantityInCart(product)}>
-                                                        +
+                                                        <i class="fa-solid fa-plus"/>
                                                     </div>
                                                     {/* <form>
                                                         <label>
@@ -224,6 +224,7 @@ const Cart = () => {
                         </div>
                         <div className='checkout-shipping'>
                             Tax & shipping is on the house!
+                            <i class="fa-solid fa-truck-arrow-right"/>
                         </div>
                         <div className='place-order-button'
                             onClick={() => handleDeleteOrder(orderObj?.order?.id)}>
