@@ -59,7 +59,7 @@ function Welcome() {
                         alt='pet-avatar' />
                 </div>
                 <div className='pet-prompt'>
-                    {`Welcome to the Chrunchy pack, ${petName}!`}
+                    {`Welcome to the Crunchy pack, ${petName}!`}
                 </div>
                 <form>
                     <div className='sub-text'>
