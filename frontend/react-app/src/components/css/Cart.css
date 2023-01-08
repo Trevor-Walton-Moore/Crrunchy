@@ -177,6 +177,32 @@
     object-fit: contain;
 }
 
+.coming-soon-image-container {
+    width: 500px;
+    height: fit-content;
+    margin-right: 20px;
+}
+
+.coming-soon-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
+.the-404-image-container {
+    width: 500px;
+    height: fit-content;
+    margin-right: 20px;
+}
+
+.the-404-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
 .oops {
     font-size: 40px;
     font-weight: bolder;

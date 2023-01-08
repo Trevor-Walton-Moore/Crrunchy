@@ -5,10 +5,10 @@ const ComingSoon = () => {
 
     return (
         <div className='empty-cart-container'>
-            <div className='dog-in-box-image-container'>
+            <div className='coming-soon-image-container'>
                 <img
-                    className='dog-in-box-image'
-                    src={'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672905198/Crunchy%20images/dog-in-box_akinfp.jpg'}
+                    className='coming-soon-image'
+                    src={'https://res.cloudinary.com/dfrj03hsi/image/upload/v1673212892/Crunchy%20images/oops_por3f4.png'}
                     alt='doggo' />
             </div>
             <div>

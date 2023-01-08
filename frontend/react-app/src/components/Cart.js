@@ -184,8 +184,8 @@ const Cart = () => {
                                                         onClick={() => handleDecreaseQuantityInCart(product)}>
                                                         <i class="fa-solid fa-minus" />
                                                     </div>
-                                                    <div style={{'display': 'flex', 'margin': '0px 15px 0px 15px'}}>
-                                                    <small>Qty</small>
+                                                    <div style={{'display': 'flex', 'margin': '0px 15px 0px 15px', 'align-items': 'center'}}>
+                                                    <small style={{'height': 'fit-content'}}>Qty</small>
                                                     <div className='quantity'>
                                                         {quantify(product.id)}
                                                     </div>
