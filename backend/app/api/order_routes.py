@@ -15,7 +15,7 @@ order_routes = Blueprint("cart", __name__)
 @login_required
 def order_index(user_id):
     order = Order.query.filter(Order.user_id == user_id).order_by(Order.id.desc()).first()
-    print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER', order.to_dict())
+    # print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER', order.to_dict())
     order_products = OrdersProducts.query.filter(OrdersProducts.order_id == order.to_dict()['id']).all()
     order_products_to_dict = [order_product.to_dict() for order_product in order_products]
     # print('UUUUUUUUUUUUUUUUUUUUUUUUUUUU ORDER_PRODUCTSSSS', order_products_to_dict)
@@ -74,13 +74,13 @@ def update_order():
     user = current_user.to_dict()
     form = OrdersProductsForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("-00-0-00-0-0-0--0--0 FORM", form.data)
+    # print("-00-0-00-0-0-0--0--0 FORM", form.data)
 
     if form.validate_on_submit():
 
-        print('did the cart updated validate???!')
+        # print('did the cart updated validate???!')
 
-        print('######################## product Id from form', form.data['productId'])
+        # print('######################## product Id from form', form.data['productId'])
 
         filters = [OrdersProducts.order_id == form.data['orderId'], OrdersProducts.product_id == form.data['productId']]
 
@@ -118,7 +118,7 @@ def update_order():
 
         order_products_to_dict = [order_product.to_dict() for order_product in order_products]
 
-        print('__________________WHADDAP ORDEER PRODUCTS', order_products_to_dict)
+        # print('__________________WHADDAP ORDEER PRODUCTS', order_products_to_dict)
 
         order = Order.query.filter(Order.user_id==user['id']).order_by(Order.id.desc()).first()
 

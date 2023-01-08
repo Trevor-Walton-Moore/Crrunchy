@@ -72,8 +72,13 @@
 }
 
 .quantity-container {
+    border: 1px rgba(194, 194, 194, 0.57) solid;
+    width: fit-content;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
     position: relative;
-    top: 140px;
+    top: 120px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -82,8 +87,8 @@
 
 .quantityMinusSymbol {
     font-weight: lighter;
-    font-size: 34px;
-    margin: 0px 8px 4px 0px;
+    font-size: 22px;
+    /* margin: 0px 8px 4px 0px; */
     cursor: pointer;
 }
 
@@ -92,8 +97,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 20px;
     /* border: 1px solid black; */
+
     width: 30px;
     height: 30px;
     border-radius: 8px;
@@ -101,8 +107,8 @@
 
 .quantityPlusSymbol {
     font-weight: lighter;
-    font-size: 24px;
-    margin: 0px 0px 3px 8px;
+    font-size: 20px;
+    /* margin: 0px 0px 3px 8px; */
     cursor: pointer;
 }
 

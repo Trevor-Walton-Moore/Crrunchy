@@ -109,7 +109,7 @@ const Cart = () => {
 
 
     useEffect(() => {
-        console.log('NOOOOOOOOOOOOOOO')
+        // console.log('NOOOOOOOOOOOOOOO')
         dispatch(fetchOnePet(user?.id))
         dispatch(fetchAllProducts());
         dispatch(fetchOneOrder(user?.id));
@@ -184,8 +184,11 @@ const Cart = () => {
                                                         onClick={() => handleDecreaseQuantityInCart(product)}>
                                                         <i class="fa-solid fa-minus" />
                                                     </div>
+                                                    <div style={{'display': 'flex', 'margin': '0px 15px 0px 15px'}}>
+                                                    <small>Qty</small>
                                                     <div className='quantity'>
                                                         {quantify(product.id)}
+                                                    </div>
                                                     </div>
                                                     <div className='quantityPlusSymbol'
                                                         onClick={() => handleIncreaseQuantityInCart(product)}>
@@ -231,33 +234,33 @@ const Cart = () => {
                             Place Order
                         </div>
                     </div>
-                </div>
+                </div >
             ) :
-                <div className='empty-cart-container'>
-                    <div className='dog-in-box-image-container'>
-                        <img
-                            className='dog-in-box-image'
-                            src={'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672905198/Crunchy%20images/dog-in-box_akinfp.jpg'}
-                            alt='doggo' />
-                    </div>
-                    <div>
-                        <div className='oops'>
-                            Oops!
-                        </div>
-                        <div>
-                            Your cart is empty! Let's fix that...
-                        </div>
-                        <div className='continue-shopping-div'>
-                            <NavLink
-                                className='continue-shopping-link'
-                                to='/'>
-                                Continue Shopping
-                            </NavLink>
-                        </div>
-                    </div>
-                </div>
+<div className='empty-cart-container'>
+    <div className='dog-in-box-image-container'>
+        <img
+            className='dog-in-box-image'
+            src={'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672905198/Crunchy%20images/dog-in-box_akinfp.jpg'}
+            alt='doggo' />
+    </div>
+    <div>
+        <div className='oops'>
+            Oops!
+        </div>
+        <div>
+            Your cart is empty! Let's fix that...
+        </div>
+        <div className='continue-shopping-div'>
+            <NavLink
+                className='continue-shopping-link'
+                to='/'>
+                Continue Shopping
+            </NavLink>
+        </div>
+    </div>
+</div>
             }
-            {/* <div>
+{/* <div>
             </div> */}
         </div >
     );
