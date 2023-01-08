@@ -29,12 +29,11 @@ const Product = () => {
 
     // }, [dispatch, user?.id]);
 
-    // useEffect(() => {
+    useEffect(() => {
 
-        // dispatch(fetchOneOrder(user?.id));
-        // dispatch(fetchAllProducts());
+        dispatch(fetchAllProducts());
 
-    // }, [dispatch]);
+    }, [dispatch]);
 
     useEffect(() => {
         // console.log('hellooooooo?????', orderObj)
@@ -101,20 +100,26 @@ const Product = () => {
     return (
         // (sessionUser) &&
         <div className="product-page-container">
-            <div>
-                <div className="product-page-image-container">
-                    <img
-                        src={product.productImage}
-                        className='product-page-image'
-                        alt='preview' />
-                </div>
+            <div className="product-page-image-container">
+                <img
+                    src={product.productImage}
+                    className='product-page-image'
+                    alt='preview' />
             </div>
-            <div className=''>
+            <div className='product-details-container'>
                 <div className='product-page-name'>
                     {product.name}
                 </div>
-                <div className='product-price'>
+                <div className='product-price product-page-price'>
                     ${product.price}
+                </div>
+                <div className='product-page-description'>
+                    {product.description}
+                </div>
+            </div>
+            <div className='add-to-cart-container'>
+                <div className='in-stock'>
+                    In Stock
                 </div>
                 <NavLink
                     onClick={handleAddToCart}
@@ -123,6 +128,16 @@ const Product = () => {
                     <div
                         className='add-to-cart-button'>
                         Add to Cart
+                    </div>
+                </NavLink>
+                <NavLink
+                    to="/coming-soon"
+                    className='autoship-link'>
+                    <div
+                        className='autoship-button'>
+                        Start&nbsp;
+                        {/* <div className='autoship' /> */}
+                        Autoship
                     </div>
                 </NavLink>
             </div>
