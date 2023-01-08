@@ -88,6 +88,10 @@
     padding-top: 10px;
 }
 
+.pet-left-and-right-container {
+    display: flex
+}
+
 .pet-name-details-menu-container {
     width: 304px;
     padding-left: 32px;
@@ -203,8 +207,14 @@
 .line-H {
     /* padding-top: 20px; */
     border-bottom: 1px solid rgba(75, 75, 75, 0.645);
-    width: 250px;
+    width: 269px;
     margin-top: 20px;
+}
+
+.line-H-detail-page {
+    border-bottom: 2px solid rgba(223, 223, 223, 0.645);
+    width: 62vw;
+    /* margin-bottom: 20px; */
 }
 
 .line-V {
@@ -335,4 +345,30 @@
 .delete-profile:hover {
     border: transparent 2px solid;
     background-color: rgba(193, 62, 62, 0.297);
+}
+
+.all-pet-details-container {
+    position: relative;
+    bottom: 30px;
+}
+
+.detail-page-title {
+    /* margin-top: 20px; */
+}
+
+.detail-page-detail-label-container {
+    margin-top: 30px;
+}
+
+.detail-page-label {
+    font-weight: lighter;
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    margin: 20px 0px 20px 0px;
+}
+
+.detail-page-detail {
+    font-weight: lighter;
+    font-size: 14px;
+    color: rgb(77, 77, 77);
 }

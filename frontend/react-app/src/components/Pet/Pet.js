@@ -105,91 +105,148 @@ function Pet() {
             </NavLink>
           </div>
         </div>
-        <div className="pet-name-details-menu-container">
-          <div className="pet-name">{pet.name}</div>
-          <div className="pet-details-menu-container">
-            <div style={{ 'display': 'flex', 'flex-direction': 'column' }}>
+        <div className='pet-left-and-right-container'>
+          <div className='pet-name-details-menu-container'>
+            <div className="pet-name">{pet.name}</div>
+            <div className="pet-details-menu-container">
+              <div style={{ 'display': 'flex', 'flex-direction': 'column' }}>
 
-              <div className='pet-details-container'>
-                {
-                  pet.celebrationDay === "Birthday" &&
-                  <div style={{ 'display': 'flex' }}>
-                    <div className="pet-detail-container">
+                <div className='pet-details-container'>
+                  {
+                    pet.celebrationDay === "Birthday" &&
+                    <div style={{ 'display': 'flex' }}>
+                      <div className="pet-detail-container">
+                        <div className="detail">{petDateObj['month']}&nbsp;{petDateObj['day']}</div>
+                        <div className="detail-label">Birthday</div>
+                      </div>
+                      <div className="line-V" />
+                      <div className="pet-detail-container">
+                        <div className="detail">{ageYear}&nbsp;Yr</div>
+                        <div className="detail-label">Age</div>
+                      </div>
+                    </div>
+                  }
+                  {
+                    pet.celebrationDay === "Adoption Day" &&
+                    <span className="pet-detail-container">
                       <div className="detail">{petDateObj['month']}&nbsp;{petDateObj['day']}</div>
-                      <div className="detail-label">Birthday</div>
-                    </div>
-                    <div className="line-V"></div>
-                    <div className="pet-detail-container">
-                      <div className="detail">{ageYear}&nbsp;Yr</div>
-                      <div className="detail-label">Age</div>
-                    </div>
-                  </div>
-                }
-                {
-                  pet.celebrationDay === "Adoption Day" &&
+                      <div className="detail-label">Adoption Day</div>
+                    </span>
+                  }
+                  <div className="line-V" />
                   <span className="pet-detail-container">
-                    <div className="detail">{petDateObj['month']}&nbsp;{petDateObj['day']}</div>
-                    <div className="detail-label">Adoption Day</div>
+                    <div className="detail">{pet.weight}&nbsp;lbs</div>
+                    <div className="detail-label">Weight</div>
                   </span>
-                }
-                <span className="line-V"></span>
-                <span className="pet-detail-container">
-                  <div className="detail">{pet.weight}&nbsp;lbs</div>
-                  <div className="detail-label">Weight</div>
-                </span>
+                </div>
+                <div className="line-H" />
               </div>
-              <div className="line-H"></div>
+              <div className='pet-menu'>
+                <NavLink
+                  className="pet-feature"
+                  to={`/coming-soon`}>
+                  <div className='icon-and-text'>
+                    <div class="feature-icon-container">
+                      <i class="fa-solid fa-paw feature-icon" />
+                    </div>
+                    <span className='feature-text'>
+                      Overview
+                    </span>
+                  </div>
+                </NavLink>
+                <NavLink
+                  className="pet-feature"
+                  to={`/coming-soon`}>
+                  <div className='icon-and-text'>
+                    <div class="feature-icon-container">
+                      <i class="fa-solid fa-prescription-bottle-medical feature-icon" />
+                    </div>
+                    <span className='feature-text'>
+                      Prescriptions
+                    </span>
+                  </div>
+                </NavLink>
+                <NavLink
+                  className="pet-feature"
+                  to={`/coming-soon`}>
+                  <div className='icon-and-text'>
+                    <div class="feature-icon-container">
+                      <i class="fa-solid fa-heart feature-icon" />
+                    </div>
+                    <span className='feature-text'>
+                      Favorites
+                    </span>
+                  </div>
+                </NavLink>
+                <NavLink
+                  className="pet-feature-details"
+                  to={`/coming-soon`}>
+                  <div className='icon-and-text'>
+                    <div class="feature-icon-container">
+                      <i class="fa-solid fa-clipboard-list" />
+                    </div>
+                    <span className='feature-text'>
+                      Details
+                    </span>
+                  </div>
+                </NavLink>
+                <div className="line-H" />
+              </div>
             </div>
-            <div className='pet-menu'>
-              <NavLink
-                className="pet-feature"
-                to={`/coming-soon`}>
-                <div className='icon-and-text'>
-                  <div class="feature-icon-container">
-                    <i class="fa-solid fa-paw feature-icon" />
-                  </div>
-                  <span className='feature-text'>
-                    Overview
-                  </span>
+          </div>
+          <div className='all-pet-details-container'>
+            <div className='pet-name detail-page-title'>
+              Details
+            </div>
+            <div className='detail-page-detail-label-container'>
+              <div className='detail-page-detail-label'>
+                <div className='detail-page-label'>
+                  Breed
                 </div>
-              </NavLink>
-              <NavLink
-                className="pet-feature"
-                to={`/coming-soon`}>
-                <div className='icon-and-text'>
-                  <div class="feature-icon-container">
-                    <i class="fa-solid fa-prescription-bottle-medical feature-icon" />
-                  </div>
-                  <span className='feature-text'>
-                    Prescriptions
-                  </span>
+                <div className='detail-page-detail'>
+                  {pet.breed}
                 </div>
-              </NavLink>
-              <NavLink
-                className="pet-feature"
-                to={`/coming-soon`}>
-                <div className='icon-and-text'>
-                  <div class="feature-icon-container">
-                    <i class="fa-solid fa-heart feature-icon" />
-                  </div>
-                  <span className='feature-text'>
-                    Favorites
-                  </span>
+              </div>
+              <div className="line-H-detail-page" />
+              <div className='detail-page-detail-label'>
+                <div className='detail-page-label'>
+                  Weight
                 </div>
-              </NavLink>
-              <NavLink
-                className="pet-feature-details"
-                to={`/coming-soon`}>
-                <div className='icon-and-text'>
-                  <div class="feature-icon-container">
-                    <i class="fa-solid fa-clipboard-list" />
-                  </div>
-                  <span className='feature-text'>
-                    Details
-                  </span>
+                <div className='detail-page-detail'>
+                  {`${pet.weight} lbs`}
                 </div>
-              </NavLink>
-              <div className="line-H"></div>
+              </div>
+              <div className="line-H-detail-page" />
+              <div className='detail-page-detail-label'>
+                <div className='detail-page-label'>
+                  Gender
+                </div>
+                <div className='detail-page-detail'>
+                  {pet.gender}
+                </div>
+              </div>
+              <div className="line-H-detail-page" />
+              {pet.celebrationDay === "Birthday" &&
+                <div className='detail-page-detail-label'>
+                  <div className='detail-page-label'>
+                    Birthday
+                  </div>
+                  <div className='detail-page-detail'>
+                    {petDateObj['date']}
+                  </div>
+                </div>
+              }
+              {pet.celebrationDay === "Adoption Day" &&
+                <div className='detail-page-detail-label'>
+                  <div className='detail-page-label'>
+                    Adoption Day
+                  </div>
+                  <div className='detail-page-detail'>
+                    {petDateObj['date']}
+                  </div>
+                </div>
+              }
+              <div className="line-H-detail-page" />
             </div>
           </div>
         </div>
