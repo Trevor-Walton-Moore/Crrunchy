@@ -21,9 +21,8 @@ const updatePet = (pet) => ({
     pet,
 });
 
-export const destroyPet = (petId) => ({
+export const destroyPet = () => ({
     type: DESTROY_PET,
-    petId
 });
 
 // --- THUNKS --- //
@@ -83,9 +82,14 @@ export const fetchDestroyPet = (petId) => async (dispatch) => {
     });
 
     if (response.ok) {
-        dispatch(destroyPet(petId));
+        dispatch(destroyPet());
         return;
     }
+};
+
+export const removePet = () => async (dispatch) => {
+    dispatch(destroyPet());
+    return;
 };
 
 // --- INITIAL STATE --- //
@@ -110,7 +114,7 @@ export default function reducer(state = initialState, action) {
             };
             return newState;
 
-            case CREATE_PET:
+        case CREATE_PET:
             console.log('ACTION', action)
             const createState = {
                 ...state, ...action.pet,
@@ -125,13 +129,13 @@ export default function reducer(state = initialState, action) {
         }
 
         case DESTROY_PET: {
-            console.log('ACTION', action)
-            let deleteState = {
-                ...state,
-                pet: {...action.pet},
-            };
+            console.log('destroy pet ACTION', action)
+            // let deleteState = {
+            //     ...state,
+            //     pet: { ...action.pet },
+            // };
             // console.log('DELETE state BEFORE', deleteState)
-            deleteState = {}
+            let deleteState = {}
             // console.log('DELETE state AFTER', deleteState)
             return deleteState;
         }

@@ -41,7 +41,8 @@ const UserDropdown = () => {
     }, [showMenu]);
 
     useEffect(() => {
-        if (Object.values(pet)?.length > 0) {
+        if (Object.values(pet)?.length > 0 && pet?.ownerId === user?.id) {
+            console.log('pet owner id and user id match')
             setPetId(pet?.id)
         }
 

@@ -119,11 +119,11 @@ function Pet() {
                         <div className="detail">{petDateObj['month']}&nbsp;{petDateObj['day']}</div>
                         <div className="detail-label">Birthday</div>
                       </div>
-                      <div className="line-V" />
+                      {/* <div className="line-V" />
                       <div className="pet-detail-container">
                         <div className="detail">{ageYear}&nbsp;Yr</div>
                         <div className="detail-label">Age</div>
-                      </div>
+                      </div> */}
                     </div>
                   }
                   {
