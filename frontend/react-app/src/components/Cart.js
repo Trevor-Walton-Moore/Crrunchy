@@ -26,10 +26,11 @@ const Cart = () => {
     // console.log('UMMMMMMMMmmmmmmmmmmmmmm order product', orderProducts)
     console.log('UMMMMMMMMmmmmmmmmmmmmmm order objec', orderObj)
     console.log('order user id', orderObj?.order?.userId, '===', 'user id', user?.id, '???: ', orderObj?.order?.userId === user?.id)
-    // if (user == null) {
-    //     console.log('NO USER IN CART, ABOUT TO SEND TO LOGIN PAGE')
-    //     history.push('/login')
-    // }
+
+    if (user?.id == null) {
+        console.log('NO USER IN CART, ABOUT TO SEND TO LOGIN PAGE')
+        history.push('/login')
+    }
 
     const filteredProducts = []
 
