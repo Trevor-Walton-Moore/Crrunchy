@@ -11,8 +11,8 @@ const UserDropdown = () => {
 
     const user = useSelector((state) => state.session.user);
     const pet = useSelector((state) => state.pet);
-    const orderId = useSelector((state) => state.order?.order?.id);
-    console.log('dropdown order id B) ', orderId)
+    const order = useSelector((state) => state.order?.order);
+    // const orderId = useSelector((state) => state.order?.order?.id);
 
     !pet.id && console.log(pet, "NO PET NO PETTTT")
 
@@ -20,6 +20,14 @@ const UserDropdown = () => {
 
     const [showMenu, setShowMenu] = useState(false);
     const [petId, setPetId] = useState('');
+    const [orderId, setOrderId] = useState('');
+
+    console.log('dropdown order id from use state B) ', orderId)
+
+    const openMenu = () => {
+        if (showMenu) return
+        else setShowMenu(true)
+    };
 
     useEffect(() => {
         if (!showMenu) { return }
@@ -32,17 +40,20 @@ const UserDropdown = () => {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
-    const openMenu = () => {
-        if (showMenu) return
-        else setShowMenu(true)
-    };
-
     useEffect(() => {
         if (Object.values(pet)?.length > 0) {
             setPetId(pet?.id)
         }
 
     }, [pet]);
+
+    useEffect(() => {
+        if (order && Object.values(order)?.length > 0) {
+            setOrderId(order?.id)
+        }
+
+    }, [user?.id]);
+
 
     return (
         <div className='dropdown-main'>
@@ -51,15 +62,15 @@ const UserDropdown = () => {
                 onClick={() => openMenu()}>
                 <div className='account-dropdown-button-children'>
                     <div>
-                    {
-                        user &&
-                        <div className='hi-user'>
-                            Hi, {`${user?.firstName}`}!
+                        {
+                            user &&
+                            <div className='hi-user'>
+                                Hi, {`${user?.firstName}`}!
+                            </div>
+                        }
+                        <div className='account'>
+                            account
                         </div>
-                    }
-                    <div className='account'>
-                        account
-                    </div>
                     </div>
                     <div className='dropdown-arrow'>
                         <i class="fa-solid fa-chevron-down" />
@@ -162,7 +173,7 @@ const UserDropdown = () => {
                         user &&
                         <span className='not-user'>
                             {`Not ${user.firstName}? `}
-                            <LogoutButton orderId={orderId}/>
+                            <LogoutButton orderId={orderId} />
                         </span>
                     }
                 </div>
