@@ -25,37 +25,41 @@ const Cart = () => {
 
     // console.log('UMMMMMMMMmmmmmmmmmmmmmm order product', orderProducts)
     console.log('UMMMMMMMMmmmmmmmmmmmmmm order objec', orderObj)
-
-    if (!user) {
-        history.push('/login')
-    }
+    console.log('order user id', orderObj?.order?.userId, '===', 'user id', user?.id, '???: ', orderObj?.order?.userId === user?.id)
+    // if (user == null) {
+    //     console.log('NO USER IN CART, ABOUT TO SEND TO LOGIN PAGE')
+    //     history.push('/login')
+    // }
 
     const filteredProducts = []
 
     let subtotal = 0;
     let totalItems = 0;
 
-    if (orderObj && Object.values(orderObj).length > 0) {
-        // console.log('HELLO')
+    if (orderObj?.order && orderObj?.order?.userId === user?.id) {
 
-        for (let i = 1; i < Object.values(allProductsObj).length + 1; i++) {
-            let product = allProductsObj[i];
+        if (orderObj && Object.values(orderObj).length > 0) {
+            // console.log('HELLO')
+
+            for (let i = 1; i < Object.values(allProductsObj).length + 1; i++) {
+                let product = allProductsObj[i];
 
 
-            if (orderObj?.order?.orderProducts && Object.values(orderObj?.order?.orderProducts).length > 0) {
-                console.log('HELLO')
-                for (let j = 1; j < Object.values(orderObj?.order?.orderProducts)?.length + 1; j++) {
-                    let orderProduct = orderObj?.order?.orderProducts[j];
-                    if (orderProduct.productId === product.id) {
-                        filteredProducts.push(product)
-                        console.log('orderproduct', orderProduct, 'product.price', product.price, 'orderProduct.quantity', orderProduct.quantity)
-                        subtotal += (product.price * orderProduct.quantity)
-                        totalItems += orderProduct.quantity
+                if (orderObj?.order?.orderProducts && Object.values(orderObj?.order?.orderProducts).length > 0) {
+                    console.log('HELLO')
+                    for (let j = 1; j < Object.values(orderObj?.order?.orderProducts)?.length + 1; j++) {
+                        let orderProduct = orderObj?.order?.orderProducts[j];
+                        if (orderProduct.productId === product.id) {
+                            filteredProducts.push(product)
+                            console.log('orderproduct', orderProduct, 'product.price', product.price, 'orderProduct.quantity', orderProduct.quantity)
+                            subtotal += (product.price * orderProduct.quantity)
+                            totalItems += orderProduct.quantity
+                        }
                     }
                 }
             }
+            // setSubtotal(total)
         }
-        // setSubtotal(total)
     }
 
     console.log('filtered products :D', filteredProducts)
@@ -94,28 +98,28 @@ const Cart = () => {
 
     // useEffect(() => {
 
-        // dispatch(fetchAllProducts());
-        // dispatch(fetchOneOrder(user?.id));
+    // dispatch(fetchAllProducts());
+    // dispatch(fetchOneOrder(user?.id));
 
-        // if (orderObj && Object.values(orderObj).length > 0) {
-            //     setOrderProducts(orderObj?.order?.orderProducts)
-            // }
+    // if (orderObj && Object.values(orderObj).length > 0) {
+    //     setOrderProducts(orderObj?.order?.orderProducts)
+    // }
 
-            // }, [dispatch, JSON.stringify(orderObj)]);
+    // }, [dispatch, JSON.stringify(orderObj)]);
 
 
 
-            useEffect(() => {
-                // console.log('NOOOOOOOOOOOOOOO')
-                dispatch(fetchOnePet(user?.id))
-                dispatch(fetchAllProducts());
-                dispatch(fetchOneOrder(user?.id));
+    useEffect(() => {
+        // console.log('NOOOOOOOOOOOOOOO')
+        dispatch(fetchOnePet(user?.id))
+        dispatch(fetchAllProducts());
+        dispatch(fetchOneOrder(user?.id));
 
     }, [dispatch]);
 
-    if (orderObj?.order && orderObj?.order?.userId !== user?.id) {
-        history.push('/')
-    }
+    // if (orderObj?.order && orderObj?.order?.userId !== user?.id) {
+    //     history.push('/')
+    // }
 
     const handleIncreaseQuantityInCart = (updateProduct) => {
 
@@ -148,8 +152,7 @@ const Cart = () => {
     return (
         <div className='cart-background'>
             {/* <div className=""> */}
-            {filteredProducts.length ? (
-
+            {filteredProducts?.length ? (
                 <div className='cart-container'>
                     <div className='cart-product-container'>
                         <div className='cart-product-header'>
@@ -184,15 +187,15 @@ const Cart = () => {
                                                         onClick={() => handleDecreaseQuantityInCart(product)}>
                                                         <i class="fa-solid fa-minus" />
                                                     </div>
-                                                    <div style={{'display': 'flex', 'margin': '0px 15px 0px 15px', 'align-items': 'center'}}>
-                                                    <small style={{'height': 'fit-content'}}>Qty</small>
-                                                    <div className='quantity'>
-                                                        {quantify(product.id)}
-                                                    </div>
+                                                    <div style={{ 'display': 'flex', 'margin': '0px 15px 0px 15px', 'align-items': 'center' }}>
+                                                        <small style={{ 'height': 'fit-content' }}>Qty</small>
+                                                        <div className='quantity'>
+                                                            {quantify(product.id)}
+                                                        </div>
                                                     </div>
                                                     <div className='quantityPlusSymbol'
                                                         onClick={() => handleIncreaseQuantityInCart(product)}>
-                                                        <i class="fa-solid fa-plus"/>
+                                                        <i class="fa-solid fa-plus" />
                                                     </div>
                                                     {/* <form>
                                                         <label>
@@ -227,7 +230,7 @@ const Cart = () => {
                         </div>
                         <div className='checkout-shipping'>
                             Tax & shipping is on the house!
-                            <i class="fa-solid fa-truck-arrow-right"/>
+                            <i class="fa-solid fa-truck-arrow-right" />
                         </div>
                         <div className='place-order-button'
                             onClick={() => handleDeleteOrder(orderObj?.order?.id)}>
@@ -235,32 +238,33 @@ const Cart = () => {
                         </div>
                     </div>
                 </div >
-            ) :
-<div className='empty-cart-container'>
-    <div className='dog-in-box-image-container'>
-        <img
-            className='dog-in-box-image'
-            src={'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672905198/Crunchy%20images/dog-in-box_akinfp.jpg'}
-            alt='doggo' />
-    </div>
-    <div>
-        <div className='oops'>
-            Oops!
-        </div>
-        <div>
-            Your cart is empty! Let's fix that...
-        </div>
-        <div className='continue-shopping-div'>
-            <NavLink
-                className='continue-shopping-link'
-                to='/'>
-                Continue Shopping
-            </NavLink>
-        </div>
-    </div>
-</div>
-            }
-{/* <div>
+            ) : null}
+            {(!filteredProducts?.length || (orderObj?.order && orderObj?.order?.userId !== user?.id)) ?
+                <div className='empty-cart-container'>
+                    <div className='dog-in-box-image-container'>
+                        <img
+                            className='dog-in-box-image'
+                            src={'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672905198/Crunchy%20images/dog-in-box_akinfp.jpg'}
+                            alt='doggo' />
+                    </div>
+                    <div>
+                        <div className='oops'>
+                            Oops!
+                        </div>
+                        <div>
+                            Your cart is empty! Let's fix that...
+                        </div>
+                        <div className='continue-shopping-div'>
+                            <NavLink
+                                className='continue-shopping-link'
+                                to='/'>
+                                Continue Shopping
+                            </NavLink>
+                        </div>
+                    </div>
+                </div>
+            : null}
+            {/* <div>
             </div> */}
         </div >
     );

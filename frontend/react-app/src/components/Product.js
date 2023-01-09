@@ -69,8 +69,8 @@ const Product = () => {
             return history.push('/login')
         }
 
-        if (isOrder?.id) {
-            console.log('the order was not empty O_o')
+        if (isOrder?.userId === user?.id) {
+            console.log('the order belongs to the current user O_o')
             if (quantity) {
                 let updatedOrder = {
                     orderId: isOrder?.id,
@@ -91,7 +91,7 @@ const Product = () => {
             }
         }
         else {
-            console.log('the order was empty O_o')
+            console.log('the order does not belong to the current user O_o')
             dispatch(fetchCreateOrder(productId))
             dispatch(fetchOneOrder(user?.id))
         };

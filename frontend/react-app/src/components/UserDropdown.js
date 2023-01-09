@@ -48,7 +48,8 @@ const UserDropdown = () => {
     }, [pet]);
 
     useEffect(() => {
-        if (order && Object.values(order)?.length > 0) {
+        if (order?.id && Object.values(order)?.length > 0 && order?.userId === user?.id) {
+            console.log('useEffect setting order Id because user id matches order user id .___.')
             setOrderId(order?.id)
         }
 

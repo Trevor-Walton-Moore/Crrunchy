@@ -15,6 +15,8 @@ const NavBar = () => {
   const pet = useSelector((state) => state.pet);
 
   pet.id && console.log(pet, "NAV PETtttt")
+
+  console.log(user, "NAV USER")
   // const orderObj = useSelector(state => state.order);
   // console.log('navbar orderObj', orderObj)
   // const orderSize = useSelector(state => {
@@ -54,14 +56,26 @@ const NavBar = () => {
         <div>
           <UserDropdown />
         </div>
-        <NavLink to='/cart'
-          className='cart-button'>
-          <i class="fa-solid fa-cart-shopping" />
-          &nbsp;&nbsp;&nbsp;cart
-          <div className='dropdown-arrow'>
-            <i class="fa-solid fa-chevron-down" />
-          </div>
-        </NavLink>
+
+        {user?.id ?
+          <NavLink to='/cart'
+            className='cart-button'>
+            <i class="fa-solid fa-cart-shopping" />
+            &nbsp;&nbsp;&nbsp;cart
+            <div className='dropdown-arrow'>
+              <i class="fa-solid fa-chevron-down" />
+            </div>
+          </NavLink>
+          :
+          <NavLink to='/login'
+            className='cart-button'>
+            <i class="fa-solid fa-cart-shopping" />
+            &nbsp;&nbsp;&nbsp;cart
+            <div className='dropdown-arrow'>
+              <i class="fa-solid fa-chevron-down" />
+            </div>
+          </NavLink>
+        }
       </div>
       {/* </div> */}
     </nav>
