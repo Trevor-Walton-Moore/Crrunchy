@@ -16,6 +16,7 @@ const LogoutButton = ({ orderId, petId }) => {
       dispatch(fetchRemoveOrder(orderId))
       console.log('DID THE DELETE ORDER THUNK AFTER LOGGONG OUTE')
     }
+    console.log('THE DELETE pet from state after logout')
       dispatch(removePet())
     history.push('/')
   };
