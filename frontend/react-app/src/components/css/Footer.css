@@ -1,0 +1,48 @@
+.Footer {
+    background-color: rgb(28, 73, 194);
+    height: 100px;
+    display: flex;
+    /* flex-direction: row; */
+    align-items: center;
+    margin-top: 40px;
+    justify-content: space-between;
+    font-family: sans-serif;
+    color: white;
+}
+
+.crunchy {
+    margin-left: 10px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: monospace;
+    font-weight: bolder;
+    font-size: 50px;
+}
+
+.footer-socials {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 30px;
+    margin-right: 20px;
+}
+
+.fa-github {
+    color: white;
+    transition: all .28s;
+    font-size: 50px;
+}
+
+.fa-github:hover {
+    color: rgb(155, 190, 255);
+}
+
+.fa-linkedin {
+    color: white;
+    transition: all .28s;
+    font-size: 50px;
+}
+
+.fa-linkedin:hover {
+    color: rgb(155, 190, 255);
+}
