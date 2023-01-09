@@ -45,7 +45,7 @@ function PetWeightForm() {
     }, []);
 
     return (
-        <>
+        <div className='create-pet-main'>
             <div className='pet-form-container'>
                 <div className='top-buttons'>
                     <div className='back-button'
@@ -102,7 +102,7 @@ function PetWeightForm() {
                     </button>
                 </form>
             </div>
-        </>
+        </div>
     );
 }
 

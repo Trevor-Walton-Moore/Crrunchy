@@ -94,7 +94,7 @@ function AdoptionDateForm() {
     }, []);
 
     return (
-        <>
+        <div className='create-pet-main'>
             <div className='pet-form-container'>
                 <div className='top-buttons'>
                     <span className='back-button'
@@ -144,7 +144,7 @@ function AdoptionDateForm() {
                     </button>
                 </form>
             </div>
-        </>
+        </div>
     );
 }
 
