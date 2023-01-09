@@ -1,5 +1,6 @@
 .product-page-container {
     display: flex;
+    height: 68vh;
     font-family: sans-serif;
     /* border: 2px rgba(255, 0, 0, 0.563) solid; */
     border-radius: 9px;

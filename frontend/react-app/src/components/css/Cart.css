@@ -2,7 +2,7 @@
     background-color: rgb(238, 238, 238);
     font-family: sans-serif;
     border: 1px transparent solid;
-    height: 100vh;
+    min-height: 76vh;
 }
 
 .cart-container {

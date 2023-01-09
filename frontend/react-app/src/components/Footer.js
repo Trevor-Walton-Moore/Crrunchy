@@ -7,11 +7,11 @@ const Footer = () => {
     return (
         <nav className='Footer'>
             {/* <div> */}
-            <NavLink to='/' exact={true} className='crunchy'>
+            <NavLink to='/' exact={true} className='crunchy-footer'>
                 Crunchy
             </NavLink>
             <div className='footer-socials'>
-                <div style={{'font-size': '18px'}}>Trevor Walton Moore</div>
+                <div style={{'font-size': '16px'}}>Trevor Walton Moore</div>
                 <div className=''>
                     <a href='https://github.com/Trevor-Walton-Moore'>
                         <i class="fa-brands fa-github" />
