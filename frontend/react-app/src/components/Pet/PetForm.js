@@ -293,7 +293,7 @@ const PetForm = ({ formType }) => {
     console.log('adopt day :D', adoptionDay)
 
     return (
-        <form onSubmit={handleSubmit} className='edit-pet-form create-pet-form'>
+        <form onSubmit={handleSubmit} className='edit-pet-form'>
             <div>
                 <div className='top-buttons'>
                     <span className='edit'>Edit</span>
@@ -308,7 +308,7 @@ const PetForm = ({ formType }) => {
                         </button>
                     </span>
                 </div>
-                <div>
+                <div className='icon-label-image'>
                     <label className='edit-label'>
                         Profile Icon
                         <div
@@ -362,7 +362,7 @@ const PetForm = ({ formType }) => {
                         Cover Photo (URL)
                         <input
                             required
-                            className="input bottom"
+                            className="edit-input bottom"
                             type='URL'
                             value={coverImage}
                             placeholder='Cover Photo'
@@ -374,7 +374,7 @@ const PetForm = ({ formType }) => {
                         Pet Name
                         <input
                             required
-                            className="input"
+                            className="edit-input"
                             type='text'
                             value={name}
                             minLength={3}
@@ -390,7 +390,7 @@ const PetForm = ({ formType }) => {
                                 onClick={displayBreedDropdown}
                                 required
                                 placeholder='Breed'
-                                className="breed-input"
+                                className="edit-breed-input"
                                 type='text'
                                 value={breed}
                                 onChange={updateBreed}
@@ -441,7 +441,7 @@ const PetForm = ({ formType }) => {
                         {'Weight(lbs)'}
                         <input
                             required
-                            className="input"
+                            className="edit-input"
                             type='number'
                             value={weight}
                             min='1'
@@ -495,7 +495,7 @@ const PetForm = ({ formType }) => {
                                 {'Birthday (MM/DD/YYYY)'}
                                 <input
                                     required
-                                    className="input"
+                                    className="edit-input"
                                     value={birthday}
                                     type="text"
                                     onFocus={(e) => (e.target.type = "date")}
@@ -523,7 +523,7 @@ const PetForm = ({ formType }) => {
                             <label className='edit-label'>
                                 {'Adoption Day (MM/DD/YYYY)'}
                                 <input
-                                    className="input"
+                                    className="edit-input"
                                     value={adoptionDay}
                                     type="text"
                                     onFocus={(e) => (e.target.type = "date")}
@@ -543,27 +543,29 @@ const PetForm = ({ formType }) => {
                         </div>
                     </div>
                 }
-                <span>
-                    <button className='submit-edit' type="submit">
-                        Save Changes
-                    </button>
-                </span>
-                {isHidden &&
-                <span>
-                    <button className='delete-profile' type="button"
-                        onClick={showDeleteConfirmation}>
-                        Delete Profile
-                    </button>
-                </span>
-                }
-                {!isHidden &&
+                <div className='edit-submit-delete-buttons'>
                     <span>
-                        <button className='delete-profile' type="button"
-                            onClick={handleDestroy}>
-                            Are you sure?
+                        <button className='submit-edit' type="submit">
+                            Save Changes
                         </button>
                     </span>
-                }
+                    {isHidden &&
+                        <span>
+                            <button className='delete-profile' type="button"
+                                onClick={showDeleteConfirmation}>
+                                Delete Profile
+                            </button>
+                        </span>
+                    }
+                    {!isHidden &&
+                        <span>
+                            <button className='delete-profile' type="button"
+                                onClick={handleDestroy}>
+                                Are you sure?
+                            </button>
+                        </span>
+                    }
+                </div>
             </div>
         </form >
     );

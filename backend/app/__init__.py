@@ -88,8 +88,8 @@ def react_root(path):
     or index.html requests
     """
     if path == 'favicon.ico':
-        # return app.send_from_directory('public', 'favicon.ico')
-        return app.send_from_directory('public', 'avatar_paw.ico')
+        return app.send_from_directory('public', 'favicon.ico')
+        # return app.send_from_directory('public', 'avatar_paw.ico')
     return app.send_static_file('index.html')
 
 
