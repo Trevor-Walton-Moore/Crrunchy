@@ -161,7 +161,7 @@ const UserDropdown = () => {
                         </NavLink>
                     }
                     {
-                        (!pet?.id || !user?.id) &&
+                        ((!pet?.id || !user?.id) || (pet?.ownerId !== user?.id)) &&
                         <NavLink
                             to={`/pet/new`}
                             exact={true}
