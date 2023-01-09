@@ -19,9 +19,6 @@ const Cart = () => {
     // const order = orderObj?.order;
     // const orderProducts = order?.orderProducts;
 
-    if (orderObj?.order && orderObj?.order?.userId !== user?.id) {
-        history.push('/')
-    }
 
     // const [orderProducts, setOrderProducts] = useState({});
     // const [subtotal, setSubtotal] = useState('');
@@ -97,25 +94,28 @@ const Cart = () => {
 
     // useEffect(() => {
 
-    // dispatch(fetchAllProducts());
-    // dispatch(fetchOneOrder(user?.id));
+        // dispatch(fetchAllProducts());
+        // dispatch(fetchOneOrder(user?.id));
 
-    // if (orderObj && Object.values(orderObj).length > 0) {
-    //     setOrderProducts(orderObj?.order?.orderProducts)
-    // }
+        // if (orderObj && Object.values(orderObj).length > 0) {
+            //     setOrderProducts(orderObj?.order?.orderProducts)
+            // }
 
-    // }, [dispatch, JSON.stringify(orderObj)]);
+            // }, [dispatch, JSON.stringify(orderObj)]);
 
 
 
-    useEffect(() => {
-        // console.log('NOOOOOOOOOOOOOOO')
-        dispatch(fetchOnePet(user?.id))
-        dispatch(fetchAllProducts());
-        dispatch(fetchOneOrder(user?.id));
+            useEffect(() => {
+                // console.log('NOOOOOOOOOOOOOOO')
+                dispatch(fetchOnePet(user?.id))
+                dispatch(fetchAllProducts());
+                dispatch(fetchOneOrder(user?.id));
 
     }, [dispatch]);
 
+    if (orderObj?.order && orderObj?.order?.userId !== user?.id) {
+        history.push('/')
+    }
 
     const handleIncreaseQuantityInCart = (updateProduct) => {
 
