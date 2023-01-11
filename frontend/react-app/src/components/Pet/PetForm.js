@@ -523,6 +523,7 @@ const PetForm = ({ formType }) => {
                             <label className='edit-label'>
                                 {'Adoption Day (MM/DD/YYYY)'}
                                 <input
+                                    required
                                     className="edit-input"
                                     value={adoptionDay}
                                     type="text"
@@ -535,7 +536,7 @@ const PetForm = ({ formType }) => {
                         <div>
                             {errors && errors.map((error, ind) => (
                                 <div
-                                    className='date-error'
+                                    className='date-error-edit'
                                     key={ind}>
                                     {error}
                                 </div>
