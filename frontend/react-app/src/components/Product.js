@@ -19,8 +19,8 @@ const Product = () => {
 
     const [quantity, setQuantity] = useState('');
 
-    console.log('quantoty?!?!?', quantity)
-    console.log('order OBJ', orderObj)
+    // console.log('quantoty?!?!?', quantity)
+    // console.log('order OBJ', orderObj)
 
     // useEffect(() => {
 
@@ -44,14 +44,14 @@ const Product = () => {
                 if (orderObj?.order?.orderProducts && Object.values(orderObj?.order?.orderProducts).length > 0) {
 
                     Object.values(orderObj?.order?.orderProducts).forEach(product => {
-                        console.log('orderProduct.productId ', +product.productId === +productId, "productId???")
+                        // console.log('orderProduct.productId ', +product.productId === +productId, "productId???")
                         if (+product.productId === +productId) {
                             productInOrderProducts.push(product)
-                            console.log('just opush product to rray: ', productInOrderProducts)
+                            // console.log('just opush product to rray: ', productInOrderProducts)
                         }
                         else return null
                     })
-                    console.log('productInOrderProducts', productInOrderProducts)
+                    // console.log('productInOrderProducts', productInOrderProducts)
                     if (productInOrderProducts) setQuantity(productInOrderProducts[0]?.quantity)
                     // setQuantity(orderObj?.order?.orderProducts[productId]?.quantity)
                 }
@@ -70,18 +70,18 @@ const Product = () => {
         }
 
         if (isOrder?.userId === user?.id) {
-            console.log('the order belongs to the current user O_o')
+            // console.log('the order belongs to the current user O_o')
             if (quantity) {
                 let updatedOrder = {
                     orderId: isOrder?.id,
                     productId,
                     quantity: quantity + 1
                 }
-                console.log('there is a quantity O_o')
+                // console.log('there is a quantity O_o')
                 dispatch(fetchUpdateOrder(updatedOrder))
             }
             else {
-                console.log('there is not a quantity O_o')
+                // console.log('there is not a quantity O_o')
                 let updatedOrder = {
                     orderId: isOrder?.id,
                     productId,
@@ -91,7 +91,7 @@ const Product = () => {
             }
         }
         else {
-            console.log('the order does not belong to the current user O_o')
+            // console.log('the order does not belong to the current user O_o')
             dispatch(fetchCreateOrder(productId))
             dispatch(fetchOneOrder(user?.id))
         };

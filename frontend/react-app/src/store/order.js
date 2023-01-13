@@ -60,7 +60,7 @@ export const fetchCreateOrder = (productId) => async (dispatch) => {
 };
 
 export const fetchUpdateOrder = (updatedOrder) => async (dispatch) => {
-    console.log('UPDARED ORDER BEFORE THUNKIN', updatedOrder)
+    // console.log('UPDARED ORDER BEFORE THUNKIN', updatedOrder)
     const response = await fetch(`/api/cart`, {
         method: "PUT",
         headers: {
@@ -71,7 +71,7 @@ export const fetchUpdateOrder = (updatedOrder) => async (dispatch) => {
 
     if (response.ok) {
         const payload = await response.json();
-        console.log('RES OK FROM UPADTTE & PAYOLAODR', payload)
+        // console.log('RES OK FROM UPADTTE & PAYOLAODR', payload)
         dispatch(updateOrder(payload));
         return payload;
     }
@@ -111,7 +111,7 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_ORDER:
-            console.log('LOAAD ORDER ACTION', action)
+            // console.log('LOAAD ORDER ACTION', action)
 
             const normalizedOrderProductsLoad = normalize(action.payload.orderProducts)
 
@@ -121,7 +121,7 @@ export default function reducer(state = initialState, action) {
             return newState;
 
         case CREATE_ORDER:
-            console.log('create order ACTION', action)
+            // console.log('create order ACTION', action)
 
             const normalizedOrderProductsCreate = normalize(action.payload.orderProducts)
 
@@ -134,23 +134,23 @@ export default function reducer(state = initialState, action) {
 
             const normalizedOrderProductsUpdate = normalize(action.payload.orderProducts)
 
-            console.log('normalized updated orderrr', normalizedOrderProductsUpdate)
+            // console.log('normalized updated orderrr', normalizedOrderProductsUpdate)
             const updateState = {
                 ...state, order: { ...action.payload.order, orderProducts: normalizedOrderProductsUpdate }
             };
-            console.log('updated state objecttt', updateState)
+            // console.log('updated state objecttt', updateState)
             return updateState;
         }
 
         case DELETE_ORDER: {
-            console.log('ACTION', action)
+            // console.log('ACTION', action)
             let deleteState = {
                 ...state,
                 order: { ...action.order },
             };
-            console.log('DELETE state BEFORE', deleteState)
+            // console.log('DELETE state BEFORE', deleteState)
             delete deleteState.order
-            console.log('DELETE state AFTER', deleteState)
+            // console.log('DELETE state AFTER', deleteState)
             return deleteState;
         }
         default:

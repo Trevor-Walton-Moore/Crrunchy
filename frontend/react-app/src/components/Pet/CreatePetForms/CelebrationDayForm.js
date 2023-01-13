@@ -12,7 +12,7 @@ function CelebrationDayForm() {
         petProfileIcon,
         petType
     } = usePet()
-    console.log(petCelebrationDay, "PET CelebrationDayyy")
+    // console.log(petCelebrationDay, "PET CelebrationDayyy")
 
     if(!petType) {
         history.push('/pet/new')

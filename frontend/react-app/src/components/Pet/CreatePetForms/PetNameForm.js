@@ -8,7 +8,7 @@ function PetNameForm() {
     const history = useHistory()
 
     const { petName, setPetName, petType } = usePet()
-    console.log(petName, "PET NAME")
+    // console.log(petName, "PET NAME")
 
     if(!petType) {
         history.push('/pet/new')

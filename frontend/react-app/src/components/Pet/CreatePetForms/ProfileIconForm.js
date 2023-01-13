@@ -9,7 +9,7 @@ function ProfileIconForm() {
     const history = useHistory()
 
     const { petProfileIcon, setPetProfileIcon, petBreed, petName, petType } = usePet()
-    console.log(petProfileIcon, "PET PROFILE ICON")
+    // console.log(petProfileIcon, "PET PROFILE ICON")
 
     if (!petType) {
         history.push('/pet/new')

@@ -21,7 +21,7 @@ const PetForm = ({ formType }) => {
         history.push(`/pet/${petId}`)
     }
 
-    console.log(pet, 'PET EDIT PET USE STATE')
+    // console.log(pet, 'PET EDIT PET USE STATE')
     const [errors, setErrors] = useState([]);
     const [type, setType] = useState(pet.type);
     const [name, setName] = useState(pet.name);
@@ -53,8 +53,8 @@ const PetForm = ({ formType }) => {
     const updateProfileIcon = (e) => setProfileIcon(e.target.value);
     const updateCoverImage = (e) => setCoverImage(e.target.value);
 
-    console.log(adoptionDay, '!Adoption day use state being updated!')
-    console.log(birthday, '!birthday day use state being updated!')
+    // console.log(adoptionDay, '!Adoption day use state being updated!')
+    // console.log(birthday, '!birthday day use state being updated!')
 
 
     useEffect(() => {
@@ -144,7 +144,7 @@ const PetForm = ({ formType }) => {
     }
 
     const convertPetDate = (date) => {
-        console.log('icky date', date)
+        // console.log('icky date', date)
         const petDate = new Date(date);
         const petMonth = (petDate.getMonth() + 1);
         const petDay = (petDate.getDate() + 1);
@@ -158,7 +158,7 @@ const PetForm = ({ formType }) => {
     // const updateDisplayAdoptionDay = (e) => setDisplayAdoptionDay(convertPetDate(e.target.value));
 
     const convertPetDateForComparison = (date) => {
-        console.log('icky date', date)
+        // console.log('icky date', date)
         const petDate = new Date(date);
         const petMonth = (petDate.getMonth() + 1);
         const petDay = (petDate.getDate());
@@ -203,7 +203,7 @@ const PetForm = ({ formType }) => {
         compareDate.setDate(compareDate.getDate() + 1);
         const petMonth = (petDate.getMonth() + 1);
         let petDay
-        console.log('@@@@@@@@@@@@@@@@@ pet date:', convertPetDateForComparison(petDate), '===', convertPetDateForComparison(compareDate), '??',
+        // console.log('@@@@@@@@@@@@@@@@@ pet date:', convertPetDateForComparison(petDate), '===', convertPetDateForComparison(compareDate), '??',
             convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate))
         if (convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate)) {
             petDay = petDate.getDate();
@@ -289,8 +289,8 @@ const PetForm = ({ formType }) => {
         };
     }, []);
 
-    console.log('birthday :D', birthday)
-    console.log('adopt day :D', adoptionDay)
+    // console.log('birthday :D', birthday)
+    // console.log('adopt day :D', adoptionDay)
 
     return (
         <form onSubmit={handleSubmit} className='edit-pet-form'>

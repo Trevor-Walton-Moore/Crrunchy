@@ -16,7 +16,7 @@ function PetBreedForm() {
     }
 
     const { petBreed, setPetBreed, petName, petType } = usePet()
-    console.log(petBreed, "PET BREED")
+    // console.log(petBreed, "PET BREED")
 
     if (!petType) {
         history.push('/pet/new')

@@ -13,14 +13,14 @@ function PetGenderForm() {
         petProfileIcon,
         petType
     } = usePet()
-    console.log(petGender, "PET Genderrr")
+    // console.log(petGender, "PET Genderrr")
 
     if(!petType) {
         history.push('/pet/new')
     }
 
     const handleSubmit = async (gender) => {
-        console.log('handle submit gender', gender)
+        // console.log('handle submit gender', gender)
         history.push('/pet/new/celebration-type')
     }
 

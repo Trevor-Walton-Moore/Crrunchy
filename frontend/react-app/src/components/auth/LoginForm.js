@@ -16,11 +16,11 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      console.log('login dispatch data: ', data)
+      // console.log('login dispatch data: ', data)
       setErrors(['Invalid data']);
     } else {
 
-      console.log('clearing pet state')
+      // console.log('clearing pet state')
       dispatch(removePet())
     }
   };
@@ -29,11 +29,11 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login('demo@aa.io', 'password'));
     if (data) {
-      console.log('login dispatch data: ', data)
+      // console.log('login dispatch data: ', data)
       setErrors(data);
     }
     else {
-      console.log('clearing pet state')
+      // console.log('clearing pet state')
       dispatch(removePet())
     }
   };

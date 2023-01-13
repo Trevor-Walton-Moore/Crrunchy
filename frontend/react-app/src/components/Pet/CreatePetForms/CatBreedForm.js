@@ -9,7 +9,7 @@ function CatBreedForm() {
     const history = useHistory()
 
     const { petBreed, setPetBreed, petName } = usePet()
-    console.log(petBreed, "PET BREED")
+    // console.log(petBreed, "PET BREED")
 
     // const updateBreed = (e) => setPetBreed(e.target.value);
 
@@ -52,7 +52,7 @@ function CatBreedForm() {
             obj['value'] = breedArr[i]
             normalizedBreeds.push(obj)
         }
-        return console.log(normalizedBreeds, "nOrMaLiZeD BREEEDS")
+        // return console.log(normalizedBreeds, "nOrMaLiZeD BREEEDS")
     }
 
     return (

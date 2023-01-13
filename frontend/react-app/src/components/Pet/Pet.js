@@ -17,7 +17,7 @@ function Pet() {
   const user = useSelector((state) => state.session.user);
   const pet = useSelector((state) => state.pet);
 
-  console.log('user', user, 'pet', pet)
+  // console.log('user', user, 'pet', pet)
 
   if (!user) {
     history.push('/login')

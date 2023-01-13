@@ -24,11 +24,11 @@ const Cart = () => {
     // const [subtotal, setSubtotal] = useState('');
 
     // console.log('UMMMMMMMMmmmmmmmmmmmmmm order product', orderProducts)
-    console.log('UMMMMMMMMmmmmmmmmmmmmmm order objec', orderObj)
-    console.log('order user id', orderObj?.order?.userId, '===', 'user id', user?.id, '???: ', orderObj?.order?.userId === user?.id)
+    // console.log('UMMMMMMMMmmmmmmmmmmmmmm order objec', orderObj)
+    // console.log('order user id', orderObj?.order?.userId, '===', 'user id', user?.id, '???: ', orderObj?.order?.userId === user?.id)
 
     if (user?.id == null) {
-        console.log('NO USER IN CART, ABOUT TO SEND TO LOGIN PAGE')
+        // console.log('NO USER IN CART, ABOUT TO SEND TO LOGIN PAGE')
         history.push('/login')
     }
 
@@ -47,12 +47,12 @@ const Cart = () => {
 
 
                 if (orderObj?.order?.orderProducts && Object.values(orderObj?.order?.orderProducts).length > 0) {
-                    console.log('HELLO')
+                    // console.log('HELLO')
                     for (let j = 1; j < Object.values(orderObj?.order?.orderProducts)?.length + 1; j++) {
                         let orderProduct = orderObj?.order?.orderProducts[j];
                         if (orderProduct.productId === product.id) {
                             filteredProducts.push(product)
-                            console.log('orderproduct', orderProduct, 'product.price', product.price, 'orderProduct.quantity', orderProduct.quantity)
+                            // console.log('orderproduct', orderProduct, 'product.price', product.price, 'orderProduct.quantity', orderProduct.quantity)
                             subtotal += (product.price * orderProduct.quantity)
                             totalItems += orderProduct.quantity
                         }
@@ -63,14 +63,14 @@ const Cart = () => {
         }
     }
 
-    console.log('filtered products :D', filteredProducts)
+    // console.log('filtered products :D', filteredProducts)
 
     // console.log('HELLO')
     // console.log('TOTALLLL', +total)
 
     const quantify = (productId) => {
-        console.log('quantifying, productId: ', productId)
-        console.log('quantifying, orderObj: ', orderObj)
+        // console.log('quantifying, productId: ', productId)
+        // console.log('quantifying, orderObj: ', orderObj)
         if (!orderObj || !Object.values(orderObj).length > 0) return null
 
         let quantity = '';
@@ -79,7 +79,7 @@ const Cart = () => {
 
             Object.values(orderObj?.orderProducts).forEach(product => {
                 if (+product.productId === +productId) {
-                    console.log('product.quantity', product.quantity)
+                    // console.log('product.quantity', product.quantity)
                     quantity = product.quantity
                 }
             })
@@ -89,7 +89,7 @@ const Cart = () => {
             Object.values(orderObj?.order?.orderProducts).forEach(product => {
 
                 if (+product.productId === +productId) {
-                    console.log('product.quantity', product.quantity)
+                    // console.log('product.quantity', product.quantity)
                     quantity = product.quantity
                 }
             })
@@ -129,7 +129,7 @@ const Cart = () => {
             productId: updateProduct.id,
             quantity: quantify(updateProduct.id) + 1
         }
-        console.log('adding more to cart O_o, updatedOrder: ', updatedOrder)
+        // console.log('adding more to cart O_o, updatedOrder: ', updatedOrder)
         dispatch(fetchUpdateOrder(updatedOrder))
     }
 
@@ -140,12 +140,12 @@ const Cart = () => {
             productId: updateProduct.id,
             quantity: quantify(updateProduct.id) - 1
         }
-        console.log('decreasing quantity in cart O_o, updatedOrder: ', updatedOrder)
+        // console.log('decreasing quantity in cart O_o, updatedOrder: ', updatedOrder)
         dispatch(fetchUpdateOrder(updatedOrder))
     }
 
     const handleDeleteOrder = (orderId) => {
-        console.log('order id to delete order :}', orderId)
+        // console.log('order id to delete order :}', orderId)
         dispatch(fetchDeleteOrder(orderId))
         history.push('/')
     }

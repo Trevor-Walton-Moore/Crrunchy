@@ -12,7 +12,7 @@ const Home = () => {
     const user = useSelector(state => state.session.user);
     const productsObj = useSelector((state) => state.product);
 
-    console.log('user in home page', user)
+    // console.log('user in home page', user)
 
     // console.log('productproductproductsss', productsObj)
 
