@@ -63,7 +63,8 @@ function AdoptionDateForm() {
         const data = await dispatch(fetchCreatePet(payload))
             .then((data) => {
                 // console.log('DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
-                if (data.errors) {
+                if (petAdoptionDate === '') setErrors(['Please enter a date'])
+                else if (data.errors) {
                     // console.log('error DATA', data)
                     const errArr = [data.errors]
 

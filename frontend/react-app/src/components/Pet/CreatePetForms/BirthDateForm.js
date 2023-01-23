@@ -20,7 +20,7 @@ function BirthDateForm() {
     } = usePet()
     // console.log(petBirthday, "PET BIRTHDAY")
 
-    if(!petType) {
+    if (!petType) {
         history.push('/pet/new')
     }
 
@@ -63,7 +63,8 @@ function BirthDateForm() {
         // console.log('the REEAL payload', payload)
         const data = await dispatch(fetchCreatePet(payload))
             .then((data) => {
-                if (data.errors) {
+                if (petBirthday === '') setErrors(['Please enter a date'])
+                else if (data.errors) {
                     // console.log('error DATA', data)
                     const errArr = [data.errors]
                     setErrors(errArr);
@@ -99,11 +100,11 @@ function BirthDateForm() {
                 <div className='top-buttons'>
                     <span className='back-button'
                         onClick={() => history.push('/pet/new/celebration-type')}>
-                        <i class="fa-solid fa-chevron-left"/>
+                        <i class="fa-solid fa-chevron-left" />
                     </span>
                     <span className='back-button close-button'
                         onClick={() => history.push('/')}>
-                        <i class="fa-solid fa-xmark"/>
+                        <i class="fa-solid fa-xmark" />
                     </span>
                 </div><div className='chosen-icon-container'>
                     <img
