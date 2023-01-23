@@ -204,7 +204,7 @@ const PetForm = ({ formType }) => {
         const petMonth = (petDate.getMonth() + 1);
         let petDay
         // console.log('@@@@@@@@@@@@@@@@@ pet date:', convertPetDateForComparison(petDate), '===', convertPetDateForComparison(compareDate), '??',
-            convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate))
+            // convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate))
         if (convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate)) {
             petDay = petDate.getDate();
         } else
@@ -499,7 +499,7 @@ const PetForm = ({ formType }) => {
                                     value={birthday}
                                     type="text"
                                     onFocus={(e) => (e.target.type = "date")}
-                                    onBlur={(e) => (e.target.type = "text")}
+                                    // onBlur={(e) => (e.target.type = "text")}
                                     // onClick={handleFirstClick}
                                     onChange={updateBirthday} />
                             </label>
@@ -528,7 +528,7 @@ const PetForm = ({ formType }) => {
                                     value={adoptionDay}
                                     type="text"
                                     onFocus={(e) => (e.target.type = "date")}
-                                    onBlur={(e) => (e.target.type = "text")}
+                                    // onBlur={(e) => (e.target.type = "text")}
                                     // onClick={handleFirstClick}
                                     onChange={updateAdoptionDay} />
                             </label>
