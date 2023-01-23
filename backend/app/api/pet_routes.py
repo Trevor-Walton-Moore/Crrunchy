@@ -38,7 +38,7 @@ def create_pet():
     print('FORM DATA----------', form.data, '-------)()(()(')
 
     if form.validate_on_submit():
-        print('CREATED PET VALIDATED')
+        # print('CREATED PET VALIDATED')
         new_pet = Pet(
             owner_id=owner['id'],
             type=form.data['type'],
@@ -52,7 +52,7 @@ def create_pet():
             adoption_day=form.data['adoptionDay'],
             cover_image=form.data['coverImage']
         )
-        print('THENEWPET', new_pet.to_dict())
+        # print('THENEWPET', new_pet.to_dict())
         db.session.add(new_pet)
         db.session.commit()
 
@@ -68,10 +68,10 @@ def update_pet(id):
     form = PetForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("-00-0-00-0-0-0--0--0 FORM", form.data)
+    # print("-00-0-00-0-0-0--0--0 FORM", form.data)
 
     if form.validate_on_submit():
-        print('did the updated validate???!')
+        print('******************* form validated')
         updated_pet = Pet.query.get(id)
 
         setattr(updated_pet, 'type', form.type.data)
@@ -87,9 +87,9 @@ def update_pet(id):
 
         db.session.add(updated_pet)
         db.session.commit()
-
+        print('pet', updated_pet.adoption_day, '-------------------================================================')
         return {'pet': updated_pet.to_dict()}, 201
-
+    print('%%%%%%%%%%%%%%%%%%%% VALIDATION ERRORS', validation_errors_to_error_messages(form.errors))
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 # Delete Pet

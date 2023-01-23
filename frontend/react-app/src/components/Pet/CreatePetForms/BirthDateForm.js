@@ -42,11 +42,11 @@ function BirthDateForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const petDate = new Date(birthday);
-        const petMonth = (petDate.getMonth() + 1)
-        const petDay = (petDate.getDate() + 1)
-        const petYear = (petDate.getFullYear())
-        const convertedPetDate = petMonth + "-" + petDay + "-" + petYear
+        // const petDate = new Date(birthday);
+        // const petMonth = (petDate.getMonth() + 1)
+        // const petDay = (petDate.getDate() + 1)
+        // const petYear = (petDate.getFullYear())
+        // const convertedPetDate = petMonth + "-" + petDay + "-" + petYear
         // console.log(convertedPetDate, "converted date")
 
         const payload = {
@@ -57,7 +57,7 @@ function BirthDateForm() {
             weight,
             gender,
             celebrationDay,
-            birthday: convertedPetDate,
+            birthday,
             coverImage: 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png',
         }
         // console.log('the REEAL payload', payload)
@@ -126,7 +126,7 @@ function BirthDateForm() {
 
                         placeholder='Birthday (MM/DD/YYYY)'
                         className="input"
-                        type='date'
+                        // type='date'
                         value={petBirthday}
                         onChange={updatePetBirthday} />
                     <div>

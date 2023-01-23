@@ -18,7 +18,7 @@ def seed_pets():
         name='Nova',
         type='Cat',
         celebration_day='Adoption Day',
-        birthday=datetime.datetime(2019, 8, 16),
+        adoption_day='8/16/2019',
         weight=11,
         breed='Snowshoe',
         gender="Male",

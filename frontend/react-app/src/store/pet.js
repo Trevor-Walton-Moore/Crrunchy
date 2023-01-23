@@ -70,7 +70,7 @@ export const fetchUpdatePet = (updatedPet) => async (dispatch) => {
 
     if (response.ok) {
         const updatedPet = await response.json();
-
+        // console.log('TTTTTTTTTTTTTTTTTTTTTTTT', updatedPet)
         dispatch(updatePet(updatedPet));
         return updatedPet;
     }

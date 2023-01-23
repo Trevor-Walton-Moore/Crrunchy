@@ -9,21 +9,34 @@ pet_types = ["Dog", "Cat"]
 genders = ["Female", "Male"]
 celebration_types = ["Birthday", "Adoption Day"]
 
+def adoption_date_check_format(form, field):
+    if form.data['celebrationDay'] == 'Birthday': return
+    date = field.data
+    if not date: return
+
+    try:
+        datetime.strptime(date, '%m-%d-%Y')
+    except:
+        pass
+        # raise ValidationError('Must be formated: MM/DD/YY')
+
 def adoption_date_check_future(form, field):
     if form.data['celebrationDay'] == 'Birthday': return
     date = field.data
     if not date: return
-    # print(")))))))))))))))))))))))) incoming date type: ", type(date), 'nowdate type: ', type(datetime.now().date()))
-    if date > datetime.now().date():
+    dateObj = datetime.strptime(date, '%m/%d/%Y').date()
+    # print(")))))))))))))))))))))))) incoming date: ", dateObj, 'vs now: ', datetime.now().date())
+    # print('################################## dateobj > now? ', dateObj > datetime.now().date())
+    if dateObj > datetime.now().date():
+        # print('##################################')
         raise ValidationError('Date cannot be in the future.')
 
 def birthday_date_check_future(form, field):
     if form.data['celebrationDay'] == 'Adoption Day': return
     date = field.data
-    if not date:
-        return print('NO DTATE UP IN HERE???????????')
-    # print(")))))))))))))))))))))))) incoming date: ", date, 'nowdate type: ', type(datetime.now().strftime('%m-%d-%Y')))
-    if date > datetime.now().date():
+    if not date: return
+    dateObj = datetime.strptime(date, '%m/%d/%Y').date()
+    if dateObj > datetime.now().date():
         raise ValidationError('Date cannot be in the future.')
 
 
@@ -48,6 +61,6 @@ class PetForm(FlaskForm):
     weight = IntegerField("Weight", validators=[DataRequired(), NumberRange(min=1, max=300)])
     gender = SelectField("Gender", choices=genders)
     celebrationDay = SelectField("Celebration Day", choices=celebration_types)
-    birthday = DateField("Birthday", format='%m-%d-%Y', validators=[birthday_date_check_future])
-    adoptionDay = DateField("Adoption Day", format='%m-%d-%Y', validators=[adoption_date_check_future])
+    birthday = StringField("Birthday", validators=[birthday_date_check_future])
+    adoptionDay = StringField("Adoption Day", validators=[adoption_date_check_format, adoption_date_check_future])
     coverImage = StringField("Cover Image")

@@ -198,20 +198,20 @@ const PetForm = ({ formType }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const petDate = birthday ? new Date(birthday) : new Date(adoptionDay);
-        const compareDate = birthday ? new Date(pet?.birthday) : new Date(pet?.adoptionDay);
-        compareDate.setDate(compareDate.getDate() + 1);
-        const petMonth = (petDate.getMonth() + 1);
-        let petDay
+        // const petDate = birthday ? new Date(birthday) : new Date(adoptionDay);
+        // const compareDate = birthday ? new Date(pet?.birthday) : new Date(pet?.adoptionDay);
+        // compareDate.setDate(compareDate.getDate() + 1);
+        // const petMonth = (petDate.getMonth() + 1);
+        // let petDay
         // console.log('@@@@@@@@@@@@@@@@@ pet date:', convertPetDateForComparison(petDate), '===', convertPetDateForComparison(compareDate), '??',
-            // convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate))
-        if (convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate)) {
-            petDay = petDate.getDate();
-        } else
-            petDay = petDate.getDate() + 1;
+        // convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate))
+        // if (convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate)) {
+        //     petDay = petDate.getDate();
+        // } else
+        //     petDay = petDate.getDate() + 1;
 
-        const petYear = (petDate.getFullYear());
-        const convertedPetDate = petMonth + "-" + petDay + "-" + petYear;
+        // const petYear = (petDate.getFullYear());
+        // const convertedPetDate = petMonth + "-" + petDay + "-" + petYear;
         const defaultCoverImage = 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png';
 
         if (!coverImage) coverImage = defaultCoverImage
@@ -228,19 +228,23 @@ const PetForm = ({ formType }) => {
                 weight,
                 gender,
                 celebrationDay,
-                birthday: convertedPetDate.toString(),
+                birthday,
                 profileIcon,
                 coverImage,
             };
             const data = await dispatch(fetchUpdatePet(payload))
                 .then((data) => {
+                    console.log('DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
                     if (data.errors) {
-                        // console.log('suuuuuuuuuuuuuuuuuh',
-                        //     data)
+                        console.log('suuuuuuuuuuuuuuuuuh',
+                            data)
                         const errArr = [data.errors]
                         setErrors(errArr);
                     }
-                    else history.push(`/pet/${pet.id}`);
+                    else {
+                        console.log('hi :)')
+                        history.push(`/pet/${pet.id}`);
+                }
                 })
         }
         else {
@@ -252,7 +256,7 @@ const PetForm = ({ formType }) => {
                 weight,
                 gender,
                 celebrationDay,
-                adoptionDay: convertedPetDate.toString(),
+                adoptionDay,
                 profileIcon,
                 coverImage,
             };
@@ -498,7 +502,7 @@ const PetForm = ({ formType }) => {
                                     className="edit-input"
                                     value={birthday}
                                     type="text"
-                                    onFocus={(e) => (e.target.type = "date")}
+                                    // onFocus={(e) => (e.target.type = "date")}
                                     // onBlur={(e) => (e.target.type = "text")}
                                     // onClick={handleFirstClick}
                                     onChange={updateBirthday} />
@@ -527,7 +531,7 @@ const PetForm = ({ formType }) => {
                                     className="edit-input"
                                     value={adoptionDay}
                                     type="text"
-                                    onFocus={(e) => (e.target.type = "date")}
+                                    // onFocus={(e) => (e.target.type = "date")}
                                     // onBlur={(e) => (e.target.type = "text")}
                                     // onClick={handleFirstClick}
                                     onChange={updateAdoptionDay} />

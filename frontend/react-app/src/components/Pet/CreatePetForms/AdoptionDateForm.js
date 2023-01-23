@@ -42,11 +42,11 @@ function AdoptionDateForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const petDate = new Date(adoptionDate);
-        const petMonth = (petDate.getMonth() + 1)
-        const petDay = (petDate.getDate() + 1)
-        const petYear = (petDate.getFullYear())
-        const convertedPetDate = petMonth + "-" + petDay + "-" + petYear
+        // const petDate = new Date(adoptionDate);
+        // const petMonth = (petDate.getMonth() + 1)
+        // const petDay = (petDate.getDate() + 1)
+        // const petYear = (petDate.getFullYear())
+        // const convertedPetDate = petMonth + "-" + petDay + "-" + petYear
 
         const payload = {
             type,
@@ -56,7 +56,7 @@ function AdoptionDateForm() {
             weight,
             gender,
             celebrationDay,
-            adoptionDay: convertedPetDate,
+            adoptionDay: adoptionDate,
             coverImage: 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png',
         }
         // console.log('the REEAL payload', payload)
@@ -123,9 +123,10 @@ function AdoptionDateForm() {
                 </div>
                 <form className='create-pet-form'>
                     <input
+                        required
                         placeholder='Adoption date (MM/DD/YYYY)'
                         className="input"
-                        type='date'
+                        // type='date'
                         value={petAdoptionDate}
                         onChange={updatePetAdoptionDate} />
                     <div>
