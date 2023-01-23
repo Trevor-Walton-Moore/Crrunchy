@@ -53,10 +53,6 @@ const PetForm = ({ formType }) => {
     const updateProfileIcon = (e) => setProfileIcon(e.target.value);
     const updateCoverImage = (e) => setCoverImage(e.target.value);
 
-    // console.log(adoptionDay, '!Adoption day use state being updated!')
-    // console.log(birthday, '!birthday day use state being updated!')
-
-
     useEffect(() => {
         if (!showIconDropdown) { return }
         const closeIconDropdown = (e) => {
@@ -167,12 +163,12 @@ const PetForm = ({ formType }) => {
         return convertedPetDate
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        birthday ? setBirthday(convertPetDate(birthday)) :
-            setAdoptionDay(convertPetDate(adoptionDay))
+    //     birthday ? setBirthday(convertPetDate(birthday)) :
+    //         setAdoptionDay(convertPetDate(adoptionDay))
 
-    }, [pet]);
+    // }, [pet]);
 
     // let clicked = false
 
@@ -244,7 +240,7 @@ const PetForm = ({ formType }) => {
                     else {
                         console.log('hi :)')
                         history.push(`/pet/${pet.id}`);
-                }
+                    }
                 })
         }
         else {
@@ -260,8 +256,18 @@ const PetForm = ({ formType }) => {
                 profileIcon,
                 coverImage,
             };
-            dispatch(fetchUpdatePet(payload));
-            history.push(`/pet/${pet.id}`);
+            dispatch(fetchUpdatePet(payload)).then((data) => {
+                // console.log('DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
+                if (data.errors) {
+                    // console.log('suuuuuuuuuuuuuuuuuh',
+                    //     data)
+                    const errArr = [data.errors]
+                    setErrors(errArr);
+                }
+                else {
+                    history.push(`/pet/${pet.id}`);
+                }
+            })
         }
     };
 

@@ -39,28 +39,28 @@ function Pet() {
     const petDate = new Date(celebrationDay);
     const petDateToStr = petDate.toDateString();
     const petMonthStr = petDateToStr.slice(3, 7);
-    const petMonth = (petDate.getMonth() + 1);
-    const petDay = (petDate.getDate() + 1);
-    const petYear = (petDate.getFullYear());
-    const convertedPetDate = petMonth + "/" + petDay + "/" + petYear;
+    // const petMonth = (petDate.getMonth() + 1);
+    const petDay = (petDate.getDate());
+    // const petYear = (petDate.getFullYear());
+    // const convertedPetDate = petMonth + "/" + petDay + "/" + petYear;
 
     petDateObj['month'] = petMonthStr;
     petDateObj['day'] = petDay;
-    petDateObj['year'] = petYear;
-    petDateObj['date'] = convertedPetDate;
+    // petDateObj['year'] = petYear;
+    // petDateObj['date'] = convertedPetDate;
   }
 
   pet.birthday ? getPetDateInfo(pet.birthday) : getPetDateInfo(pet.adoptionDay)
 
-  const nowDate = new Date();
-  const nowMonth = (nowDate.getMonth() + 1);
-  const nowDay = (nowDate.getDate() + 1);
-  const nowYear = (nowDate.getFullYear());
-  const convertedNowDate = nowMonth + '/' + nowDay + '/' + nowYear;
+  // const nowDate = new Date();
+  // const nowMonth = (nowDate.getMonth() + 1);
+  // const nowDay = (nowDate.getDate());
+  // const nowYear = (nowDate.getFullYear());
+  // const convertedNowDate = nowMonth + '/' + nowDay + '/' + nowYear;
 
-  var ageYear = nowYear - petDateObj['year'];
+  // var ageYear = nowYear - petDateObj['year'];
 
-  nowMonth < petDateObj['month'] && ageYear--;
+  // nowMonth < petDateObj['month'] && ageYear--;
 
   useEffect(() => {
     dispatch(fetchOnePet(user?.id))
@@ -232,7 +232,7 @@ function Pet() {
                     Birthday
                   </div>
                   <div className='detail-page-detail'>
-                    {petDateObj['date']}
+                    {pet.birthday}
                   </div>
                 </div>
               }
@@ -242,7 +242,7 @@ function Pet() {
                     Adoption Day
                   </div>
                   <div className='detail-page-detail'>
-                    {petDateObj['date']}
+                    {pet.adoptionDay}
                   </div>
                 </div>
               }

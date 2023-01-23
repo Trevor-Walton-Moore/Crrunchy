@@ -123,7 +123,7 @@ function BirthDateForm() {
                 </div>
                 <form className='create-pet-form'>
                     <input
-
+                        required
                         placeholder='Birthday (MM/DD/YYYY)'
                         className="input"
                         // type='date'

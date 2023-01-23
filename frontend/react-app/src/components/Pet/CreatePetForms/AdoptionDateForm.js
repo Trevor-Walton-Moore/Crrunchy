@@ -62,9 +62,11 @@ function AdoptionDateForm() {
         // console.log('the REEAL payload', payload)
         const data = await dispatch(fetchCreatePet(payload))
             .then((data) => {
+                // console.log('DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
                 if (data.errors) {
                     // console.log('error DATA', data)
                     const errArr = [data.errors]
+
                     setErrors(errArr);
                 }
                 else history.push('/pet/new/welcome')
