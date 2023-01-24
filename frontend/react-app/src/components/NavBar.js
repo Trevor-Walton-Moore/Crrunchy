@@ -1,48 +1,68 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 import { fetchOnePet } from '../store/pet';
 import UserDropdown from './UserDropdown';
 import './css/NavBar.css'
-// import { fetchAllProducts } from '../store/product';
-import { fetchOneOrder } from '../store/order';
+import { fetchAllProducts } from '../store/product';
 
 const NavBar = () => {
-  // const history = useHistory()
-
-  const user = useSelector(state => state.session.user);
-  const pet = useSelector((state) => state.pet);
-
-  pet.id && console.log(pet, "NAV PETtttt")
-
-  // console.log(user, "NAV USER")
-  // const orderObj = useSelector(state => state.order);
-  // console.log('navbar orderObj', orderObj)
-  // const orderSize = useSelector(state => {
-  //   if (state.order.order.orderProducts === {}) return null
-  //   else return Object.values(state.order?.order?.orderProducts).length
-  // });
-
-  // console.log('size?', orderSize)
-
-  // console.log('navbar orderProducts', orderSize)
-
+  const history = useHistory()
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   // dispatch(fetchOneOrder(user?.id));
-  //   dispatch(fetchOnePet(user?.id));
-  //   // dispatch(fetchAllProducts());
-  // }, [dispatch, user?.id]);
+  const user = useSelector(state => state.session.user);
+  const products = useSelector(state => state.product);
+  const pet = useSelector((state) => state.pet);
 
-  // useEffect(() => {
+  console.log('products obj', products)
 
-  //   dispatch(fetchOnePet(user?.id));
+  const [searchInput, setSearchInput] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [productsArrState, setProductsArrState] = useState(Object.values(products));
 
-  // }, [dispatch, user?.id]);
+  let productsArr = Object.values(products);
+  console.log(productsArr, "ProductsARRRAY")
 
+  useEffect(() => {
+    dispatch(fetchAllProducts())
+  }, [])
 
+  useEffect(() => {
+    if (!showDropdown) { return }
+    const closeDropdown = () => {
+      setShowDropdown(false);
+    };
+
+    document.addEventListener('click', closeDropdown);
+
+    return () => document.removeEventListener("click", closeDropdown);
+  }, [showDropdown]);
+
+  const displayDropdown = () => {
+    if (showDropdown) return
+    else setShowDropdown(true)
+  };
+
+  const updateSearchInputAndDropdown = (e) => {
+    setSearchInput(e.target.value)
+    setProductsArrState(productsArr.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase())))
+    console.log('product search matches!!!!!!!!!', productsArr);
+  }
+  console.log('did the update work?', productsArrState)
+
+  const search = async (e) => {
+    e.preventDefault()
+
+    // if (!search) null
+
+    // else {
+    // if
+    //   setSearchInput("")
+    // }
+
+    setSearchInput("")
+  }
 
   return (
     <nav className='NavBar'>
@@ -52,6 +72,36 @@ const NavBar = () => {
           Crunchy
         </NavLink>
       </div>
+      <div className='search-form-container'>
+        <form onSubmit={search} className='search-message-form-form'>
+          <input
+            onClick={displayDropdown}
+            className='search-message-form-input-container'
+            value={searchInput}
+            onChange={updateSearchInputAndDropdown}
+            placeholder={`Search`}
+          />
+          {showDropdown && (
+            <div className='breed-list'>
+              {
+                productsArrState.map(product => {
+                  return (
+                    <div
+                      key={product.id}
+                      onClick={() => history.push(`/products/${product.id}`)}
+                      className='breed-list-item'>
+                      {product.name}
+                    </div>
+                  )
+                })
+              }
+            </div>
+          )}
+        </form>
+      </div>
+
+
+
       <div className='account-cart'>
         <div>
           <UserDropdown />
