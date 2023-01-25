@@ -42,6 +42,8 @@ const SearchResults = () => {
             <div>
                 {searchResults.length > 0 && <div style={{ 'height': '73px' }} />}
                 <div className='products'>
+                    <div>
+
                     {searchResults.length ?
                         searchResults.map((product) => {
                             return (
@@ -100,19 +102,9 @@ const SearchResults = () => {
                                 </div>
                             </div>
                         </div>
-                        // <div>
-                        //     <img
-                        //         className='banner'
-                        //         src={sniffingDog}
-                        //         alt='preview' />
-                        //     <div>
-                        //         We couldn't sniff that out.
-                        //     </div>
-                        //     <div>
-                        //         {`There are no results for “${searchInput}”.`}
-                        //     </div>
-                        // </div>
                     }
+                    <div style={{ 'height': '94px' }} />
+                    </div>
                 </div>
             </div>
         </main>
