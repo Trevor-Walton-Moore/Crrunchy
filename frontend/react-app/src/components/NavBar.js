@@ -7,6 +7,7 @@ import UserDropdown from './UserDropdown';
 import './css/NavBar.css'
 import './css/Search.css'
 import { fetchAllProducts } from '../store/product';
+import SearchResults from './SearchResults';
 
 const NavBar = () => {
   const history = useHistory()
@@ -58,20 +59,29 @@ const NavBar = () => {
     if (!searchInput) return null
 
     else {
-    console.log('should search fetch')
-    const search = await fetch(`/api/products/search`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ search: searchInput })
-    })
-    const searchResults = await search.json()
-    const foundResults = searchResults?.products
-    console.log('products found?', foundResults)
-    // setSearchResults(foundRes, 'foundRes')
-    // setShowSearchResults(true)
-     setSearchInput("")
+      // console.log('should fetch search')
+      const search = await fetch(`/api/products/search`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ search: searchInput })
+      })
+      const res = await search.json();
+      const searchResults = res?.products;
+      console.log('products found?', searchResults);
+
+      history.push({
+        state: {
+          searchResults: searchResults,
+          searchInput: searchInput
+        },
+        pathname: '/search'
+      })
+
+
+      setShowDropdown(false)
+      setSearchInput("")
     }
   }
 
@@ -97,22 +107,22 @@ const NavBar = () => {
 
 
         </form>
-          {showDropdown && (
-            <div className='search-dropdown'>
-              {
-                productsArrState.map(product => {
-                  return (
-                    <div
-                      key={product.id}
-                      onClick={() => history.push(`/products/${product.id}`)}
-                      className='search-result'>
-                      {product.name}
-                    </div>
-                  )
-                })
-              }
-            </div>
-          )}
+        {showDropdown && (
+          <div className='search-dropdown'>
+            {
+              productsArrState.map(product => {
+                return (
+                  <div
+                    key={product.id}
+                    onClick={() => history.push(`/products/${product.id}`)}
+                    className='search-result'>
+                    {product.name}
+                  </div>
+                )
+              })
+            }
+          </div>
+        )}
       </div>
 
 

@@ -28,6 +28,7 @@ import Product from './components/Product';
 import Cart from './components/Cart';
 import ComingSoon from './components/ComingSoon';
 import NotFound from './components/404';
+import SearchResults from './components/SearchResults';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +49,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+      <Route path='/search' exact={true} >
+          <SearchResults />
+        </Route>
         <Route path='/coming-soon' exact={true} >
           <ComingSoon />
         </Route>

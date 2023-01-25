@@ -54,3 +54,26 @@
 .search-result:hover {
     background-color: rgba(191, 191, 191, 0.304);
 }
+
+.no-search-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    margin-top: 44px;
+}
+
+.no-results-image-container {
+    width: 500px;
+    height: fit-content;
+}
+
+.no-results-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.oops-no-results {
+    margin-top: 22px;
+}
