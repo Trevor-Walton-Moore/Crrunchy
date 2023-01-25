@@ -81,7 +81,6 @@ const UserDropdown = () => {
             </div>
 
             {showMenu && (
-                // {!isHidden && !showMenu && (
                 <div className="user-dropdown-container">
                     {!user && (
                         <div className='login-signup-container'>
@@ -110,46 +109,46 @@ const UserDropdown = () => {
                         onClick={() => history.push('/coming-soon')}>
                         Orders
                     </div>
-                    <div
+                    {/* <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Manage Autoship
-                    </div>
+                    </div> */}
                     <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Favorites
                     </div>
-                    <div
+                    {/* <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Buy Again
-                    </div>
-                    <div
+                    </div> */}
+                    {/* <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Prescriptions
-                    </div>
-                    <div
+                    </div> */}
+                    {/* <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         My Pet Health
-                    </div>
-                    <div
+                    </div> */}
+                    {/* <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         Connect with a Vet
-                    </div>
-                    <div
+                    </div> */}
+                    {/* <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         CarePlus Pet Insurance and Wellness Plans
-                    </div>
-                    <div
+                    </div> */}
+                    {/* <div
                         className="user-dropdown-button"
                         onClick={() => history.push('/coming-soon')}>
                         My Rescues
-                    </div>
+                    </div> */}
                     {
                         (pet?.id && user?.id && pet?.ownerId === user?.id) &&
                         <NavLink
