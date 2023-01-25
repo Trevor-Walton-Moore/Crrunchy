@@ -90,7 +90,7 @@ const SearchResults = () => {
                                 <span>
                                     There are no results for “
                                     <span style={{ 'font-weight': 'bold' }}>{`${searchInput}`}</span>
-                                    ”.`
+                                    ”.
                                 </span>
                                 <div className='continue-shopping-div'>
                                     <NavLink
