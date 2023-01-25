@@ -100,6 +100,7 @@ const NavBar = () => {
             onClick={displayDropdown}
             className='search-message-form-input-container'
             // type="submit"
+            maxLength={40}
             value={searchInput}
             onChange={updateSearchInputAndDropdown}
             placeholder={`Search`}
