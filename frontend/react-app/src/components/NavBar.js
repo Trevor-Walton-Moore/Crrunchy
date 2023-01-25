@@ -5,6 +5,7 @@ import LogoutButton from './auth/LogoutButton';
 import { fetchOnePet } from '../store/pet';
 import UserDropdown from './UserDropdown';
 import './css/NavBar.css'
+import './css/Search.css'
 import { fetchAllProducts } from '../store/product';
 
 const NavBar = () => {
@@ -22,7 +23,7 @@ const NavBar = () => {
   const [productsArrState, setProductsArrState] = useState(Object.values(products));
 
   let productsArr = Object.values(products);
-  console.log(productsArr, "ProductsARRRAY")
+  // console.log(productsArr, "ProductsARRRAY")
 
   useEffect(() => {
     dispatch(fetchAllProducts())
@@ -47,9 +48,9 @@ const NavBar = () => {
   const updateSearchInputAndDropdown = (e) => {
     setSearchInput(e.target.value)
     setProductsArrState(productsArr.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase())))
-    console.log('product search matches!!!!!!!!!', productsArr);
+    // console.log('product search matches!!!!!!!!!', productsArr);
   }
-  console.log('did the update work?', productsArrState)
+  // console.log('did the update work?', productsArrState)
 
   const search = async (e) => {
     e.preventDefault()
@@ -74,6 +75,7 @@ const NavBar = () => {
       </div>
       <div className='search-form-container'>
         <form onSubmit={search} className='search-message-form-form'>
+
           <input
             onClick={displayDropdown}
             className='search-message-form-input-container'
@@ -81,15 +83,18 @@ const NavBar = () => {
             onChange={updateSearchInputAndDropdown}
             placeholder={`Search`}
           />
+
+
+        </form>
           {showDropdown && (
-            <div className='breed-list'>
+            <div className='search-dropdown'>
               {
                 productsArrState.map(product => {
                   return (
                     <div
                       key={product.id}
                       onClick={() => history.push(`/products/${product.id}`)}
-                      className='breed-list-item'>
+                      className='search-result'>
                       {product.name}
                     </div>
                   )
@@ -97,7 +102,6 @@ const NavBar = () => {
               }
             </div>
           )}
-        </form>
       </div>
 
 
