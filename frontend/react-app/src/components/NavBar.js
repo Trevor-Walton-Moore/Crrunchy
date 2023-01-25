@@ -104,6 +104,7 @@ const NavBar = () => {
             onChange={updateSearchInputAndDropdown}
             placeholder={`Search`}
           />
+          <i class="fa-solid fa-magnifying-glass"/>
 
 
         </form>

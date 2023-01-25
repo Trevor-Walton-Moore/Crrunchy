@@ -15,7 +15,8 @@
 
 .account-cart {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
+    column-gap: 10px;
     /* border: rgb(128, 0, 26) 2px solid; */
     width: 28vw;
 }

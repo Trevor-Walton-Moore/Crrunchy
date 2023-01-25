@@ -9,6 +9,9 @@
 .search-message-form-form {
     width: 100%;
     height: 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .search-message-form-input-container {
@@ -28,6 +31,14 @@
     /* border-bottom-left-radius: 0;
     border-bottom-right-radius: 0; */
 }
+
+.fa-magnifying-glass {
+    position: absolute;
+    right: 10px;
+    font-size: larger;
+    color: rgb(28, 73, 194);
+}
+
 
 .search-dropdown {
     position: absolute;

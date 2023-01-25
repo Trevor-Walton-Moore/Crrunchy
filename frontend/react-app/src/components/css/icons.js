@@ -55,4 +55,8 @@
 
 {/* back/arrow left */}
 <i class="fa-solid fa-chevron-left"/>
+
+{/* search magnifying glass*/}
+<i class="fa-solid fa-magnifying-glass"/>
+
 </>
