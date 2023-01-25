@@ -2,6 +2,7 @@ from .login_form import LoginForm
 from .signup_form import SignUpForm
 from .pet_form.pet_form import PetForm
 from .order_form import OrderForm, OrdersProductsForm
+from .search_form import SearchForm
 
 # from .pet_form.cat_breed_form import CatBreedForm
 # from .pet_form.dog_breed_form import DogBreedForm

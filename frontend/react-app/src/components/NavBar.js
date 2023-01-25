@@ -7,6 +7,7 @@ import UserDropdown from './UserDropdown';
 import './css/NavBar.css'
 import './css/Search.css'
 import { fetchAllProducts } from '../store/product';
+import SearchResults from './SearchResults';
 
 const NavBar = () => {
   const history = useHistory()
@@ -50,19 +51,38 @@ const NavBar = () => {
     setProductsArrState(productsArr.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase())))
     // console.log('product search matches!!!!!!!!!', productsArr);
   }
-  console.log('did the update work?', productsArrState)
+  // console.log('did the update work?', productsArrState)
 
-  const search = async (e) => {
+  const fetchSearchResults = async (e) => {
     e.preventDefault()
 
-    // if (!search) null
+    if (!searchInput) return null
 
-    // else {
-    // if
-    //   setSearchInput("")
-    // }
+    else {
+      // console.log('should fetch search')
+      const search = await fetch(`/api/products/search`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ search: searchInput })
+      })
+      const res = await search.json();
+      const searchResults = res?.products;
+      console.log('products found?', searchResults);
 
-    setSearchInput("")
+      history.push({
+        state: {
+          searchResults: searchResults,
+          searchInput: searchInput
+        },
+        pathname: '/search'
+      })
+
+
+      setShowDropdown(false)
+      setSearchInput("")
+    }
   }
 
   return (
@@ -74,11 +94,12 @@ const NavBar = () => {
         </NavLink>
       </div>
       <div className='search-form-container'>
-        <form onSubmit={search} className='search-message-form-form'>
+        <form onSubmit={fetchSearchResults} className='search-message-form-form'>
 
           <input
             onClick={displayDropdown}
             className='search-message-form-input-container'
+            // type="submit"
             value={searchInput}
             onChange={updateSearchInputAndDropdown}
             placeholder={`Search`}
@@ -86,22 +107,22 @@ const NavBar = () => {
 
 
         </form>
-          {showDropdown && (
-            <div className='search-dropdown'>
-              {
-                productsArrState.map(product => {
-                  return (
-                    <div
-                      key={product.id}
-                      onClick={() => history.push(`/products/${product.id}`)}
-                      className='search-result'>
-                      {product.name}
-                    </div>
-                  )
-                })
-              }
-            </div>
-          )}
+        {showDropdown && (
+          <div className='search-dropdown'>
+            {
+              productsArrState.map(product => {
+                return (
+                  <div
+                    key={product.id}
+                    onClick={() => history.push(`/products/${product.id}`)}
+                    className='search-result'>
+                    {product.name}
+                  </div>
+                )
+              })
+            }
+          </div>
+        )}
       </div>
 
 
