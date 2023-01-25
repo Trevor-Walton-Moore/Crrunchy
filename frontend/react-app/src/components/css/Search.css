@@ -55,6 +55,15 @@
     background-color: rgba(191, 191, 191, 0.304);
 }
 
+.products-results-container {
+    justify-content: center;
+    width: 100vw;
+    margin-bottom: 134px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
 .no-search-results {
     display: flex;
     flex-direction: column;

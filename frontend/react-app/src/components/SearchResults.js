@@ -5,6 +5,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 // import { fetchOnePet } from '../store/pet';
 // import { fetchOneOrder } from '../store/order';
 import './css/home.css'
+import './css/Search.css'
 
 const SearchResults = () => {
     // const dispatch = useDispatch();
@@ -39,11 +40,9 @@ const SearchResults = () => {
 
     return (
         <main clasname="">
+            {searchResults.length > 0 && <div style={{ 'height': '73px' }} />}
             <div>
-                {searchResults.length > 0 && <div style={{ 'height': '73px' }} />}
-                <div className='products'>
-                    <div>
-
+                <div className='products-results-container'>
                     {searchResults.length ?
                         searchResults.map((product) => {
                             return (
@@ -104,7 +103,6 @@ const SearchResults = () => {
                         </div>
                     }
                     <div style={{ 'height': '94px' }} />
-                    </div>
                 </div>
             </div>
         </main>
