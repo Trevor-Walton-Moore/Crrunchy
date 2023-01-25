@@ -120,7 +120,7 @@
     color: black;
     font-size: 16px;
     font-weight: lighter;
-    cursor: pointer;
+    /* cursor: pointer; */
     background-color: white;
     /* overflow: scroll; */
 }
@@ -171,6 +171,7 @@
 
 .sign-out {
     color: rgb(28, 73, 194);
+    cursor: pointer;
 }
 
 .sign-out:hover {

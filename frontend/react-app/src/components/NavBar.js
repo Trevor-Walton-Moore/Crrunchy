@@ -50,19 +50,29 @@ const NavBar = () => {
     setProductsArrState(productsArr.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase())))
     // console.log('product search matches!!!!!!!!!', productsArr);
   }
-  console.log('did the update work?', productsArrState)
+  // console.log('did the update work?', productsArrState)
 
-  const search = async (e) => {
+  const fetchSearchResults = async (e) => {
     e.preventDefault()
 
-    // if (!search) null
+    if (!searchInput) return null
 
-    // else {
-    // if
-    //   setSearchInput("")
-    // }
-
-    setSearchInput("")
+    else {
+    console.log('should search fetch')
+    const search = await fetch(`/api/products/search`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ search: searchInput })
+    })
+    const searchResults = await search.json()
+    const foundResults = searchResults?.products
+    console.log('products found?', foundResults)
+    // setSearchResults(foundRes, 'foundRes')
+    // setShowSearchResults(true)
+     setSearchInput("")
+    }
   }
 
   return (
@@ -74,11 +84,12 @@ const NavBar = () => {
         </NavLink>
       </div>
       <div className='search-form-container'>
-        <form onSubmit={search} className='search-message-form-form'>
+        <form onSubmit={fetchSearchResults} className='search-message-form-form'>
 
           <input
             onClick={displayDropdown}
             className='search-message-form-input-container'
+            // type="submit"
             value={searchInput}
             onChange={updateSearchInputAndDropdown}
             placeholder={`Search`}
