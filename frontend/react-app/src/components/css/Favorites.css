@@ -1,0 +1,18 @@
+.favorite-circle {
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(238, 238, 238);
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.favorite-circle:active {
+    background-color: rgb(202, 202, 202);
+}
+
+.fa-heart {
+    color: rgb(28, 73, 194);
+}

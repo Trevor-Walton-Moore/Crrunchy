@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const SET_FAVORITES = '.session/SET_FAVORITES';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -99,6 +100,32 @@ export const signUp = (firstName, lastName, username, email, password, repeatPas
     return ['An error occurred. Please try again.']
   }
 }
+
+export const fetchAddToFavorites = (productId) => async (dispatch) => {
+  const response = await fetch(`/api/products/favorite/${productId}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data.user))
+  }
+};
+
+export const fetchRemoveFromFavorites = (productId) => async (dispatch) => {
+  const response = await fetch(`/api/products/remove_favorite/${productId}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data.user))
+  }
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

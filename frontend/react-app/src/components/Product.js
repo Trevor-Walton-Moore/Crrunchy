@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllProducts } from '../store/product';
+import { fetchAddToFavorites, fetchRemoveFromFavorites } from '../store/session';
 import { fetchCreateOrder, fetchOneOrder, fetchUpdateOrder } from '../store/order';
 import './css/Product.css'
+import './css/Favorites.css'
 
 const Product = () => {
     const history = useHistory();
@@ -12,10 +14,10 @@ const Product = () => {
     const { productId } = useParams();
 
     const user = useSelector(state => state.session.user);
+    // console.log("USER IN PRODUCT PAGE: ", user)
     const product = useSelector(state => state.product[productId]);
     const orderObj = useSelector(state => state.order);
     const isOrder = useSelector(state => state.order?.order);
-    // const orderId = isOrder?.id
 
     const [quantity, setQuantity] = useState('');
     const [isFavorited, setIsFavorited] = useState(false);
@@ -27,8 +29,6 @@ const Product = () => {
     useEffect(() => {
 
         user?.favorites.map((product) => {
-            // console.log('product in map', product)
-            // console.log('product Ids are equal?', product.id === +productId)
             return product.id === +productId ? setIsFavorited(true) : null
         });
 
@@ -43,24 +43,18 @@ const Product = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        // console.log('hellooooooo?????', orderObj)
         if (orderObj && Object.values(orderObj).length > 0) {
             const productInOrderProducts = []
             if (orderObj?.order && Object.values(orderObj?.order).length > 0) {
-                // console.log('wuuuuuut')
                 if (orderObj?.order?.orderProducts && Object.values(orderObj?.order?.orderProducts).length > 0) {
 
                     Object.values(orderObj?.order?.orderProducts).forEach(product => {
-                        // console.log('orderProduct.productId ', +product.productId === +productId, "productId???")
                         if (+product.productId === +productId) {
                             productInOrderProducts.push(product)
-                            // console.log('just opush product to rray: ', productInOrderProducts)
                         }
                         else return null
                     })
-                    // console.log('productInOrderProducts', productInOrderProducts)
                     if (productInOrderProducts) setQuantity(productInOrderProducts[0]?.quantity)
-                    // setQuantity(orderObj?.order?.orderProducts[productId]?.quantity)
                 }
             }
         }
@@ -68,6 +62,13 @@ const Product = () => {
 
     if (!product) {
         return null;
+    }
+
+    const handleFavorite = () => {
+        isFavorited ?
+            dispatch(fetchRemoveFromFavorites(productId)) :
+            dispatch(fetchAddToFavorites(productId))
+        setIsFavorited(!isFavorited)
     }
 
     const handleAddToCart = () => {
@@ -114,8 +115,7 @@ const Product = () => {
                     alt='preview' />
             </div>
             <div className='favorite-circle'
-                onClick={true}
-            >
+                onClick={handleFavorite}>
                 {isFavorited ?
                     <i class="fa-solid fa-heart" /> :
                     <i class="fa-regular fa-heart" />}
