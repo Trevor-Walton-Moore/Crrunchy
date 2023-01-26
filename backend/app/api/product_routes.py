@@ -14,37 +14,31 @@ product_routes = Blueprint("products", __name__)
 @product_routes.route("")
 def all_products():
     products = Product.query.all()
-    # print('%%%%%%%%%%%%%%%%%%%%products In the BAKCEDN%%%%%%%%%%%%%%%%%%%%%', products)
     serialized_products = [product.to_dict() for product in products]
-    # print('%%%%%%%%%%%%%%%%%%%%SERIALIZED PRODUCTS%%%%%%%%%%%%%%%%%%%%%', serialized_products)
     return {'products': serialized_products}, 200
 
 # Add product to favorites
 @product_routes.route("/favorite/<int:id>")
 def add_to_favorites(id):
     product = Product.query.get(id)
-    # print('%%%%%%%%%%%%%%%%%%%% product %%%%%%%%%%%%%%%%%%%%%', product)
     user = current_user
     user.favorites.append(product)
     user_to_dict = user.to_dict()
     favorites_to_dict = [f.to_dict() for f in user.favorites]
     user_to_dict['favorites'] = favorites_to_dict
     db.session.commit()
-    # print('%%%%%%%%%%%%%%%%%%%% USER TO DICT AFTER APPENDING FAVORITES %%%%%%%%%%%%%%%%%%%%%', user_to_dict)
     return {'user': user_to_dict}, 200
 
 # Remove product from favorites
 @product_routes.route("/remove_favorite/<int:id>")
 def remove_from_favorites(id):
     product = Product.query.get(id)
-    # print('%%%%%%%%%%%%%%%%%%%% product %%%%%%%%%%%%%%%%%%%%%', product)
     user = current_user
     user.favorites.remove(product)
     user_to_dict = user.to_dict()
     favorites_to_dict = [f.to_dict() for f in user.favorites]
     user_to_dict['favorites'] = favorites_to_dict
     db.session.commit()
-    # print('%%%%%%%%%%%%%%%%%%%% USER TO DICT AFTER APPENDING FAVORITES %%%%%%%%%%%%%%%%%%%%%', user_to_dict)
     return {'user': user_to_dict}, 200
 
 # Search products results
@@ -55,14 +49,10 @@ def search_products():
     search = form.search.data
     search = f"%{search}%"
 
-    # channel = Channel.query.get(id)
-    # channel_messages = channel.messages
     products = Product.query.filter(
         Product.name.ilike(f"%{search}%")
     ).all()
 
     products_to_dict = [p.to_dict() for p in products]
-
-    # print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ products', products_to_dict)
 
     return {"products": products_to_dict}
