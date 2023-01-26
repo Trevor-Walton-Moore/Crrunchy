@@ -45,83 +45,96 @@ const Favorites = () => {
     //     return null;
     // }
 
-    // const handleAddToCart = () => {
+    const handleAddToCart = (product) => {
 
-    //     if (!user) {
-    //         return history.push('/login')
-    //     }
+        // console.log('handle add to cart product in favorites', product)
 
-    //     if (isOrder?.userId === user?.id) {
-    //         // console.log('the order belongs to the current user O_o')
-    //         if (quantity) {
-    //             let updatedOrder = {
-    //                 orderId: isOrder?.id,
-    //                 productId,
-    //                 quantity: quantity + 1
-    //             }
-    //             // console.log('there is a quantity O_o')
-    //             dispatch(fetchUpdateOrder(updatedOrder))
-    //         }
-    //         else {
-    //             // console.log('there is not a quantity O_o')
-    //             let updatedOrder = {
-    //                 orderId: isOrder?.id,
-    //                 productId,
-    //                 quantity: 1
-    //             }
-    //             dispatch(fetchUpdateOrder(updatedOrder))
-    //         }
-    //     }
-    //     else {
-    //         // console.log('the order does not belong to the current user O_o')
-    //         dispatch(fetchCreateOrder(productId))
-    //         dispatch(fetchOneOrder(user?.id))
-    //     };
-    // }
+        if (!user) {
+            return history.push('/login')
+        }
+
+        if (isOrder?.userId === user?.id) {
+            // console.log('the order belongs to the current user O_o')
+
+            let order = 0
+            Object.values(isOrder?.orderProducts).map((orderProduct) => {
+                return orderProduct.productId === product.id ? order = orderProduct : null
+            });
+
+            console.log('prder in handle add to cart', order)
+
+            if (order?.quantity) {
+                let updatedOrder = {
+                    orderId: isOrder?.id,
+                    productId: product.id,
+                    quantity: order.quantity + 1
+                }
+                // console.log('there is a quantity O_o')
+                dispatch(fetchUpdateOrder(updatedOrder))
+            }
+            else {
+                // console.log('there is not a quantity O_o')
+                let updatedOrder = {
+                    orderId: isOrder?.id,
+                    productId: product.id,
+                    quantity: 1
+                }
+                dispatch(fetchUpdateOrder(updatedOrder))
+            }
+        }
+        else {
+            // console.log('the order does not belong to the current user O_o')
+            dispatch(fetchCreateOrder(product.id))
+            dispatch(fetchOneOrder(user?.id))
+        };
+    }
 
     return (
         // (user) &&
         <main clasname="">
 
-                    {user?.favorites ?
-                        (<div className='products'>
-                            {Object.values(user.favorites).map((product) => {
-                                return (
-                                    <div className='product-container'>
-                                        <NavLink
-                                            key={product.id}
-                                            to={`/products/${product.id}`}
-                                            className="">
-                                            <div className='product-image-container'>
-                                                <img
-                                                    className='product-image'
-                                                    src={product?.productImage}
-                                                    alt='preview' />
-                                            </div>
-                                        </NavLink>
-                                        <div className='product-details'>
-                                            <NavLink
-                                                key={product.id}
-                                                to={`/products/${product.id}`}
-                                                className="product-name-link">
-                                                {product.name}
-                                            </NavLink>
-                                            <div className='product-price'>
-                                                ${product.price}
-                                            </div>
-                                            <div className='shipping'>
-                                                FREE 1-3 day shipping over $49
-                                            </div>
-                                        </div>
+            {user?.favorites ?
+                (<div className='products'>
+                    {Object.values(user.favorites).map((product) => {
+                        return (
+                            <div className='product-container'>
+                                <NavLink
+                                    key={product.id}
+                                    to={`/products/${product.id}`}
+                                    className="">
+                                    <div className='product-image-container'>
+                                        <img
+                                            className='product-image'
+                                            src={product?.productImage}
+                                            alt='preview' />
                                     </div>
-                                );
-                            })}
-                        </div>)
-                        :
-                        <div>
-                            no favorites
-                        </div>
-                    }
+                                </NavLink>
+                                <div className='product-details'>
+                                    <NavLink
+                                        key={product.id}
+                                        to={`/products/${product.id}`}
+                                        className="product-name-link">
+                                        {product.name}
+                                    </NavLink>
+                                    <div className='product-price'>
+                                        ${product.price}
+                                    </div>
+                                    <div className='shipping'>
+                                        FREE 1-3 day shipping over $49
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => handleAddToCart(product)}
+                                >add to cart</button>
+                            </div>
+                        );
+                    })}
+                </div>)
+                :
+                <div>
+                    no favorites
+                </div>
+            }
         </main>
     );
 };
