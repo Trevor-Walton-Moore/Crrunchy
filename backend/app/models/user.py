@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA, add_prefix_for_prod, user_product
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     pet = db.relationship("Pet", back_populates="owner", cascade="all, delete")
+    favorites = db.relationship("Product", secondary=user_product, backref='users_favorited')
 
     @property
     def password(self):
@@ -35,5 +36,5 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'username': self.username,
             'firstName': self.first_name,
-            'lastName': self.last_name
+            'lastName': self.last_name,
         }

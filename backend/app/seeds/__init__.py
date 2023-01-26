@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .pets import seed_pets, undo_pets
 from .categories import seed_categories, undo_categories
 from .products import seed_products, undo_products
+from .favorites import seed_user_product, undo_user_product
 
 from app.models.db import db, environment, SCHEMA
 
@@ -20,6 +21,7 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
 
+        undo_user_product()
         undo_products()
         undo_categories()
         undo_pets()
@@ -28,6 +30,8 @@ def seed():
     seed_pets()
     seed_categories()
     seed_products()
+    seed_user_product()
+
     # Add other seed functions here
 
 

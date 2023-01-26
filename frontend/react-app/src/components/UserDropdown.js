@@ -116,7 +116,7 @@ const UserDropdown = () => {
                     </div> */}
                     <div
                         className="user-dropdown-button"
-                        onClick={() => history.push('/coming-soon')}>
+                        onClick={() => history.push('/favorites')}>
                         Favorites
                     </div>
                     {/* <div

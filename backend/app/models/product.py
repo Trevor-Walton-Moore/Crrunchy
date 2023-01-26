@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA, add_prefix_for_prod, user_product
 from datetime import datetime
 import enum
 from .user import User
@@ -16,6 +16,8 @@ class Product(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('categories.id')), nullable=False)
     description = db.Column(db.String(2000), nullable=False)
     product_image = db.Column(db.String(), nullable=False)
+
+    # users_favorited =  db.relationship('User', secondary=user_product, backref='favorites')
 
     # product_orders = db.relationship(
     #     'Order',
