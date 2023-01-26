@@ -18,16 +18,23 @@ const Product = () => {
     // const orderId = isOrder?.id
 
     const [quantity, setQuantity] = useState('');
+    const [isFavorited, setIsFavorited] = useState(false);
 
-    // console.log('quantoty?!?!?', quantity)
-    // console.log('order OBJ', orderObj)
+    console.log('isFavorited before use effect', isFavorited)
 
-    // useEffect(() => {
+    console.log('user.favorites', user.favorites)
 
-    //     dispatch(fetchOneOrder(user?.id));
-    //     dispatch(fetchAllProducts());
+    useEffect(() => {
 
-    // }, [dispatch, user?.id]);
+        user?.favorites.map((product) => {
+            // console.log('product in map', product)
+            // console.log('product Ids are equal?', product.id === +productId)
+            return product.id === +productId ? setIsFavorited(true) : null
+        });
+
+    }, [user?.favorites]);
+
+    console.log('isFavorited after use effect', isFavorited)
 
     useEffect(() => {
 
@@ -105,6 +112,14 @@ const Product = () => {
                     src={product.productImage}
                     className='product-page-image'
                     alt='preview' />
+            </div>
+            <div className='favorite-circle'
+                onClick={true}
+            >
+                {isFavorited ?
+                    <i class="fa-solid fa-heart" /> :
+                    <i class="fa-regular fa-heart" />}
+
             </div>
             <div className='product-details-container'>
                 <div className='product-page-name'>

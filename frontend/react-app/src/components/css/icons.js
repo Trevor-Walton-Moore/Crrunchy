@@ -14,8 +14,11 @@
 {/* medcine bottle */}
 <i class="fa-solid fa-prescription-bottle-medical"/>
 
-{/* heart/favorites */}
+{/* solid heart/favorites */}
 <i class="fa-solid fa-heart"/>
+
+{/* outlined heart/favorites */}
+<i class="fa-regular fa-heart"/>
 
 {/* clipboard/details */}
 <i class="fa-solid fa-clipboard-list"/>
