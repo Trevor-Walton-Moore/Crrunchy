@@ -82,41 +82,46 @@ const Favorites = () => {
     return (
         // (user) &&
         <main clasname="">
-            <div>
-                <div className='products'>
-                    {Object.values(user?.favorites).map((product) => {
-                        return (
-                            <div className='product-container'>
-                                <NavLink
-                                    key={product.id}
-                                    to={`/products/${product.id}`}
-                                    className="">
-                                    <div className='product-image-container'>
-                                        <img
-                                            className='product-image'
-                                            src={product?.productImage}
-                                            alt='preview' />
+
+                    {user?.favorites ?
+                        (<div className='products'>
+                            {Object.values(user.favorites).map((product) => {
+                                return (
+                                    <div className='product-container'>
+                                        <NavLink
+                                            key={product.id}
+                                            to={`/products/${product.id}`}
+                                            className="">
+                                            <div className='product-image-container'>
+                                                <img
+                                                    className='product-image'
+                                                    src={product?.productImage}
+                                                    alt='preview' />
+                                            </div>
+                                        </NavLink>
+                                        <div className='product-details'>
+                                            <NavLink
+                                                key={product.id}
+                                                to={`/products/${product.id}`}
+                                                className="product-name-link">
+                                                {product.name}
+                                            </NavLink>
+                                            <div className='product-price'>
+                                                ${product.price}
+                                            </div>
+                                            <div className='shipping'>
+                                                FREE 1-3 day shipping over $49
+                                            </div>
+                                        </div>
                                     </div>
-                                </NavLink>
-                                <div className='product-details'>
-                                    <NavLink
-                                        key={product.id}
-                                        to={`/products/${product.id}`}
-                                        className="product-name-link">
-                                        {product.name}
-                                    </NavLink>
-                                    <div className='product-price'>
-                                        ${product.price}
-                                    </div>
-                                    <div className='shipping'>
-                                        FREE 1-3 day shipping over $49
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
+                                );
+                            })}
+                        </div>)
+                        :
+                        <div>
+                            no favorites
+                        </div>
+                    }
         </main>
     );
 };

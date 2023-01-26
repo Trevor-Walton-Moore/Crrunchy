@@ -24,7 +24,10 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        return current_user.to_dict()
+        favorites = [f.to_dict() for f in current_user.favorites]
+        user_to_dict = current_user.to_dict()
+        user_to_dict['favorites'] = favorites
+        return user_to_dict
     return {'errors': ['Unauthorized']}
 
 
