@@ -17,14 +17,66 @@
     color: rgb(28, 73, 194);
 }
 
+.favorites-main {
+    background-color: rgb(252, 252, 252);
+}
+
+.favorites-container {
+    margin: auto;
+    width: 80vw;
+}
+
 .favorites-text {
     font-family: sans-serif;
     font-size: 35px;
     font-weight: lighter;
-    color: rgb(67, 67, 67);
+    color: rgba(67, 67, 67, 0.872);
 }
 
 .favorite-container {
-    border: 1px black solid;
+    border: 1px rgb(223, 223, 223) solid;
     font-family: sans-serif;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 32px;
+    display: flex;
+    margin: 10px 0 10px 0;
+}
+
+.favorite-image-container {
+    width: 135px;
+    height: 135px;
+}
+
+.favorite-price {
+    margin: 10px 0px;
+    /* color: rgb(188, 40, 72); */
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.add-favorite-to-cart {
+    color: rgb(22, 57, 119);
+    border: 0.1rem solid rgb(22, 57, 119);
+    cursor: pointer;
+    font-weight: lighter;
+    font-size: 15px;
+    padding: 11px 16px;
+    border-radius: 4px;
+    width: 80px;
+    height: 16px;
+}
+
+.add-favorite-to-cart:hover {
+    background-color: rgba(36, 71, 132, 0.142);
+}
+
+.remove-favorite-x {
+    display: flex;
+    justify-self: end;
+    color: rgba(0, 0, 0, 0.446);
+    font-size: 24px;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
 }

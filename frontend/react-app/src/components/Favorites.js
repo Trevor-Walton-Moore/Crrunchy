@@ -96,10 +96,10 @@ const Favorites = () => {
 
     return (
         // (user) &&
-        <main clasname="">
+        <main className="favorites-main">
 
-            {user?.favorites ?
-                (<div className='products'>
+            {user?.favorites.length ?
+                (<div className='favorites-container'>
                     <div className='favorites-text'>Favorites</div>
                     {Object.values(user.favorites).map((product) => {
                         return (
@@ -108,31 +108,28 @@ const Favorites = () => {
                                     key={product.id}
                                     to={`/products/${product.id}`}
                                     className="">
-                                    <div className='product-image-container'>
+                                    <div className='favorite-image-container'>
                                         <img
                                             className='product-image'
                                             src={product?.productImage}
                                             alt='preview' />
                                     </div>
                                 </NavLink>
-                                <div className='product-details'>
+                                <div className='favorite-details'>
                                     <NavLink
                                         key={product.id}
                                         to={`/products/${product.id}`}
                                         className="product-name-link">
                                         {product.name}
                                     </NavLink>
-                                    <div className='product-price'>
+                                    <div className='favorite-price'>
                                         ${product.price}
                                     </div>
-                                    <div className='shipping'>
-                                        FREE 1-3 day shipping over $49
-                                    </div>
-                                </div>
-                                <button
+                                <div className='add-favorite-to-cart'
                                     onClick={() => handleAddToCart(product)}
-                                >add to cart</button>
-                                <i class="fa-solid fa-xmark"
+                                >Add to Cart</div>
+                                </div>
+                                <i class="fa-solid fa-xmark remove-favorite-x"
                                 onClick={() => handleRemoveFavorite(product.id)}/>
                             </div>
                         );
