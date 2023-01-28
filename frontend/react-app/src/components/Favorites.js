@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllProducts } from '../store/product';
+import { fetchRemoveFromFavorites } from '../store/session';
 import { fetchCreateOrder, fetchOneOrder, fetchUpdateOrder } from '../store/order';
 import './css/Product.css'
 import './css/Favorites.css'
@@ -44,6 +45,10 @@ const Favorites = () => {
     // if (!product) {
     //     return null;
     // }
+
+    const handleRemoveFavorite = (productId) => {
+            dispatch(fetchRemoveFromFavorites(productId))
+    }
 
     const handleAddToCart = (product) => {
 
@@ -95,9 +100,10 @@ const Favorites = () => {
 
             {user?.favorites ?
                 (<div className='products'>
+                    <div className='favorites-text'>Favorites</div>
                     {Object.values(user.favorites).map((product) => {
                         return (
-                            <div className='product-container'>
+                            <div className='favorite-container'>
                                 <NavLink
                                     key={product.id}
                                     to={`/products/${product.id}`}
@@ -126,6 +132,8 @@ const Favorites = () => {
                                 <button
                                     onClick={() => handleAddToCart(product)}
                                 >add to cart</button>
+                                <i class="fa-solid fa-xmark"
+                                onClick={() => handleRemoveFavorite(product.id)}/>
                             </div>
                         );
                     })}

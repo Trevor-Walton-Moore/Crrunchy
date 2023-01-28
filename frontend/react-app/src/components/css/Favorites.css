@@ -16,3 +16,15 @@
 .fa-heart {
     color: rgb(28, 73, 194);
 }
+
+.favorites-text {
+    font-family: sans-serif;
+    font-size: 35px;
+    font-weight: lighter;
+    color: rgb(67, 67, 67);
+}
+
+.favorite-container {
+    border: 1px black solid;
+    font-family: sans-serif;
+}
