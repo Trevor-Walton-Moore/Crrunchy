@@ -18,48 +18,19 @@ const Favorites = () => {
 
     !user && history.push('/login')
 
-    // useEffect(() => {
-    //     // console.log('hellooooooo?????', orderObj)
-    //     if (orderObj && Object.values(orderObj).length > 0) {
-    //         const productInOrderProducts = []
-    //         if (orderObj?.order && Object.values(orderObj?.order).length > 0) {
-    //             // console.log('wuuuuuut')
-    //             if (orderObj?.order?.orderProducts && Object.values(orderObj?.order?.orderProducts).length > 0) {
-
-    //                 Object.values(orderObj?.order?.orderProducts).forEach(product => {
-    //                     // console.log('orderProduct.productId ', +product.productId === +productId, "productId???")
-    //                     if (+product.productId === +productId) {
-    //                         productInOrderProducts.push(product)
-    //                         // console.log('just opush product to rray: ', productInOrderProducts)
-    //                     }
-    //                     else return null
-    //                 })
-    //                 // console.log('productInOrderProducts', productInOrderProducts)
-    //                 if (productInOrderProducts) setQuantity(productInOrderProducts[0]?.quantity)
-    //                 // setQuantity(orderObj?.order?.orderProducts[productId]?.quantity)
-    //             }
-    //         }
-    //     }
-    // }, [JSON.stringify(orderObj)]);
-
-    // if (!product) {
-    //     return null;
-    // }
+    const noFavorites = 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1675108776/Crunchy%20images/emptydogbowl_qke7ym.webp'
 
     const handleRemoveFavorite = (productId) => {
-            dispatch(fetchRemoveFromFavorites(productId))
+        dispatch(fetchRemoveFromFavorites(productId))
     }
 
     const handleAddToCart = (product) => {
-
-        // console.log('handle add to cart product in favorites', product)
 
         if (!user) {
             return history.push('/login')
         }
 
         if (isOrder?.userId === user?.id) {
-            // console.log('the order belongs to the current user O_o')
 
             let order = 0
             Object.values(isOrder?.orderProducts).map((orderProduct) => {
@@ -74,11 +45,9 @@ const Favorites = () => {
                     productId: product.id,
                     quantity: order.quantity + 1
                 }
-                // console.log('there is a quantity O_o')
                 dispatch(fetchUpdateOrder(updatedOrder))
             }
             else {
-                // console.log('there is not a quantity O_o')
                 let updatedOrder = {
                     orderId: isOrder?.id,
                     productId: product.id,
@@ -88,14 +57,12 @@ const Favorites = () => {
             }
         }
         else {
-            // console.log('the order does not belong to the current user O_o')
             dispatch(fetchCreateOrder(product.id))
             dispatch(fetchOneOrder(user?.id))
         };
     }
 
     return (
-        // (user) &&
         <main className="favorites-main">
 
             {user?.favorites.length ?
@@ -125,19 +92,39 @@ const Favorites = () => {
                                     <div className='favorite-price'>
                                         ${product.price}
                                     </div>
-                                <div className='add-favorite-to-cart'
-                                    onClick={() => handleAddToCart(product)}
-                                >Add to Cart</div>
+                                    <div className='add-favorite-to-cart'
+                                        onClick={() => handleAddToCart(product)}
+                                    >Add to Cart</div>
                                 </div>
                                 <i class="fa-solid fa-xmark remove-favorite-x"
-                                onClick={() => handleRemoveFavorite(product.id)}/>
+                                    onClick={() => handleRemoveFavorite(product.id)} />
                             </div>
                         );
                     })}
                 </div>)
                 :
-                <div>
-                    no favorites
+                <div className='no-search-results'>
+                    <div className='no-results-image-container'>
+                                <img
+                                    className='coming-soon-image'
+                                    src={noFavorites}
+                                    alt='sniffing dog' />
+                            </div>
+                    <div className='no-results-text'>
+                        <div className='oops oops-no-results'>
+                            No Favorite Items
+                        </div>
+                        <div>
+                        Look for the heart to save favorites while you shop.
+                        </div>
+                        <div className='continue-shopping-div'>
+                            <NavLink
+                                className='continue-shopping-link'
+                                to='/'>
+                                Continue Shopping
+                            </NavLink>
+                        </div>
+                    </div>
                 </div>
             }
         </main>
