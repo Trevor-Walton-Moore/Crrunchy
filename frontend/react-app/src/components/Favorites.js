@@ -103,8 +103,8 @@ const Favorites = () => {
                     })}
                 </div>)
                 :
-                <div className='no-search-results'>
-                    <div className='no-results-image-container'>
+                <div className='no-favorites'>
+                    <div className='no-favorites-image-container'>
                                 <img
                                     className='coming-soon-image'
                                     src={noFavorites}
