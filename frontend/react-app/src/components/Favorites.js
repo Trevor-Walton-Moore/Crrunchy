@@ -71,33 +71,35 @@ const Favorites = () => {
                     {Object.values(user.favorites).map((product) => {
                         return (
                             <div className='favorite-container'>
-                                <NavLink
-                                    key={product.id}
-                                    to={`/products/${product.id}`}
-                                    className="">
-                                    <div className='favorite-image-container'>
-                                        <img
-                                            className='product-image'
-                                            src={product?.productImage}
-                                            alt='preview' />
-                                    </div>
-                                </NavLink>
-                                <div className='favorite-details'>
+                                <div className='favorite-start'>
                                     <NavLink
                                         key={product.id}
                                         to={`/products/${product.id}`}
-                                        className="product-name-link">
-                                        {product.name}
+                                        className="">
+                                        <div className='favorite-image-container'>
+                                            <img
+                                                className='product-image'
+                                                src={product?.productImage}
+                                                alt='preview' />
+                                        </div>
                                     </NavLink>
-                                    <div className='favorite-price'>
-                                        ${product.price}
+                                    <div className='favorite-details'>
+                                        <NavLink
+                                            key={product.id}
+                                            to={`/products/${product.id}`}
+                                            className="favorite-name-link">
+                                            {product.name}
+                                        </NavLink>
+                                        <div className='favorite-price'>
+                                            ${product.price}
+                                        </div>
+                                        <div className='add-favorite-to-cart'
+                                            onClick={() => handleAddToCart(product)}
+                                        >Add to Cart</div>
                                     </div>
-                                    <div className='add-favorite-to-cart'
-                                        onClick={() => handleAddToCart(product)}
-                                    >Add to Cart</div>
-                                </div>
-                                <i class="fa-solid fa-xmark remove-favorite-x"
-                                    onClick={() => handleRemoveFavorite(product.id)} />
+                                    </div>
+                                    <i class="fa-solid fa-xmark remove-favorite-x"
+                                        onClick={() => handleRemoveFavorite(product.id)} />
                             </div>
                         );
                     })}
@@ -105,17 +107,17 @@ const Favorites = () => {
                 :
                 <div className='no-favorites'>
                     <div className='no-favorites-image-container'>
-                                <img
-                                    className='coming-soon-image'
-                                    src={noFavorites}
-                                    alt='sniffing dog' />
-                            </div>
+                        <img
+                            className='coming-soon-image'
+                            src={noFavorites}
+                            alt='sniffing dog' />
+                    </div>
                     <div className='no-results-text'>
                         <div className='oops oops-no-results'>
                             No Favorite Items
                         </div>
                         <div>
-                        Look for the heart to save favorites while you shop.
+                            Look for the heart to save favorites while you shop.
                         </div>
                         <div className='continue-shopping-div'>
                             <NavLink
