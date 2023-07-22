@@ -25,10 +25,7 @@ def adoption_date_check_future(form, field):
     date = field.data
     if not date: return
     dateObj = datetime.strptime(date, '%m/%d/%Y').date()
-    # print(")))))))))))))))))))))))) incoming date: ", dateObj, 'vs now: ', datetime.now().date())
-    # print('################################## dateobj > now? ', dateObj > datetime.now().date())
     if dateObj > datetime.now().date():
-        # print('##################################')
         raise ValidationError('Date cannot be in the future.')
 
 def birthday_date_check_future(form, field):
