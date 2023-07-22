@@ -14,17 +14,12 @@ const Product = () => {
     const { productId } = useParams();
 
     const user = useSelector(state => state.session.user);
-    // console.log("USER IN PRODUCT PAGE: ", user)
     const product = useSelector(state => state.product[productId]);
     const orderObj = useSelector(state => state.order);
     const isOrder = useSelector(state => state.order?.order);
 
     const [quantity, setQuantity] = useState('');
     const [isFavorited, setIsFavorited] = useState(false);
-
-    console.log('isFavorited before use effect', isFavorited)
-
-    console.log('user.favorites', user.favorites)
 
     useEffect(() => {
 
@@ -78,18 +73,15 @@ const Product = () => {
         }
 
         if (isOrder?.userId === user?.id) {
-            // console.log('the order belongs to the current user O_o')
             if (quantity) {
                 let updatedOrder = {
                     orderId: isOrder?.id,
                     productId,
                     quantity: quantity + 1
                 }
-                // console.log('there is a quantity O_o')
                 dispatch(fetchUpdateOrder(updatedOrder))
             }
             else {
-                // console.log('there is not a quantity O_o')
                 let updatedOrder = {
                     orderId: isOrder?.id,
                     productId,
@@ -99,7 +91,6 @@ const Product = () => {
             }
         }
         else {
-            // console.log('the order does not belong to the current user O_o')
             dispatch(fetchCreateOrder(productId))
             dispatch(fetchOneOrder(user?.id))
         };
