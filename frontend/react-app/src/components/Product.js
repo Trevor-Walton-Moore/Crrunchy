@@ -29,8 +29,6 @@ const Product = () => {
 
     }, [user?.favorites]);
 
-    console.log('isFavorited after use effect', isFavorited)
-
     useEffect(() => {
 
         dispatch(fetchAllProducts());
