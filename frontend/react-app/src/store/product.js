@@ -16,7 +16,6 @@ export const fetchAllProducts = () => async (dispatch) => {
 
     if (response.ok) {
         const res = await response.json();
-        // console.log('PRODUCT RESPONSE', res.products)
         dispatch(loadProducts(res.products));
         return res.products;
     }
@@ -38,7 +37,6 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_PRODUCTS:
-            // console.log(action, "ALL PRODUCTSS ACTIONNNNNNNN")
             let normalizedProducts = normalize(action.products);
 
             const stateNormalized = { ...state, ...normalizedProducts }
