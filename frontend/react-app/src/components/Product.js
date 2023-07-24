@@ -58,10 +58,14 @@ const Product = () => {
     }
 
     const handleFavorite = () => {
-        isFavorited ?
+        if (!user) {
+            history.push('/login');
+        } else {
+            isFavorited ?
             dispatch(fetchRemoveFromFavorites(productId)) :
             dispatch(fetchAddToFavorites(productId))
-        setIsFavorited(!isFavorited)
+            setIsFavorited(!isFavorited)
+        }
     }
 
     const handleAddToCart = () => {
