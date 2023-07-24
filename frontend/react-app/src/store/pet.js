@@ -39,7 +39,6 @@ export const fetchOnePet = (ownerId) => async (dispatch) => {
 };
 
 export const fetchCreatePet = (pet) => async (dispatch) => {
-    // console.log("CREATE PET CREATE PET", pet)
     const response = await fetch(`/api/pet`, {
         method: "POST",
         headers: {
@@ -50,7 +49,6 @@ export const fetchCreatePet = (pet) => async (dispatch) => {
 
     if (response.ok) {
         const newPet = await response.json();
-        // console.log('CREATE PET SUCCESFULL', newPet)
         dispatch(createPet(newPet.pet));
         // const history = useHistory();
         // history.push(`/pet/${newPet.id}`)
@@ -59,7 +57,6 @@ export const fetchCreatePet = (pet) => async (dispatch) => {
 };
 
 export const fetchUpdatePet = (updatedPet) => async (dispatch) => {
-    // console.log('UPDARED PET BEFORE THUNKIN', updatedPet)
     const response = await fetch(`/api/pet/${updatedPet.id}`, {
         method: "PUT",
         headers: {
@@ -70,7 +67,6 @@ export const fetchUpdatePet = (updatedPet) => async (dispatch) => {
 
     if (response.ok) {
         const updatedPet = await response.json();
-        // console.log('TTTTTTTTTTTTTTTTTTTTTTTT', updatedPet)
         dispatch(updatePet(updatedPet));
         return updatedPet;
     }
@@ -115,7 +111,6 @@ export default function reducer(state = initialState, action) {
             return newState;
 
         case CREATE_PET:
-            // console.log('ACTION', action)
             const createState = {
                 ...state, ...action.pet,
             };
@@ -129,14 +124,11 @@ export default function reducer(state = initialState, action) {
         }
 
         case DESTROY_PET: {
-            // console.log('destroy pet ACTION', action)
             // let deleteState = {
             //     ...state,
             //     pet: { ...action.pet },
             // };
-            // console.log('DELETE state BEFORE', deleteState)
             let deleteState = {}
-            // console.log('DELETE state AFTER', deleteState)
             return deleteState;
         }
         default:

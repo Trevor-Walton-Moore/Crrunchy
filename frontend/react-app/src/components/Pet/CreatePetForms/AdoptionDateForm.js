@@ -18,7 +18,6 @@ function AdoptionDateForm() {
         petGender, setPetGender,
         petCelebrationDay, setPetCelebrationDay,
     } = usePet()
-    // console.log(petAdoptionDate, "PET Adoption DATE before")
 
     if(!petType) {
         history.push('/pet/new')
@@ -59,13 +58,10 @@ function AdoptionDateForm() {
             adoptionDay: adoptionDate,
             coverImage: 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png',
         }
-        // console.log('the REEAL payload', payload)
         const data = await dispatch(fetchCreatePet(payload))
             .then((data) => {
-                // console.log('DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
                 if (petAdoptionDate === '') setErrors(['Please enter a date'])
                 else if (data.errors) {
-                    // console.log('error DATA', data)
                     const errArr = [data.errors]
 
                     setErrors(errArr);

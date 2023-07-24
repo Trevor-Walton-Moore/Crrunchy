@@ -16,7 +16,6 @@ function PetBreedForm() {
     }
 
     const { petBreed, setPetBreed, petName, petType } = usePet()
-    // console.log(petBreed, "PET BREED")
 
     if (!petType) {
         history.push('/pet/new')
@@ -56,7 +55,6 @@ function PetBreedForm() {
             obj['value'] = breedArr[i]
             normalizedBreeds.push(obj)
         }
-        // return console.log(normalizedBreeds, "nOrMaLiZeD BREEEDS")
     }
 
     const refreshCheck = (e) => {

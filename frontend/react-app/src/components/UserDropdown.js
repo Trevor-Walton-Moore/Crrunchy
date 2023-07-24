@@ -14,15 +14,9 @@ const UserDropdown = () => {
     const order = useSelector((state) => state.order?.order);
     // const orderId = useSelector((state) => state.order?.order?.id);
 
-    !pet.id && console.log(pet, "NO PET NO PETTTT")
-
-    pet.id && console.log(pet, "PETtttt there is one")
-
     const [showMenu, setShowMenu] = useState(false);
     const [petId, setPetId] = useState('');
     const [orderId, setOrderId] = useState('');
-
-    // console.log('dropdown order id from use state B) ', orderId)
 
     const openMenu = () => {
         if (showMenu) return
@@ -42,7 +36,6 @@ const UserDropdown = () => {
 
     useEffect(() => {
         if (Object.values(pet)?.length > 0 && pet?.ownerId === user?.id) {
-            // console.log('pet owner id and user id match')
             setPetId(pet?.id)
         }
 
@@ -50,7 +43,6 @@ const UserDropdown = () => {
 
     useEffect(() => {
         if (order?.id && Object.values(order)?.length > 0 && order?.userId === user?.id) {
-            // console.log('useEffect setting order Id because user id matches order user id .___.')
             setOrderId(order?.id)
         }
 

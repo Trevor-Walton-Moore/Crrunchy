@@ -9,15 +9,11 @@ function Pet() {
   const history = useHistory();
 
   const dispatch = useDispatch();
-  // const petId = useParams()
-  // console.log(petId)
 
   const defaultCoverImage = 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png'
 
   const user = useSelector((state) => state.session.user);
   const pet = useSelector((state) => state.pet);
-
-  // console.log('user', user, 'pet', pet)
 
   if (!user) {
     history.push('/login')
@@ -29,7 +25,6 @@ function Pet() {
 
 
   // const date = new Date()
-  // console.log("DATE", date, 'BDAY', new Date(pet.birthday))
   // const age = date - pet?.birthday
 
   const petDateObj = {}
@@ -64,7 +59,6 @@ function Pet() {
 
   useEffect(() => {
     dispatch(fetchOnePet(user?.id))
-    // console.log("FETCHA PET W USE EFFECT")
   }, [dispatch]);
 
   const useDefaultImage = (e) => {
@@ -72,7 +66,6 @@ function Pet() {
   }
 
   // useEffect(() => {
-  //   console.log("CHECK PET  MAYBE REDIRECT W USE EFFECT", pet)
   //   if (!pet.length) {
   //     history.push('/pet/new');
   //   }

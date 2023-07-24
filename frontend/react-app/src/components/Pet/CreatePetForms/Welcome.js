@@ -18,8 +18,6 @@ function Welcome() {
         history.push('/')
     }
 
-    // console.log(pet, 'PET USE STATE IN WELOME PAGE')
-
     const { petName, petProfileIcon,
         setPetAdoptionDate,
         setPetBirthday,

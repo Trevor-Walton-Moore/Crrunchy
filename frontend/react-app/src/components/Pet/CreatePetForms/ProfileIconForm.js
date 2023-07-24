@@ -9,7 +9,6 @@ function ProfileIconForm() {
     const history = useHistory()
 
     const { petProfileIcon, setPetProfileIcon, petBreed, petName, petType } = usePet()
-    // console.log(petProfileIcon, "PET PROFILE ICON")
 
     if (!petType) {
         history.push('/pet/new')
@@ -29,7 +28,7 @@ function ProfileIconForm() {
             obj['value'] = iconArr[i]
             normalizedIcons.push(obj)
         }
-        return console.log(normalizedIcons, "nOrMaLiZeD ICONS")
+        return
     }
 
     const previousPage = () => {

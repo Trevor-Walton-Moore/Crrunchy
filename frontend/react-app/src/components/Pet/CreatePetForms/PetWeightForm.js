@@ -14,7 +14,6 @@ function PetWeightForm() {
     }
 
     const { petWeight, setPetWeight, petName, petProfileIcon, petType } = usePet()
-    // console.log(petWeight, "PET Weight")
 
     if (!petType) {
         history.push('/pet/new')

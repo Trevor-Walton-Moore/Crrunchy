@@ -13,8 +13,6 @@ const EditPetForm = () => {
         history.push('/login')
     }
 
-    // console.log('edit pet', pet)
-
     const editPet = {
         id: pet.id,
         type: pet.type,

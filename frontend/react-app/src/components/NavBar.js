@@ -17,14 +17,11 @@ const NavBar = () => {
   const products = useSelector(state => state.product);
   const pet = useSelector((state) => state.pet);
 
-  console.log('products obj', products)
   let productsArr = Object.values(products);
 
   const [searchInput, setSearchInput] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [productsArrState, setProductsArrState] = useState(productsArr);
-
-  console.log(productsArr, "ProductsARRRAY")
 
   useEffect(() => {
     dispatch(fetchAllProducts())
@@ -49,9 +46,7 @@ const NavBar = () => {
   const updateSearchInputAndDropdown = (e) => {
     setSearchInput(e.target.value)
     setProductsArrState(productsArr.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase())))
-    // console.log('product search matches!!!!!!!!!', productsArr);
   }
-  // console.log('did the update work?', productsArrState)
 
   const fetchSearchResults = async (e) => {
     e.preventDefault()
@@ -59,7 +54,6 @@ const NavBar = () => {
     if (!searchInput) return null
 
     else {
-      // console.log('should fetch search')
       const search = await fetch(`/api/products/search`, {
         method: 'POST',
         headers: {
@@ -69,7 +63,6 @@ const NavBar = () => {
       })
       const res = await search.json();
       const searchResults = res?.products;
-      console.log('products found?', searchResults);
 
       history.push({
         state: {

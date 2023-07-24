@@ -25,7 +25,6 @@ function PetTypeForm() {
     const catIcon = catAvatars[0];
 
     const { petType, setPetType } = usePet()
-    // console.log(petType, "PET TYPE")
 
     const updateType = (type) => setPetType(type);
 

@@ -11,20 +11,12 @@ const SearchResults = () => {
     // const dispatch = useDispatch();
     const location = useLocation();
 
-
     const searchResults = location.state.searchResults;
     const searchInput = location.state.searchInput
-    console.log('inside search component. results: ', searchResults)
-    console.log('searhch input: ', searchInput)
-
 
 
     // const user = useSelector(state => state.session.user);
     // const productsObj = useSelector((state) => state.product);
-
-    // console.log('user in home page', user)
-
-    // console.log('productproductproductsss', productsObj)
 
     // useEffect(() => {
     //     dispatch(fetchOneOrder(user?.id));

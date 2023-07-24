@@ -37,8 +37,6 @@ const Favorites = () => {
                 return orderProduct.productId === product.id ? order = orderProduct : null
             });
 
-            console.log('prder in handle add to cart', order)
-
             if (order?.quantity) {
                 let updatedOrder = {
                     orderId: isOrder?.id,

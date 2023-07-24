@@ -21,7 +21,6 @@ const PetForm = ({ formType }) => {
         history.push(`/pet/${petId}`)
     }
 
-    // console.log(pet, 'PET EDIT PET USE STATE')
     const [errors, setErrors] = useState([]);
     const [type, setType] = useState(pet.type);
     const [name, setName] = useState(pet.name);
@@ -140,21 +139,17 @@ const PetForm = ({ formType }) => {
     }
 
     const convertPetDate = (date) => {
-        // console.log('icky date', date)
         const petDate = new Date(date);
         const petMonth = (petDate.getMonth() + 1);
         const petDay = (petDate.getDate() + 1);
         const petYear = (petDate.getFullYear());
         const convertedPetDate = petMonth + "/" + petDay + "/" + petYear;
-        // console.log('display date?????????', convertedPetDate)
         return convertedPetDate
     }
     // const updateDisplayBirthday = (e) => setDisplayBirthday(convertPetDate(e.target.value));
-    // console.log('display date STATE!!!!!!!', displayBirthday)
     // const updateDisplayAdoptionDay = (e) => setDisplayAdoptionDay(convertPetDate(e.target.value));
 
     const convertPetDateForComparison = (date) => {
-        // console.log('icky date', date)
         const petDate = new Date(date);
         const petMonth = (petDate.getMonth() + 1);
         const petDay = (petDate.getDate());
@@ -199,8 +194,6 @@ const PetForm = ({ formType }) => {
         // compareDate.setDate(compareDate.getDate() + 1);
         // const petMonth = (petDate.getMonth() + 1);
         // let petDay
-        // console.log('@@@@@@@@@@@@@@@@@ pet date:', convertPetDateForComparison(petDate), '===', convertPetDateForComparison(compareDate), '??',
-        // convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate))
         // if (convertPetDateForComparison(petDate) === convertPetDateForComparison(compareDate)) {
         //     petDay = petDate.getDate();
         // } else
@@ -211,9 +204,6 @@ const PetForm = ({ formType }) => {
         const defaultCoverImage = 'https://res.cloudinary.com/dfrj03hsi/image/upload/v1672688691/Crunchy%20images/cover-photo-default_ztxb2f.png';
 
         if (!coverImage) coverImage = defaultCoverImage
-
-        // console.log(adoptionDay, "----adoption day useState in handle submit----")
-        // console.log(birthday, "----birthday useState in handle submit----")
 
         if (birthday) {
             const payload = {
@@ -230,15 +220,11 @@ const PetForm = ({ formType }) => {
             };
             const data = await dispatch(fetchUpdatePet(payload))
                 .then((data) => {
-                    console.log('DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
                     if (data.errors) {
-                        console.log('suuuuuuuuuuuuuuuuuh',
-                            data)
                         const errArr = [data.errors]
                         setErrors(errArr);
                     }
                     else {
-                        console.log('hi :)')
                         history.push(`/pet/${pet.id}`);
                     }
                 })
@@ -257,10 +243,7 @@ const PetForm = ({ formType }) => {
                 coverImage,
             };
             dispatch(fetchUpdatePet(payload)).then((data) => {
-                // console.log('DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
                 if (data.errors) {
-                    // console.log('suuuuuuuuuuuuuuuuuh',
-                    //     data)
                     const errArr = [data.errors]
                     setErrors(errArr);
                 }
@@ -298,9 +281,6 @@ const PetForm = ({ formType }) => {
             window.removeEventListener("beforeunload", refreshCheck);
         };
     }, []);
-
-    // console.log('birthday :D', birthday)
-    // console.log('adopt day :D', adoptionDay)
 
     return (
         <form onSubmit={handleSubmit} className='edit-pet-form'>
