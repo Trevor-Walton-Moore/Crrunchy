@@ -4,3 +4,6 @@ __pycache__/
 .venv
 .DS_Store
 .vscode/
+frontend/react-app/src/components/BannerSlideshow.js
+frontend/react-app/src/components/ProductCategory.js
+frontend/react-app/src/components/css/BannerSlideshow.css
