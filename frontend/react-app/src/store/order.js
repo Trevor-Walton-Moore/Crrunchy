@@ -106,29 +106,12 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_ORDER:
-
-            const normalizedOrderProductsLoad = normalize(action.payload.orderProducts)
-
-            const newState = {
-                ...state, order: { ...action.payload.order, orderProducts: normalizedOrderProductsLoad }
-            };
-            return newState;
-
         case CREATE_ORDER:
-
-            const normalizedOrderProductsCreate = normalize(action.payload.orderProducts)
-
-            const createState = {
-                ...state, order: { ...action.payload.order, orderProducts: normalizedOrderProductsCreate }
-            };
-            return createState;
-
         case UPDATE_ORDER: {
-
-            const normalizedOrderProductsUpdate = normalize(action.payload.orderProducts)
+            const normalizedOrder = normalize(action.payload.orderProducts)
 
             const updateState = {
-                ...state, order: { ...action.payload.order, orderProducts: normalizedOrderProductsUpdate }
+                ...state, order: { ...action.payload.order, orderProducts: normalizedOrder }
             };
             return updateState;
         }
