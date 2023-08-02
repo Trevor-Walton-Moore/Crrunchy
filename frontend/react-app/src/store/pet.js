@@ -104,30 +104,14 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_PET:
+        case CREATE_PET:
+        case UPDATE_PET:
             const newState = {
-                ...state,
                 ...action.pet,
             };
             return newState;
 
-        case CREATE_PET:
-            const createState = {
-                ...state, ...action.pet,
-            };
-            return createState;
-
-        case UPDATE_PET: {
-            const updateState = {
-                ...state, ...action.pet,
-            };
-            return updateState;
-        }
-
         case DESTROY_PET: {
-            // let deleteState = {
-            //     ...state,
-            //     pet: { ...action.pet },
-            // };
             let deleteState = {}
             return deleteState;
         }

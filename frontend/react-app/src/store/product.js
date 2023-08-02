@@ -38,7 +38,6 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_PRODUCTS:
             let normalizedProducts = normalize(action.products);
-
             const stateNormalized = { ...state, ...normalizedProducts }
             return stateNormalized;
         default:
